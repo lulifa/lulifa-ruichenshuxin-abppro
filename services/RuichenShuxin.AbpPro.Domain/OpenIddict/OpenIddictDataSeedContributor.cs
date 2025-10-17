@@ -1,14 +1,9 @@
-﻿using JetBrains.Annotations;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Localization;
+﻿using Microsoft.Extensions.Configuration;
 using OpenIddict.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
-using Volo.Abp;
 using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
@@ -25,349 +20,277 @@ namespace RuichenShuxin.AbpPro.OpenIddict;
  */
 public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDependency
 {
-    private readonly IConfiguration _configuration;
-    private readonly IOpenIddictApplicationRepository _openIddictApplicationRepository;
-    private readonly IAbpApplicationManager _applicationManager;
-    private readonly IOpenIddictScopeRepository _openIddictScopeRepository;
+    private readonly IOpenIddictApplicationManager _applicationManager;
+    private readonly IOpenIddictApplicationRepository _applicationRepository;
+
     private readonly IOpenIddictScopeManager _scopeManager;
+    private readonly IOpenIddictScopeRepository _scopeRepository;
+
     private readonly IPermissionDataSeeder _permissionDataSeeder;
-    private readonly IStringLocalizer<OpenIddictResponse> L;
+    private readonly IConfiguration _configuration;
+    private readonly ICurrentTenant _currentTenant;
 
     public OpenIddictDataSeedContributor(
-        IConfiguration configuration,
-        IOpenIddictApplicationRepository openIddictApplicationRepository,
-        IAbpApplicationManager applicationManager,
-        IOpenIddictScopeRepository openIddictScopeRepository,
+        IOpenIddictApplicationManager applicationManager,
+        IOpenIddictApplicationRepository applicationRepository,
         IOpenIddictScopeManager scopeManager,
+        IOpenIddictScopeRepository scopeRepository,
         IPermissionDataSeeder permissionDataSeeder,
-        IStringLocalizer<OpenIddictResponse> l)
+        IConfiguration configuration,
+        ICurrentTenant currentTenant)
     {
-        _configuration = configuration;
-        _openIddictApplicationRepository = openIddictApplicationRepository;
         _applicationManager = applicationManager;
-        _openIddictScopeRepository = openIddictScopeRepository;
+        _applicationRepository = applicationRepository;
         _scopeManager = scopeManager;
+        _scopeRepository = scopeRepository;
         _permissionDataSeeder = permissionDataSeeder;
-        L = l;
+        _configuration = configuration;
+        _currentTenant = currentTenant;
     }
 
     [UnitOfWork]
-    public virtual async Task SeedAsync(DataSeedContext context)
+    public async virtual Task SeedAsync(DataSeedContext context)
     {
-        await CreateScopesAsync();
-        await CreateApplicationsAsync();
+        using (_currentTenant.Change(context.TenantId))
+        {
+            await SeedOpenIddictAsync();
+        }
     }
 
-    private async Task CreateScopesAsync()
+    #region OpenIddict
+
+    private async Task SeedOpenIddictAsync()
     {
-        if (await _openIddictScopeRepository.FindByNameAsync("AbpPro") == null)
+        var scope = "AbpPro";
+
+        await CreateScopeAsync(scope);
+        await CreateApplicationAsync(scope);
+    }
+
+    private async Task CreateScopeAsync(string scope)
+    {
+        if (await _scopeRepository.FindByNameAsync(scope) == null)
         {
-            await _scopeManager.CreateAsync(new OpenIddictScopeDescriptor
+            await _scopeManager.CreateAsync(new OpenIddictScopeDescriptor()
             {
-                Name = "AbpPro",
-                DisplayName = "AbpPro API",
-                Resources = { "AbpPro" }
+                Name = scope,
+                DisplayName = scope + " access",
+                DisplayNames =
+                {
+                    [CultureInfo.GetCultureInfo("zh-Hans")] = "Abp API 应用程序访问",
+                    [CultureInfo.GetCultureInfo("en")] = "Abp API Application Access"
+                },
+                Resources =
+                {
+                    scope
+                }
             });
         }
     }
 
-    private async Task CreateApplicationsAsync()
+    private async Task CreateApplicationAsync(string scope)
     {
-        var commonScopes = new List<string> {
-            OpenIddictConstants.Permissions.Scopes.Address,
-            OpenIddictConstants.Permissions.Scopes.Email,
-            OpenIddictConstants.Permissions.Scopes.Phone,
-            OpenIddictConstants.Permissions.Scopes.Profile,
-            OpenIddictConstants.Permissions.Scopes.Roles,
-            "AbpPro"
-        };
-
         var configurationSection = _configuration.GetSection("OpenIddict:Applications");
 
-
-        //Console Test / Angular Client
-        var consoleAndAngularClientId = configurationSection["AbpPro_App:ClientId"];
-        if (!consoleAndAngularClientId.IsNullOrWhiteSpace())
+        var vueClientId = configurationSection["AbpPro_App:ClientId"];
+        if (!vueClientId.IsNullOrWhiteSpace())
         {
-            var consoleAndAngularClientRootUrl = configurationSection["AbpPro_App:RootUrl"]?.TrimEnd('/');
-            await CreateApplicationAsync(
-                applicationType: OpenIddictConstants.ApplicationTypes.Web,
-                name: consoleAndAngularClientId!,
-                type: OpenIddictConstants.ClientTypes.Public,
-                consentType: OpenIddictConstants.ConsentTypes.Implicit,
-                displayName: "Console Test / Angular Application",
-                secret: null,
-                grantTypes: new List<string> {
-                    OpenIddictConstants.GrantTypes.AuthorizationCode,
-                    OpenIddictConstants.GrantTypes.Password,
-                    OpenIddictConstants.GrantTypes.ClientCredentials,
-                    OpenIddictConstants.GrantTypes.RefreshToken,
-                    "LinkLogin",
-                    "Impersonation"
-                },
-                scopes: commonScopes,
-                redirectUris: new List<string> { consoleAndAngularClientRootUrl },
-                postLogoutRedirectUris: new List<string> { consoleAndAngularClientRootUrl },
-                clientUri: consoleAndAngularClientRootUrl,
-                logoUri: "/images/clients/angular.svg"
-            );
+            var vueClientRootUrl = configurationSection["AbpPro_App:RootUrl"].EnsureEndsWith('/');
+
+            if (await _applicationRepository.FindByClientIdAsync(vueClientId) == null)
+            {
+                await _applicationManager.CreateAsync(new AbpApplicationDescriptor
+                {
+                    ClientId = vueClientId,
+                    ClientSecret = configurationSection["AbpPro_App:ClientSecret"],
+                    ApplicationType = OpenIddictConstants.ApplicationTypes.Web,
+                    ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
+                    DisplayName = "Abp Vue Admin Client",
+                    ClientUri = vueClientRootUrl,
+                    LogoUri = "/images/clients/vue.svg",
+                    PostLogoutRedirectUris =
+                    {
+                        new Uri(vueClientRootUrl + "signout-callback"),
+                        new Uri(vueClientRootUrl)
+                    },
+                    RedirectUris =
+                    {
+                        new Uri(vueClientRootUrl + "signin-callback"),
+                        new Uri(vueClientRootUrl)
+                    },
+                    Permissions =
+                    {
+                        OpenIddictConstants.Permissions.Endpoints.Authorization,
+                        OpenIddictConstants.Permissions.Endpoints.Token,
+                        OpenIddictConstants.Permissions.Endpoints.DeviceAuthorization,
+                        OpenIddictConstants.Permissions.Endpoints.Introspection,
+                        OpenIddictConstants.Permissions.Endpoints.Revocation,
+                        OpenIddictConstants.Permissions.Endpoints.EndSession,
+
+                        OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
+                        OpenIddictConstants.Permissions.GrantTypes.Implicit,
+                        OpenIddictConstants.Permissions.GrantTypes.Password,
+                        OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
+                        OpenIddictConstants.Permissions.GrantTypes.DeviceCode,
+                        OpenIddictConstants.Permissions.GrantTypes.ClientCredentials,
+
+                        OpenIddictConstants.Permissions.ResponseTypes.Code,
+                        OpenIddictConstants.Permissions.ResponseTypes.CodeIdToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.CodeIdTokenToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.CodeToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.IdToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.IdTokenToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.None,
+                        OpenIddictConstants.Permissions.ResponseTypes.Token,
+
+                        OpenIddictConstants.Permissions.Scopes.Roles,
+                        OpenIddictConstants.Permissions.Scopes.Profile,
+                        OpenIddictConstants.Permissions.Scopes.Email,
+                        OpenIddictConstants.Permissions.Scopes.Address,
+                        OpenIddictConstants.Permissions.Scopes.Phone,
+                        OpenIddictConstants.Permissions.Prefixes.Scope + scope
+                    }
+                });
+
+                var vueClientPermissions = new string[2]
+                {
+                    "AbpIdentity.UserLookup","AbpIdentity.Users"
+                };
+                await _permissionDataSeeder.SeedAsync(ClientPermissionValueProvider.ProviderName, vueClientId, vueClientPermissions);
+            }
         }
 
-
-
-
-
-
-
-        // Swagger Client
         var swaggerClientId = configurationSection["AbpPro_Swagger:ClientId"];
         if (!swaggerClientId.IsNullOrWhiteSpace())
         {
-            var swaggerRootUrl = configurationSection["AbpPro_Swagger:RootUrl"]?.TrimEnd('/');
+            var swaggerClientRootUrl = configurationSection["AbpPro_Swagger:RootUrl"].EnsureEndsWith('/');
 
-            await CreateApplicationAsync(
-                applicationType: OpenIddictConstants.ApplicationTypes.Web,
-                name: swaggerClientId!,
-                type: OpenIddictConstants.ClientTypes.Public,
-                consentType: OpenIddictConstants.ConsentTypes.Implicit,
-                displayName: "Swagger Application",
-                secret: null,
-                grantTypes: new List<string> { OpenIddictConstants.GrantTypes.AuthorizationCode, },
-                scopes: commonScopes,
-                redirectUris: new List<string> { $"{swaggerRootUrl}/swagger/oauth2-redirect.html" },
-                clientUri: swaggerRootUrl.EnsureEndsWith('/') + "swagger",
-                logoUri: "/images/clients/swagger.svg"
-            );
-        }
-
-
-    }
-
-    private async Task CreateApplicationAsync(
-        [NotNull] string applicationType,
-        [NotNull] string name,
-        [NotNull] string type,
-        [NotNull] string consentType,
-        string displayName,
-        string? secret,
-        List<string> grantTypes,
-        List<string> scopes,
-        List<string>? redirectUris = null,
-        List<string>? postLogoutRedirectUris = null,
-        List<string>? permissions = null,
-        string? clientUri = null,
-        string? logoUri = null)
-    {
-        if (!string.IsNullOrEmpty(secret) && string.Equals(type, OpenIddictConstants.ClientTypes.Public,
-                StringComparison.OrdinalIgnoreCase))
-        {
-            throw new BusinessException(L["NoClientSecretCanBeSetForPublicApplications"]);
-        }
-
-        if (string.IsNullOrEmpty(secret) && string.Equals(type, OpenIddictConstants.ClientTypes.Confidential,
-                StringComparison.OrdinalIgnoreCase))
-        {
-            throw new BusinessException(L["TheClientSecretIsRequiredForConfidentialApplications"]);
-        }
-
-        var client = await _openIddictApplicationRepository.FindByClientIdAsync(name);
-
-        var application = new AbpApplicationDescriptor
-        {
-            ApplicationType = applicationType,
-            ClientId = name,
-            ClientType = type,
-            ClientSecret = secret,
-            ConsentType = consentType,
-            DisplayName = displayName,
-            ClientUri = clientUri,
-            LogoUri = logoUri,
-        };
-
-        Check.NotNullOrEmpty(grantTypes, nameof(grantTypes));
-        Check.NotNullOrEmpty(scopes, nameof(scopes));
-
-        if (new[] { OpenIddictConstants.GrantTypes.AuthorizationCode, OpenIddictConstants.GrantTypes.Implicit }.All(
-                grantTypes.Contains))
-        {
-            application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.CodeIdToken);
-
-            if (string.Equals(type, OpenIddictConstants.ClientTypes.Public, StringComparison.OrdinalIgnoreCase))
+            if (await _applicationRepository.FindByClientIdAsync(swaggerClientRootUrl) == null)
             {
-                application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.CodeIdTokenToken);
-                application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.CodeToken);
-            }
-        }
-
-        if (!redirectUris.IsNullOrEmpty() || !postLogoutRedirectUris.IsNullOrEmpty())
-        {
-            application.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.EndSession);
-        }
-
-        var buildInGrantTypes = new[] {
-            OpenIddictConstants.GrantTypes.Implicit, OpenIddictConstants.GrantTypes.Password,
-            OpenIddictConstants.GrantTypes.AuthorizationCode, OpenIddictConstants.GrantTypes.ClientCredentials,
-            OpenIddictConstants.GrantTypes.DeviceCode, OpenIddictConstants.GrantTypes.RefreshToken
-        };
-
-        foreach (var grantType in grantTypes)
-        {
-            if (grantType == OpenIddictConstants.GrantTypes.AuthorizationCode)
-            {
-                application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode);
-                application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.Code);
-            }
-
-            if (grantType == OpenIddictConstants.GrantTypes.AuthorizationCode ||
-                grantType == OpenIddictConstants.GrantTypes.Implicit)
-            {
-                application.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Authorization);
-            }
-
-            if (grantType == OpenIddictConstants.GrantTypes.AuthorizationCode ||
-                grantType == OpenIddictConstants.GrantTypes.ClientCredentials ||
-                grantType == OpenIddictConstants.GrantTypes.Password ||
-                grantType == OpenIddictConstants.GrantTypes.RefreshToken ||
-                grantType == OpenIddictConstants.GrantTypes.DeviceCode)
-            {
-                application.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Token);
-                application.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Revocation);
-                application.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Introspection);
-            }
-
-            if (grantType == OpenIddictConstants.GrantTypes.ClientCredentials)
-            {
-                application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.ClientCredentials);
-            }
-
-            if (grantType == OpenIddictConstants.GrantTypes.Implicit)
-            {
-                application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.Implicit);
-            }
-
-            if (grantType == OpenIddictConstants.GrantTypes.Password)
-            {
-                application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.Password);
-            }
-
-            if (grantType == OpenIddictConstants.GrantTypes.RefreshToken)
-            {
-                application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.RefreshToken);
-            }
-
-            if (grantType == OpenIddictConstants.GrantTypes.DeviceCode)
-            {
-                application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.DeviceCode);
-                application.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.DeviceAuthorization);
-            }
-
-            if (grantType == OpenIddictConstants.GrantTypes.Implicit)
-            {
-                application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.IdToken);
-                if (string.Equals(type, OpenIddictConstants.ClientTypes.Public, StringComparison.OrdinalIgnoreCase))
+                var application = new AbpApplicationDescriptor
                 {
-                    application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.IdTokenToken);
-                    application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.Token);
-                }
-            }
+                    ClientId = swaggerClientId,
+                    ClientSecret = null,
+                    ApplicationType = OpenIddictConstants.ApplicationTypes.Web,
+                    ConsentType = OpenIddictConstants.ConsentTypes.Implicit,
+                    DisplayName = "Swagger Client",
+                    ClientUri = swaggerClientRootUrl.EnsureEndsWith('/') + "swagger",
+                    LogoUri = "/images/clients/swagger.svg",
+                    PostLogoutRedirectUris = { },
+                    RedirectUris = { },
+                    Permissions =
+                    {
+                        OpenIddictConstants.Permissions.Endpoints.Authorization,
+                        OpenIddictConstants.Permissions.Endpoints.Token,
+                        OpenIddictConstants.Permissions.Endpoints.DeviceAuthorization,
+                        OpenIddictConstants.Permissions.Endpoints.Introspection,
+                        OpenIddictConstants.Permissions.Endpoints.Revocation,
+                        OpenIddictConstants.Permissions.Endpoints.EndSession,
 
-            if (!buildInGrantTypes.Contains(grantType))
-            {
-                application.Permissions.Add(OpenIddictConstants.Permissions.Prefixes.GrantType + grantType);
-            }
-        }
+                        OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
+                        OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
 
-        var buildInScopes = new[] {
-            OpenIddictConstants.Permissions.Scopes.Address, OpenIddictConstants.Permissions.Scopes.Email,
-            OpenIddictConstants.Permissions.Scopes.Phone, OpenIddictConstants.Permissions.Scopes.Profile,
-            OpenIddictConstants.Permissions.Scopes.Roles
-        };
+                        OpenIddictConstants.Permissions.ResponseTypes.Code,
+                        OpenIddictConstants.Permissions.ResponseTypes.CodeIdToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.CodeIdTokenToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.CodeToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.IdToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.IdTokenToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.None,
+                        OpenIddictConstants.Permissions.ResponseTypes.Token,
 
-        foreach (var scope in scopes)
-        {
-            if (buildInScopes.Contains(scope))
-            {
-                application.Permissions.Add(scope);
-            }
-            else
-            {
-                application.Permissions.Add(OpenIddictConstants.Permissions.Prefixes.Scope + scope);
-            }
-        }
+                        OpenIddictConstants.Permissions.Scopes.Roles,
+                        OpenIddictConstants.Permissions.Scopes.Profile,
+                        OpenIddictConstants.Permissions.Scopes.Email,
+                        OpenIddictConstants.Permissions.Scopes.Address,
+                        OpenIddictConstants.Permissions.Scopes.Phone,
+                        OpenIddictConstants.Permissions.Prefixes.Scope + scope
+                    }
+                };
 
-        if (!redirectUris.IsNullOrEmpty())
-        {
-            foreach (var redirectUri in redirectUris!.Where(redirectUri => !redirectUri.IsNullOrWhiteSpace()))
-            {
-                if (!Uri.TryCreate(redirectUri, UriKind.Absolute, out var uri) || !uri.IsWellFormedOriginalString())
+                application.PostLogoutRedirectUris.AddIfNotContains(new Uri(swaggerClientRootUrl.EnsureEndsWith('/')));
+                application.PostLogoutRedirectUris.AddIfNotContains(new Uri(swaggerClientRootUrl.EnsureEndsWith('/') + "signout-callback"));
+
+                application.RedirectUris.AddIfNotContains(new Uri(swaggerClientRootUrl));
+                application.RedirectUris.AddIfNotContains(new Uri(swaggerClientRootUrl.EnsureEndsWith('/') + "signin-callback"));
+                application.RedirectUris.AddIfNotContains(new Uri(swaggerClientRootUrl.EnsureEndsWith('/') + "swagger/oauth2-redirect.html"));
+
+                await _applicationManager.CreateAsync(application);
+
+                var swaggerClientPermissions = new string[2]
                 {
-                    throw new BusinessException(L["InvalidRedirectUri", redirectUri]);
-                }
-
-                if (application.RedirectUris.All(x => x != uri))
-                {
-                    application.RedirectUris.Add(uri);
-                }
+                    "AbpIdentity.UserLookup","AbpIdentity.Users"
+                };
+                await _permissionDataSeeder.SeedAsync(ClientPermissionValueProvider.ProviderName, swaggerClientId, swaggerClientPermissions);
             }
-
         }
 
-        if (!postLogoutRedirectUris.IsNullOrEmpty())
+        var oauthClientId = configurationSection["AbpPro_OAuth:ClientId"];
+        if (!oauthClientId.IsNullOrWhiteSpace())
         {
-            foreach (var postLogoutRedirectUri in postLogoutRedirectUris!.Where(postLogoutRedirectUri => !postLogoutRedirectUri.IsNullOrWhiteSpace()))
+            var oauthClientRootUrl = configurationSection["AbpPro_OAuth:RootUrl"].EnsureEndsWith('/');
+
+            if (await _applicationRepository.FindByClientIdAsync(oauthClientId) == null)
             {
-                if (!Uri.TryCreate(postLogoutRedirectUri, UriKind.Absolute, out var uri) ||
-                    !uri.IsWellFormedOriginalString())
+                var application = new AbpApplicationDescriptor
                 {
-                    throw new BusinessException(L["InvalidPostLogoutRedirectUri", postLogoutRedirectUri]);
-                }
+                    ClientId = oauthClientId,
+                    ClientSecret = null,
+                    ApplicationType = OpenIddictConstants.ApplicationTypes.Web,
+                    ConsentType = OpenIddictConstants.ConsentTypes.Implicit,
+                    DisplayName = "OAuth Client",
+                    ClientUri = oauthClientRootUrl,
+                    LogoUri = "/images/clients/aspnetcore.svg",
+                    PostLogoutRedirectUris = { },
+                    RedirectUris = { },
+                    Permissions =
+                    {
+                        OpenIddictConstants.Permissions.Endpoints.Authorization,
+                        OpenIddictConstants.Permissions.Endpoints.Token,
+                        OpenIddictConstants.Permissions.Endpoints.DeviceAuthorization,
+                        OpenIddictConstants.Permissions.Endpoints.Introspection,
+                        OpenIddictConstants.Permissions.Endpoints.Revocation,
+                        OpenIddictConstants.Permissions.Endpoints.EndSession,
 
-                if (application.PostLogoutRedirectUris.All(x => x != uri))
+                        OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
+                        OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
+
+                        OpenIddictConstants.Permissions.ResponseTypes.Code,
+                        OpenIddictConstants.Permissions.ResponseTypes.CodeIdToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.CodeIdTokenToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.CodeToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.IdToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.IdTokenToken,
+                        OpenIddictConstants.Permissions.ResponseTypes.None,
+                        OpenIddictConstants.Permissions.ResponseTypes.Token,
+
+                        OpenIddictConstants.Permissions.Scopes.Roles,
+                        OpenIddictConstants.Permissions.Scopes.Profile,
+                        OpenIddictConstants.Permissions.Scopes.Email,
+                        OpenIddictConstants.Permissions.Scopes.Address,
+                        OpenIddictConstants.Permissions.Scopes.Phone,
+                        OpenIddictConstants.Permissions.Prefixes.Scope + scope
+                    }
+                };
+
+                application.PostLogoutRedirectUris.AddIfNotContains(new Uri(oauthClientRootUrl.EnsureEndsWith('/')));
+                application.PostLogoutRedirectUris.AddIfNotContains(new Uri(oauthClientRootUrl.EnsureEndsWith('/') + "signout-callback"));
+
+                application.RedirectUris.AddIfNotContains(new Uri(oauthClientRootUrl));
+                application.RedirectUris.AddIfNotContains(new Uri(oauthClientRootUrl.EnsureEndsWith('/') + "signin-callback"));
+                application.RedirectUris.AddIfNotContains(new Uri(oauthClientRootUrl.EnsureEndsWith('/') + "swagger/oauth2-redirect.html"));
+
+                await _applicationManager.CreateAsync(application);
+
+                var oauthClientPermissions = new string[2]
                 {
-                    application.PostLogoutRedirectUris.Add(uri);
-                }
+                    "AbpIdentity.UserLookup","AbpIdentity.Users"
+                };
+                await _permissionDataSeeder.SeedAsync(ClientPermissionValueProvider.ProviderName, oauthClientId, oauthClientPermissions);
             }
-        }
-
-        if (permissions != null)
-        {
-            await _permissionDataSeeder.SeedAsync(
-                ClientPermissionValueProvider.ProviderName,
-                name,
-                permissions,
-                null
-            );
-        }
-
-        if (client == null)
-        {
-            await _applicationManager.CreateAsync(application);
-            return;
-        }
-
-        if (!HasSameRedirectUris(client, application))
-        {
-            client.RedirectUris = JsonSerializer.Serialize(application.RedirectUris.Select(q => q.ToString().RemovePostFix("/")));
-            client.PostLogoutRedirectUris = JsonSerializer.Serialize(application.PostLogoutRedirectUris.Select(q => q.ToString().RemovePostFix("/")));
-
-            await _applicationManager.UpdateAsync(client.ToModel());
-        }
-
-        if (!HasSameScopes(client, application))
-        {
-            client.Permissions = JsonSerializer.Serialize(application.Permissions.Select(q => q.ToString()));
-            await _applicationManager.UpdateAsync(client.ToModel());
         }
     }
 
-    private bool HasSameRedirectUris(OpenIddictApplication existingClient, AbpApplicationDescriptor application)
-    {
-        return existingClient.RedirectUris == JsonSerializer.Serialize(application.RedirectUris.Select(q => q.ToString().RemovePostFix("/")));
-    }
-
-    private bool HasSameScopes(OpenIddictApplication existingClient, AbpApplicationDescriptor application)
-    {
-        return existingClient.Permissions == JsonSerializer.Serialize(application.Permissions.Select(q => q.ToString().TrimEnd('/')));
-    }
+    #endregion
 }
 
