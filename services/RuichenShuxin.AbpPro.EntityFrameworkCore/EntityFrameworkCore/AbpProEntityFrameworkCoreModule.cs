@@ -13,7 +13,6 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
-using Volo.Abp.Studio;
 
 namespace RuichenShuxin.AbpPro.EntityFrameworkCore;
 
@@ -46,11 +45,6 @@ public class AbpProEntityFrameworkCoreModule : AbpModule
                  * default repositories only for aggregate roots */
             options.AddDefaultRepositories(includeAllEntities: true);
         });
-
-        if (AbpStudioAnalyzeHelper.IsInAnalyzeMode)
-        {
-            return;
-        }
 
         Configure<AbpDbContextOptions>(options =>
         {
