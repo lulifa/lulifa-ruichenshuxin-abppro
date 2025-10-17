@@ -1,0 +1,86 @@
+{
+  "id": "505fc89d-36cf-4fd0-88e6-cd80303ae1df",
+  "creationTime": "10/17/2025 05:03:59 +00:00",
+  "template": "app",
+  "versions": {
+    "AbpFramework": "9.3.5",
+    "AbpStudio": "1.3.3",
+    "TargetDotnetFramework": "net9.0"
+  },
+  "modules": {
+    "RuichenShuxin.AbpPro": {
+      "path": "RuichenShuxin.AbpPro.abpmdl"
+    },
+    "RuichenShuxin.AbpPro.Notification": {
+      "path": "modules/RuichenShuxin.AbpPro.Notification.abpmdl"
+    },
+    "RuichenShuxin.AbpPro.Language": {
+      "path": "modules/language/RuichenShuxin.AbpPro.Language.abpmdl"
+    },
+    "RuichenShuxin.AbpPro.Platform": {
+      "path": "modules/platform/RuichenShuxin.AbpPro.Platform.abpmdl"
+    },
+    "RuichenShuxin.AbpPro.Storage": {
+      "path": "modules/storage/RuichenShuxin.AbpPro.Storage.abpmdl"
+    }
+  },
+  "runProfiles": {
+    "Default": {
+      "path": "etc/abp-studio/run-profiles/Default.abprun.json"
+    }
+  },
+  "options": {
+    "httpRequests": {
+      "ignoredUrls": []
+    }
+  },
+  "creatingStudioConfiguration": {
+    "template": "app",
+    "createdAbpStudioVersion": "1.3.3",
+    "tiered": "false",
+    "runInstallLibs": "true",
+    "useLocalReferences": "false",
+    "multiTenancy": "true",
+    "includeTests": "true",
+    "kubernetesConfiguration": "false",
+    "uiFramework": "angular",
+    "mobileFramework": "none",
+    "distributedEventBus": "none",
+    "databaseProvider": "ef",
+    "runDbMigrator": "true",
+    "databaseManagementSystem": "mysql",
+    "separateTenantSchema": "false",
+    "createInitialMigration": "true",
+    "theme": "leptonx-lite",
+    "themeStyle": "",
+    "themeMenuPlacement": "",
+    "progressiveWebApp": "false",
+    "runProgressiveWebAppSupport": "false",
+    "publicWebsite": "false",
+    "socialLogin": "true",
+    "selectedLanguages": [
+      "Arabic",
+      "Chinese (Simplified)",
+      "Chinese (Traditional)",
+      "Czech",
+      "English",
+      "English (United Kingdom)",
+      "Finnish",
+      "French",
+      "German (Germany)",
+      "Hindi ",
+      "Hungarian",
+      "Icelandic",
+      "Italian",
+      "Portuguese (Brazil)",
+      "Romanian (Romania)",
+      "Russian",
+      "Slovak",
+      "Spanish",
+      "Swedish",
+      "Turkish"
+    ],
+    "defaultLanguage": "Arabic",
+    "createCommand": "abp new RuichenShuxin.AbpPro -t app --ui-framework angular --database-provider ef --database-management-system mysql --theme leptonx-lite --without-cms-kit --sample-crud-page --dont-run-bundling -no-file-management"
+  }
+}
