@@ -12,6 +12,7 @@ using OpenIddict.Validation.AspNetCore;
 using RuichenShuxin.AbpPro.EntityFrameworkCore;
 using RuichenShuxin.AbpPro.HealthChecks;
 using RuichenShuxin.AbpPro.MultiTenancy;
+using RuichenShuxin.AbpPro.OAuth;
 using System;
 using System.IO;
 using System.Linq;
@@ -43,6 +44,7 @@ namespace RuichenShuxin.AbpPro;
     typeof(AbpProApplicationModule),
     typeof(AbpProEntityFrameworkCoreModule),
     typeof(AbpAccountWebOpenIddictModule),
+    typeof(AbpProOAuthModule),
     typeof(AbpSwashbuckleModule),
     typeof(AbpAspNetCoreSerilogModule)
     )]
@@ -95,7 +97,7 @@ public class AbpProHttpApiHostModule : AbpModule
             {
                 options.DisableTransportSecurityRequirement = true;
             });
-            
+
             Configure<ForwardedHeadersOptions>(options =>
             {
                 options.ForwardedHeaders = ForwardedHeaders.XForwardedProto;

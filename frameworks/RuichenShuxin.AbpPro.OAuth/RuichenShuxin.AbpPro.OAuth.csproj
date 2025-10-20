@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <RootNamespace>RuichenShuxin.AbpPro.OAuth</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    
+    <PackageReference Include="Volo.Abp.Features" Version="9.3.5" />
+    <PackageReference Include="Volo.Abp.Settings" Version="9.3.5" />
+    <PackageReference Include="Volo.Abp.Account.Web" Version="9.3.5" />
+    <PackageReference Include="AspNet.Security.OAuth.GitHub" Version="9.4.1" />
+    <PackageReference Include="AspNet.Security.OAuth.Gitee" Version="9.4.1" />
+    <PackageReference Include="AspNet.Security.OAuth.QQ" Version="9.4.1" />
+    <PackageReference Include="AspNet.Security.OAuth.WeiXin" Version="9.4.1" />
+    <PackageReference Include="AspNet.Security.OAuth.WorkWeixin" Version="9.4.1" />
+    <PackageReference Include="AspNet.Security.OAuth.Bilibili" Version="9.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\Resources\*.json" />
+  </ItemGroup>
+
+</Project>
