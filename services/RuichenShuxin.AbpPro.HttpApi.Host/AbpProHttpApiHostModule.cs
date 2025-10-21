@@ -10,10 +10,10 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using OpenIddict.Server.AspNetCore;
 using OpenIddict.Validation.AspNetCore;
+using RuichenShuxin.AbpPro.Core;
 using RuichenShuxin.AbpPro.EntityFrameworkCore;
 using RuichenShuxin.AbpPro.HealthChecks;
 using RuichenShuxin.AbpPro.MultiTenancy;
-using RuichenShuxin.AbpPro.OAuth;
 using System;
 using System.IO;
 using System.Linq;
@@ -45,7 +45,7 @@ namespace RuichenShuxin.AbpPro;
     typeof(AbpProApplicationModule),
     typeof(AbpProEntityFrameworkCoreModule),
     typeof(AbpAccountWebOpenIddictModule),
-    typeof(AbpProOAuthModule),
+    typeof(AbpProCoreModule),
     typeof(AbpSwashbuckleModule),
     typeof(AbpAspNetCoreSerilogModule)
     )]
@@ -226,8 +226,6 @@ public class AbpProHttpApiHostModule : AbpModule
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
     {
-        var locOptions = context.ServiceProvider.GetRequiredService<IOptions<RequestLocalizationOptions>>();
-        Console.WriteLine("== DefaultRequestCulture: " + locOptions.Value.DefaultRequestCulture.Culture.Name);
 
         var app = context.GetApplicationBuilder();
         var env = context.GetEnvironment();

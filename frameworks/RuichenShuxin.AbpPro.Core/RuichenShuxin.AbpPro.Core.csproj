@@ -2,8 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <AssemblyName>RuichenShuxin.AbpPro.Core</AssemblyName>
+    <RootNamespace />
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RuichenShuxin.AbpPro.Localization\RuichenShuxin.AbpPro.Localization.csproj" />
+    <ProjectReference Include="..\RuichenShuxin.AbpPro.OAuth\RuichenShuxin.AbpPro.OAuth.csproj" />
+  </ItemGroup>
 
 </Project>
