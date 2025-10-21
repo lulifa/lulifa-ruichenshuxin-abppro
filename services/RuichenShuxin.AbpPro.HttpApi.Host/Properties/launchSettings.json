@@ -18,7 +18,7 @@
     "RuichenShuxin.AbpPro.HttpApi.Host": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:44382",
+      "applicationUrl": "http://localhost:44382",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
