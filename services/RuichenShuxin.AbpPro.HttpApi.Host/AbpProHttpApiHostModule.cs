@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using OpenIddict.Server.AspNetCore;
 using OpenIddict.Validation.AspNetCore;
@@ -225,6 +226,9 @@ public class AbpProHttpApiHostModule : AbpModule
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
     {
+        var locOptions = context.ServiceProvider.GetRequiredService<IOptions<RequestLocalizationOptions>>();
+        Console.WriteLine("== DefaultRequestCulture: " + locOptions.Value.DefaultRequestCulture.Culture.Name);
+
         var app = context.GetApplicationBuilder();
         var env = context.GetEnvironment();
 

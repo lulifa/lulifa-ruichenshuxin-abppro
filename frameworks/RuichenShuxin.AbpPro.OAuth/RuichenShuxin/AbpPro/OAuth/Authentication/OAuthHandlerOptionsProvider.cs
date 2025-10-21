@@ -1,0 +1,13 @@
+﻿namespace RuichenShuxin.AbpPro.OAuth;
+
+public abstract class OAuthHandlerOptionsProvider<TOptions> : IOAuthHandlerOptionsProvider<TOptions>, ITransientDependency
+    where TOptions : RemoteAuthenticationOptions, new()
+{
+    protected ISettingProvider SettingProvider { get; }
+    public OAuthHandlerOptionsProvider(ISettingProvider settingProvider)
+    {
+        SettingProvider = settingProvider;
+    }
+
+    public abstract Task SetOptionsAsync(TOptions options);
+}

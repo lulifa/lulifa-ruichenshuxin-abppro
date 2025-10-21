@@ -1,0 +1,16 @@
+{
+  "culture": "zh-Hans",
+  "texts": {
+    "Welcome": "欢迎",
+    "Permission:Cap": "CAP面板",
+    "AbpPro.Language:100001": "起始页必须大于等于1",
+    "AbpPro.Language:100002": "每页最大记录数不能超过100000",
+    "AbpPro.Language:100003": "{0}不能为空",
+    "AbpPro.Language:100004": "{0}不支持的授权类型",
+    "AbpPro.Language:PermissionDenied": "权限不足",
+    "AbpPro.Language:ParameterValidationFailed": "请求参数验证失败",
+    "AbpPro.Language:EntityNotFound": "实体不存在",
+    "AbpPro.Language:Unimplemented ": "未实现功能",
+    "AbpPro.Language:DbUpdateConcurrency ": "数据已被修改,请重新提交."
+  }
+}

@@ -1,0 +1,32 @@
+﻿// Global using directives
+
+global using AspNet.Security.OAuth.Bilibili;
+global using AspNet.Security.OAuth.Gitee;
+global using AspNet.Security.OAuth.GitHub;
+global using AspNet.Security.OAuth.QQ;
+global using AspNet.Security.OAuth.Weixin;
+global using AspNet.Security.OAuth.WorkWeixin;
+global using JetBrains.Annotations;
+global using Microsoft.AspNetCore.Authentication;
+global using Microsoft.AspNetCore.Hosting;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.DependencyInjection.Extensions;
+global using Microsoft.Extensions.Options;
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Security.Claims;
+global using System.Threading.Tasks;
+global using Volo.Abp;
+global using Volo.Abp.Account.Web;
+global using Volo.Abp.Account.Web.Pages.Account;
+global using Volo.Abp.DependencyInjection;
+global using Volo.Abp.Features;
+global using Volo.Abp.Identity;
+global using Volo.Abp.Localization;
+global using Volo.Abp.Modularity;
+global using Volo.Abp.Settings;
+global using Volo.Abp.Validation.StringValues;
+global using Volo.Abp.VirtualFileSystem;
