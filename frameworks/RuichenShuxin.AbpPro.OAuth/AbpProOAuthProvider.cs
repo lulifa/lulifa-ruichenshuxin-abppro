@@ -18,6 +18,7 @@ public static class AbpProOAuthProvider
         services.AddAuthentication().AddGitHubProvider()
                                     .AddGiteeProvider()
                                     .AddBilibiliProvider();
+
         return services;
     }
 
