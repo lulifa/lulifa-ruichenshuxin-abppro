@@ -184,6 +184,7 @@ public static class AbpProServiceExtensions
                 options.DocInclusionPredicate((docName, description) => true);
                 options.CustomSchemaIds(type => type.FullName);
 
+                options.DocumentFilter<AbpProHideDefaultApiFilter>();
                 options.OperationFilter<AbpProOperationFilter>();
 
             });
