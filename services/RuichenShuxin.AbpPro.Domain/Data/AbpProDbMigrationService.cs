@@ -1,17 +1,18 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
+using RuichenShuxin.AbpPro.Core;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Identity;
 using Volo.Abp.MultiTenancy;
-using RuichenShuxin.AbpPro.MultiTenancy;
 using Volo.Abp.TenantManagement;
 
 namespace RuichenShuxin.AbpPro.Data;
@@ -20,17 +21,20 @@ public class AbpProDbMigrationService : ITransientDependency
 {
     public ILogger<AbpProDbMigrationService> Logger { get; set; }
 
+    private readonly MultiTenancyOptions _multiTenancyOptions;
     private readonly IDataSeeder _dataSeeder;
     private readonly IEnumerable<IAbpProDbSchemaMigrator> _dbSchemaMigrators;
     private readonly ITenantRepository _tenantRepository;
     private readonly ICurrentTenant _currentTenant;
 
     public AbpProDbMigrationService(
+        IOptions<MultiTenancyOptions> multiTenancyOptions,
         IDataSeeder dataSeeder,
         ITenantRepository tenantRepository,
         ICurrentTenant currentTenant,
         IEnumerable<IAbpProDbSchemaMigrator> dbSchemaMigrators)
     {
+        _multiTenancyOptions = multiTenancyOptions.Value;
         _dataSeeder = dataSeeder;
         _tenantRepository = tenantRepository;
         _currentTenant = currentTenant;
@@ -55,9 +59,9 @@ public class AbpProDbMigrationService : ITransientDependency
 
         Logger.LogInformation($"Successfully completed host database migrations.");
 
-        if (MultiTenancyConsts.IsEnabled)
+        if (_multiTenancyOptions.Enabled)
         {
-            
+
             var tenants = await _tenantRepository.GetListAsync(includeDetails: true);
 
             var migratedDatabaseSchemas = new HashSet<string>();
@@ -94,7 +98,7 @@ public class AbpProDbMigrationService : ITransientDependency
     {
         Logger.LogInformation(
             $"Migrating schema for {(tenant == null ? "host" : tenant.Name + " tenant")} database...");
-        
+
         foreach (var migrator in _dbSchemaMigrators)
         {
             await migrator.MigrateAsync();
@@ -104,7 +108,7 @@ public class AbpProDbMigrationService : ITransientDependency
     private async Task SeedDataAsync(Tenant? tenant = null)
     {
         Logger.LogInformation($"Executing {(tenant == null ? "host" : tenant.Name + " tenant")} database seed...");
-        
+
         await _dataSeeder.SeedAsync(new DataSeedContext(tenant?.Id)
             .WithProperty(IdentityDataSeedContributor.AdminEmailPropertyName,
                 AbpProConsts.AdminEmailDefaultValue)

@@ -1,17 +1,75 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System;
+using System.Linq;
+using System.Net;
+using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.Json;
 
 namespace RuichenShuxin.AbpPro.Core;
 
 public class AbpProResultFilter : IResultFilter, ITransientDependency
 {
-    public void OnResultExecuted(ResultExecutedContext context)
+    // 定义需要强制 Wrap 的 ABP 系统接口路径（可扩展到配置文件）
+    private static readonly string[] WrapRoutePrefixes =
     {
-        throw new System.NotImplementedException();
-    }
+        //"/connect/token",                         // OpenIddict 登录
+        //"/api/abp/application-configuration",     // ABP 应用配置
+        //"/api/abp/features",                      // Feature 管理
+        //"/api/abp/permissions"                    // 权限配置
+    };
 
     public void OnResultExecuting(ResultExecutingContext context)
     {
-        throw new System.NotImplementedException();
+        if (context.ActionDescriptor.IsPageAction()) return;
+
+        var controllerActionDescriptor = context.ActionDescriptor.AsControllerActionDescriptor();
+
+        if (controllerActionDescriptor == null) return;
+
+        //  路由白名单匹配（忽略大小写）
+        var path = context.HttpContext.Request.Path.Value?.ToLowerInvariant();
+
+        var isMatchRoute = !string.IsNullOrWhiteSpace(path) &&
+                           WrapRoutePrefixes.Any(p => path.StartsWith(p, StringComparison.OrdinalIgnoreCase));
+
+
+
+        var controllerHasWrap = controllerActionDescriptor.ControllerTypeInfo.GetCustomAttributes(typeof(WrapResultAttribute), true).Any();
+
+        var actionHasWrap = context.ActionDescriptor.GetMethodInfo().GetCustomAttributes(typeof(WrapResultAttribute), true).Any();
+
+        // 没有 Wrap 特性 且 不在白名单路由中 → 不处理
+        if (!controllerHasWrap && !actionHasWrap && !isMatchRoute) return;
+
+        object originalValue = context.Result switch
+        {
+            ObjectResult objectResult => objectResult.Value,
+            EmptyResult => null,
+            ContentResult contentResult => contentResult.Content,
+            JsonResult jsonResult => jsonResult.Value,
+            _ => null,
+        };
+
+        var wrapResult = new WrapResult<object>();
+
+        wrapResult.SetSuccess(originalValue);
+
+        var jsonSerializer = context.GetRequiredService<IJsonSerializer>();
+
+        context.Result = new ContentResult
+        {
+            StatusCode = (int)HttpStatusCode.OK,
+
+            ContentType = "application/json;charset=utf-8",
+
+            Content = jsonSerializer.Serialize(wrapResult)
+
+        };
+
     }
+
+    public void OnResultExecuted(ResultExecutedContext context) { }
 }

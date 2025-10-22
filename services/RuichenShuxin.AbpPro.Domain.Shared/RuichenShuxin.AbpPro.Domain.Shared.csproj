@@ -30,6 +30,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\frameworks\RuichenShuxin.AbpPro.Core\RuichenShuxin.AbpPro.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Localization\AbpPro\*.json" />
     <Content Remove="Localization\AbpPro\*.json" />
   </ItemGroup>
