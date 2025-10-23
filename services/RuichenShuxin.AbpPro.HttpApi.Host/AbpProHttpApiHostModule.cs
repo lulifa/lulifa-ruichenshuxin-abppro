@@ -47,10 +47,6 @@ public class AbpProHttpApiHostModule : AbpModule
                         .ConfigureAbpProMultiTenancy()
                         .ConfigureAbpProExceptions();
 
-        Configure<AbpAspNetCoreMvcOptions>(options =>
-        {
-            options.ConventionalControllers.Create(typeof(AbpProApplicationModule).Assembly);
-        });
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)

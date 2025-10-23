@@ -15,17 +15,22 @@ public class AbpProCoreModule : AbpModule
     {
         var configuration = context.Services.GetConfiguration();
 
-        PreConfigure<AppOptions>(options =>
+        Configure<AppOptions>(options =>
         {
             configuration.BindOptions(options);
         });
 
-        PreConfigure<AuthServerOptions>(options =>
+        Configure<AuthServerOptions>(options =>
         {
             configuration.BindOptions(options);
         });
 
-        PreConfigure<MultiTenancyOptions>(options =>
+        Configure<GlobalOptions>(options =>
+        {
+            configuration.BindOptions(options);
+        });
+
+        Configure<MultiTenancyOptions>(options =>
         {
             configuration.BindOptions(options);
         });

@@ -36,11 +36,13 @@ public static class AbpProServiceExtensions
     {
         var authOptions = services.GetConfiguration().GetOptions<AuthServerOptions>();
 
+        var globalOptions = services.GetConfiguration().GetOptions<GlobalOptions>();
+
         services.PreConfigure<OpenIddictBuilder>(builder =>
         {
             builder.AddValidation(options =>
             {
-                options.AddAudiences(AbpProCoreConsts.ApplicationName);
+                options.AddAudiences(globalOptions.Scopes);
                 options.UseLocalServer();
                 options.UseAspNetCore();
             });
@@ -173,9 +175,11 @@ public static class AbpProServiceExtensions
     {
         var authOptions = services.GetConfiguration().GetOptions<AuthServerOptions>();
 
+        var globalOptions = services.GetConfiguration().GetOptions<GlobalOptions>();
+
         services.AddAbpSwaggerGenWithOidc(
             authOptions.Authority,
-            [AbpProCoreConsts.ApplicationName],
+            globalOptions.Scopes,
             [AbpSwaggerOidcFlows.AuthorizationCode],
             null,
             options =>

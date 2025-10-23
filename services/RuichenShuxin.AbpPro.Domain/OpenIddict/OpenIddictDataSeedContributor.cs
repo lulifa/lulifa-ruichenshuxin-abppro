@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using OpenIddict.Abstractions;
+using RuichenShuxin.AbpPro.Core;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -29,6 +31,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
     private readonly IPermissionDataSeeder _permissionDataSeeder;
     private readonly IConfiguration _configuration;
     private readonly ICurrentTenant _currentTenant;
+    private readonly GlobalOptions _globalOptions;
 
     public OpenIddictDataSeedContributor(
         IOpenIddictApplicationManager applicationManager,
@@ -37,7 +40,8 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
         IOpenIddictScopeRepository scopeRepository,
         IPermissionDataSeeder permissionDataSeeder,
         IConfiguration configuration,
-        ICurrentTenant currentTenant)
+        ICurrentTenant currentTenant,
+        IOptions<GlobalOptions> globalOptions)
     {
         _applicationManager = applicationManager;
         _applicationRepository = applicationRepository;
@@ -46,6 +50,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
         _permissionDataSeeder = permissionDataSeeder;
         _configuration = configuration;
         _currentTenant = currentTenant;
+        _globalOptions = globalOptions.Value;
     }
 
     [UnitOfWork]
@@ -53,42 +58,40 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
     {
         using (_currentTenant.Change(context.TenantId))
         {
-            await SeedOpenIddictAsync();
+            var scopes = _globalOptions.Scopes;
+
+            await CreateScopeAsync(scopes);
+            await CreateApplicationAsync(scopes);
         }
     }
 
     #region OpenIddict
 
-    private async Task SeedOpenIddictAsync()
+    private async Task CreateScopeAsync(IEnumerable<string> scopes)
     {
-        var scope = "AbpPro";
-
-        await CreateScopeAsync(scope);
-        await CreateApplicationAsync(scope);
-    }
-
-    private async Task CreateScopeAsync(string scope)
-    {
-        if (await _scopeRepository.FindByNameAsync(scope) == null)
+        foreach (var scope in scopes)
         {
-            await _scopeManager.CreateAsync(new OpenIddictScopeDescriptor()
+            if (await _scopeRepository.FindByNameAsync(scope) == null)
             {
-                Name = scope,
-                DisplayName = scope + " access",
-                DisplayNames =
+                await _scopeManager.CreateAsync(new OpenIddictScopeDescriptor()
                 {
-                    [CultureInfo.GetCultureInfo("zh-Hans")] = "Abp API 应用程序访问",
-                    [CultureInfo.GetCultureInfo("en")] = "Abp API Application Access"
-                },
-                Resources =
-                {
-                    scope
-                }
-            });
+                    Name = scope,
+                    DisplayName = scope + " access",
+                    DisplayNames =
+                    {
+                        [CultureInfo.GetCultureInfo("zh-Hans")] = "Abp API 应用程序访问",
+                        [CultureInfo.GetCultureInfo("en")] = "Abp API Application Access"
+                    },
+                    Resources =
+                    {
+                        scope
+                    }
+                });
+            }
         }
     }
 
-    private async Task CreateApplicationAsync(string scope)
+    private async Task CreateApplicationAsync(IEnumerable<string> scopes)
     {
         var configurationSection = _configuration.GetSection("OpenIddict:Applications");
 
@@ -99,7 +102,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
 
             if (await _applicationRepository.FindByClientIdAsync(vueClientId) == null)
             {
-                await _applicationManager.CreateAsync(new AbpApplicationDescriptor
+                var application = new AbpApplicationDescriptor
                 {
                     ClientId = vueClientId,
                     ClientSecret = configurationSection["AbpPro_App:ClientSecret"],
@@ -148,9 +151,15 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
                         OpenIddictConstants.Permissions.Scopes.Email,
                         OpenIddictConstants.Permissions.Scopes.Address,
                         OpenIddictConstants.Permissions.Scopes.Phone,
-                        OpenIddictConstants.Permissions.Prefixes.Scope + scope
                     }
-                });
+                };
+
+                foreach (var scope in scopes)
+                {
+                    application.Permissions.AddIfNotContains(OpenIddictConstants.Permissions.Prefixes.Scope + scope);
+                }
+
+                await _applicationManager.CreateAsync(application);
 
                 var vueClientPermissions = new string[2]
                 {
@@ -204,9 +213,13 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
                         OpenIddictConstants.Permissions.Scopes.Email,
                         OpenIddictConstants.Permissions.Scopes.Address,
                         OpenIddictConstants.Permissions.Scopes.Phone,
-                        OpenIddictConstants.Permissions.Prefixes.Scope + scope
                     }
                 };
+
+                foreach (var scope in scopes)
+                {
+                    application.Permissions.AddIfNotContains(OpenIddictConstants.Permissions.Prefixes.Scope + scope);
+                }
 
                 application.PostLogoutRedirectUris.AddIfNotContains(new Uri(swaggerClientRootUrl.EnsureEndsWith('/')));
                 application.PostLogoutRedirectUris.AddIfNotContains(new Uri(swaggerClientRootUrl.EnsureEndsWith('/') + "signout-callback"));
@@ -269,9 +282,13 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
                         OpenIddictConstants.Permissions.Scopes.Email,
                         OpenIddictConstants.Permissions.Scopes.Address,
                         OpenIddictConstants.Permissions.Scopes.Phone,
-                        OpenIddictConstants.Permissions.Prefixes.Scope + scope
                     }
                 };
+
+                foreach (var scope in scopes)
+                {
+                    application.Permissions.AddIfNotContains(OpenIddictConstants.Permissions.Prefixes.Scope + scope);
+                }
 
                 application.PostLogoutRedirectUris.AddIfNotContains(new Uri(oauthClientRootUrl.EnsureEndsWith('/')));
                 application.PostLogoutRedirectUris.AddIfNotContains(new Uri(oauthClientRootUrl.EnsureEndsWith('/') + "signout-callback"));
