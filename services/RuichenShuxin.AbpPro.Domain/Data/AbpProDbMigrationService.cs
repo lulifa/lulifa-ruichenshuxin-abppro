@@ -15,7 +15,7 @@ using Volo.Abp.Identity;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.TenantManagement;
 
-namespace RuichenShuxin.AbpPro.Data;
+namespace RuichenShuxin.AbpPro;
 
 public class AbpProDbMigrationService : ITransientDependency
 {

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using RuichenShuxin.AbpPro.Core;
 using RuichenShuxin.AbpPro.EntityFrameworkCore;
+using RuichenShuxin.AbpPro.OAuth;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.MultiTenancy;
@@ -22,6 +23,7 @@ namespace RuichenShuxin.AbpPro;
     typeof(AbpProApplicationModule),
     typeof(AbpProEntityFrameworkCoreModule),
     typeof(AbpAccountWebOpenIddictModule),
+    typeof(AbpProOAuthModule),
     typeof(AbpSwashbuckleModule),
     typeof(AbpAspNetCoreSerilogModule)
     )]
@@ -45,7 +47,12 @@ public class AbpProHttpApiHostModule : AbpModule
                         .ConfigureAbpProSwagger()
                         .ConfigureAbpProCors()
                         .ConfigureAbpProMultiTenancy()
-                        .ConfigureAbpProExceptions();
+                        .ConfigureAbpProExceptions()
+                        .ConfigureAbpProDataSeed();
+        Configure<AbpAspNetCoreMvcOptions>(options =>
+        {
+            options.ConventionalControllers.Create(typeof(AbpProApplicationModule).Assembly);
+        });
 
     }
 

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace RuichenShuxin.AbpPro.Data;
+namespace RuichenShuxin.AbpPro;
 
 public interface IAbpProDbSchemaMigrator
 {

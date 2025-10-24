@@ -1,6 +1,7 @@
 ﻿namespace RuichenShuxin.AbpPro.OAuth;
 
 [DependsOn(
+    typeof(AbpProCoreModule),
     typeof(AbpFeaturesModule),
     typeof(AbpSettingsModule))]
 public class AbpProOAuthModule : AbpModule

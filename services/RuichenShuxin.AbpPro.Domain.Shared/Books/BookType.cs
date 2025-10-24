@@ -1,4 +1,4 @@
-﻿namespace RuichenShuxin.AbpPro.Books;
+﻿namespace RuichenShuxin.AbpPro;
 
 public enum BookType
 {

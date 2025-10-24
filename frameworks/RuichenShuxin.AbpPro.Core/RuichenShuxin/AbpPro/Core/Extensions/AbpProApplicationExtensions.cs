@@ -24,8 +24,6 @@ public static class AbpProApplicationExtensions
     {
         var authOptions = configuration.GetOptions<AuthServerOptions>();
 
-        var globalOptions = configuration.GetOptions<GlobalOptions>();
-
         app.UseSwagger();
 
         app.UseAbpSwaggerUI(options =>
@@ -34,7 +32,7 @@ public static class AbpProApplicationExtensions
 
             options.OAuthClientId(authOptions.SwaggerClientId);
 
-            options.OAuthScopes(globalOptions.Scopes);
+            options.OAuthScopes(authOptions.Scopes);
         });
 
         return app;

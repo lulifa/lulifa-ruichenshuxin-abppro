@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Volo.Abp.DependencyInjection;
 
-namespace RuichenShuxin.AbpPro.Data;
+namespace RuichenShuxin.AbpPro;
 
 /* This is used if database provider does't define
  * IAbpProDbSchemaMigrator implementation.

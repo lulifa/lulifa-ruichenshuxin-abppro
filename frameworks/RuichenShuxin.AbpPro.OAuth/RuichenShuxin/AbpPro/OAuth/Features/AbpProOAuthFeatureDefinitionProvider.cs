@@ -16,7 +16,7 @@ public class AbpProOAuthFeatureDefinitionProvider : FeatureDefinitionProvider
             valueType: new ToggleStringValueType(new BooleanValueValidator()));
         group.AddFeature(
             name: AbpProOAuthFeatureNames.Gitee.Enable,
-            defaultValue: "true",
+            defaultValue: "false",
             displayName: L("Features:GiteeOAuthEnable"),
             description: L("Features:GiteeOAuthEnableDesc"),
             valueType: new ToggleStringValueType(new BooleanValueValidator()));
@@ -40,7 +40,7 @@ public class AbpProOAuthFeatureDefinitionProvider : FeatureDefinitionProvider
             valueType: new ToggleStringValueType(new BooleanValueValidator()));
         group.AddFeature(
             name: AbpProOAuthFeatureNames.Bilibili.Enable,
-            defaultValue: "true",
+            defaultValue: "false",
             displayName: L("Features:BilibiliOAuthEnable"),
             description: L("Features:BilibiliOAuthEnableDesc"),
             valueType: new ToggleStringValueType(new BooleanValueValidator()));

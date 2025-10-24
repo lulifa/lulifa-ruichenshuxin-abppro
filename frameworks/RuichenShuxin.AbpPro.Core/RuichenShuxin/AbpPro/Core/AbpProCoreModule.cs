@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using RuichenShuxin.AbpPro.Localization;
-using RuichenShuxin.AbpPro.OAuth;
 using Volo.Abp.Modularity;
 
 namespace RuichenShuxin.AbpPro.Core;
 
 [DependsOn(
-    typeof(AbpProOAuthModule),
     typeof(AbpProLocalizationModule)
     )]
 public class AbpProCoreModule : AbpModule
@@ -20,12 +18,12 @@ public class AbpProCoreModule : AbpModule
             configuration.BindOptions(options);
         });
 
-        Configure<AuthServerOptions>(options =>
+        Configure<ExternalOAuthOptions>(options =>
         {
             configuration.BindOptions(options);
         });
 
-        Configure<GlobalOptions>(options =>
+        Configure<AuthServerOptions>(options =>
         {
             configuration.BindOptions(options);
         });
@@ -34,6 +32,8 @@ public class AbpProCoreModule : AbpModule
         {
             configuration.BindOptions(options);
         });
+
+        var test=configuration.GetOptions<ExternalOAuthOptions>();
 
     }
 

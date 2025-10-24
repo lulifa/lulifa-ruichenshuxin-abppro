@@ -36,13 +36,11 @@ public static class AbpProServiceExtensions
     {
         var authOptions = services.GetConfiguration().GetOptions<AuthServerOptions>();
 
-        var globalOptions = services.GetConfiguration().GetOptions<GlobalOptions>();
-
         services.PreConfigure<OpenIddictBuilder>(builder =>
         {
             builder.AddValidation(options =>
             {
-                options.AddAudiences(globalOptions.Scopes);
+                options.AddAudiences(authOptions.Scopes);
                 options.UseLocalServer();
                 options.UseAspNetCore();
             });
@@ -175,16 +173,18 @@ public static class AbpProServiceExtensions
     {
         var authOptions = services.GetConfiguration().GetOptions<AuthServerOptions>();
 
-        var globalOptions = services.GetConfiguration().GetOptions<GlobalOptions>();
-
         services.AddAbpSwaggerGenWithOidc(
             authOptions.Authority,
-            globalOptions.Scopes,
+            authOptions.Scopes,
             [AbpSwaggerOidcFlows.AuthorizationCode],
             null,
             options =>
             {
-                options.SwaggerDoc(AbpProCoreConsts.Swagger.Version, new OpenApiInfo { Title = AbpProCoreConsts.Swagger.ApiTitle, Version = AbpProCoreConsts.Swagger.Version });
+                options.SwaggerDoc(AbpProCoreConsts.Swagger.Version, new OpenApiInfo
+                {
+                    Title = AbpProCoreConsts.Swagger.ApiTitle,
+                    Version = AbpProCoreConsts.Swagger.Version + DateTime.Now.Ticks.ToString()
+                });
                 options.DocInclusionPredicate((docName, description) => true);
                 options.CustomSchemaIds(type => type.FullName);
 
@@ -269,6 +269,14 @@ public static class AbpProServiceExtensions
             options.Filters.Add(typeof(AbpProResultFilter));
 
         });
+
+        return services;
+    }
+
+
+    public static IServiceCollection ConfigureAbpProDataSeed(this IServiceCollection services)
+    {
+        services.AddHostedService<DataSeedBackgroundWorker>();
 
         return services;
     }

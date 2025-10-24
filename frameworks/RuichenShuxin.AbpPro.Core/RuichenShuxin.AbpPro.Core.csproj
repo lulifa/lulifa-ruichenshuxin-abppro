@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RuichenShuxin.AbpPro.Localization\RuichenShuxin.AbpPro.Localization.csproj" />
-    <ProjectReference Include="..\RuichenShuxin.AbpPro.OAuth\RuichenShuxin.AbpPro.OAuth.csproj" />
   </ItemGroup>
 
 </Project>

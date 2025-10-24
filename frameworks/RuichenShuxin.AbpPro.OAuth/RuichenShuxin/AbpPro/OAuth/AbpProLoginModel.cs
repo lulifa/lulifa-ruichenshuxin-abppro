@@ -1,22 +1,4 @@
-﻿using AspNet.Security.OAuth.Bilibili;
-using AspNet.Security.OAuth.Gitee;
-using AspNet.Security.OAuth.GitHub;
-using AspNet.Security.OAuth.QQ;
-using AspNet.Security.OAuth.Weixin;
-using AspNet.Security.OAuth.WorkWeixin;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Options;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Volo.Abp.Account.Web;
-using Volo.Abp.Account.Web.Pages.Account;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.Features;
-using Volo.Abp.Identity;
-
-namespace RuichenShuxin.AbpPro.OAuth;
+﻿namespace RuichenShuxin.AbpPro.OAuth;
 
 [ExposeServices(typeof(LoginModel))]
 public class AbpProLoginModel : LoginModel
