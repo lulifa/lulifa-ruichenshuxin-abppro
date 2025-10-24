@@ -6,7 +6,7 @@ public static class HealthChecksBuilderExtensions
     {
         // Add your health checks here
         var healthChecksBuilder = services.AddHealthChecks();
-        healthChecksBuilder.AddCheck<AbpProDatabaseCheck>("AbpPro DbContext Check", tags: new string[] { "database" });
+        healthChecksBuilder.AddCheck<AbpProCoreDatabaseCheck>("AbpPro DbContext Check", tags: new string[] { "database" });
 
         services.ConfigureHealthCheckEndpoint("/health-status");
 
