@@ -10,7 +10,6 @@ public class AbpProCoreModule : AbpModule
         var configuration = context.Services.GetConfiguration();
 
         context.Services.ConfigureOptions<AppOptions>()
-                        .ConfigureOptions<ExternalOAuthOptions>()
                         .ConfigureOptions<AuthServerOptions>()
                         .ConfigureOptions<MultiTenancyOptions>();
 
