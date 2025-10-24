@@ -1,9 +1,4 @@
-﻿using Microsoft.Extensions.Hosting;
-using System.Threading;
-using System.Threading.Tasks;
-using Volo.Abp.Data;
-
-namespace RuichenShuxin.AbpPro.Core;
+﻿namespace RuichenShuxin.AbpPro.Core;
 
 public class DataSeedBackgroundWorker : BackgroundService
 {

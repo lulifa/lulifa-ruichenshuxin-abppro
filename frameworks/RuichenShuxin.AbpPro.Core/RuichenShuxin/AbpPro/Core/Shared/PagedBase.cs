@@ -1,10 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Localization;
-using RuichenShuxin.AbpPro.Localization;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace RuichenShuxin.AbpPro.Core;
+﻿namespace RuichenShuxin.AbpPro.Core;
 
 public class PagedBase : IValidatableObject
 {

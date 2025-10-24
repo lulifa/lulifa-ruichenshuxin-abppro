@@ -1,11 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.Identity;
-
-namespace RuichenShuxin.AbpPro.Core;
+﻿namespace RuichenShuxin.AbpPro.Core;
 
 public class AbpProDatabaseCheck : IHealthCheck, ITransientDependency
 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RuichenShuxin.AbpPro.Core;
+﻿namespace RuichenShuxin.AbpPro.Core;
 
 public class AuthServerOptions
 {

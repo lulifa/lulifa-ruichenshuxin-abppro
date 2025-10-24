@@ -1,14 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Linq;
-using System.Net;
-using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.Json;
-
-namespace RuichenShuxin.AbpPro.Core;
+﻿namespace RuichenShuxin.AbpPro.Core;
 
 public class AbpProResultFilter : IResultFilter, ITransientDependency
 {

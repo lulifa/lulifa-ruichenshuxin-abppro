@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Localization;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace RuichenShuxin.AbpPro.Core;
+﻿namespace RuichenShuxin.AbpPro.Core;
 
 public class AbpProCultureProvider : AcceptLanguageHeaderRequestCultureProvider
 {

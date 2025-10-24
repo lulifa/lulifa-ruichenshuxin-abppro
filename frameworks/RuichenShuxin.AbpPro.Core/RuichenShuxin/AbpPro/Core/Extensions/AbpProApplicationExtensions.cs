@@ -1,10 +1,4 @@
-﻿using Autofac.Core;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
-
-namespace RuichenShuxin.AbpPro.Core;
+﻿namespace RuichenShuxin.AbpPro.Core;
 
 public static class AbpProApplicationExtensions
 {
