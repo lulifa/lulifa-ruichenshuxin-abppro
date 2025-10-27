@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Threading.Tasks;
-using Volo.Abp.DependencyInjection;
-
-namespace RuichenShuxin.AbpPro.EntityFrameworkCore;
+﻿namespace RuichenShuxin.AbpPro.EntityFrameworkCore;
 
 public class EntityFrameworkCoreAbpProDbSchemaMigrator
     : IAbpProDbSchemaMigrator, ITransientDependency

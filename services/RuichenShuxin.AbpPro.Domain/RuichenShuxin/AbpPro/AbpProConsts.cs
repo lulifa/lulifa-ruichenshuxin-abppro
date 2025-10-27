@@ -1,6 +1,4 @@
-﻿using Volo.Abp.Identity;
-
-namespace RuichenShuxin.AbpPro;
+﻿namespace RuichenShuxin.AbpPro;
 
 public static class AbpProConsts
 {

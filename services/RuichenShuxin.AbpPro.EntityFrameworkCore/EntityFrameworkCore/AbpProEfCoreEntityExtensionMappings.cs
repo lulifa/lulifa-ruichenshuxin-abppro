@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Volo.Abp.Identity;
-using Volo.Abp.ObjectExtending;
-using Volo.Abp.Threading;
-
-namespace RuichenShuxin.AbpPro.EntityFrameworkCore;
+﻿namespace RuichenShuxin.AbpPro.EntityFrameworkCore;
 
 public static class AbpProEfCoreEntityExtensionMappings
 {

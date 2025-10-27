@@ -1,7 +1,4 @@
-﻿using System;
-using Volo.Abp.Domain.Entities.Auditing;
-
-namespace RuichenShuxin.AbpPro;
+﻿namespace RuichenShuxin.AbpPro;
 
 public class Book : AuditedAggregateRoot<Guid>
 {

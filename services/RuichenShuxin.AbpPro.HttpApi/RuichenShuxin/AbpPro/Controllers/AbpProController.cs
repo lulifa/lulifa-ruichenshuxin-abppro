@@ -1,8 +1,4 @@
-﻿using RuichenShuxin.AbpPro.Core;
-using System;
-using Volo.Abp.Application.Services;
-
-namespace RuichenShuxin.AbpPro;
+﻿namespace RuichenShuxin.AbpPro;
 
 /// <summary>
 /// 通用 Controller 基类（所有 API 控制器都继承这个）

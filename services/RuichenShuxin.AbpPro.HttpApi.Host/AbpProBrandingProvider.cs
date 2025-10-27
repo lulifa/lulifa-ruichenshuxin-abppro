@@ -1,9 +1,4 @@
-﻿using Microsoft.Extensions.Localization;
-using RuichenShuxin.AbpPro.Localization;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.Ui.Branding;
-
-namespace RuichenShuxin.AbpPro;
+﻿namespace RuichenShuxin.AbpPro;
 
 [Dependency(ReplaceServices = true)]
 public class AbpProBrandingProvider : DefaultBrandingProvider

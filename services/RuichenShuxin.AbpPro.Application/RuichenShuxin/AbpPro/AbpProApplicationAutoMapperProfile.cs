@@ -1,6 +1,3 @@
-using AutoMapper;
-using RuichenShuxin.AbpPro.Books;
-
 namespace RuichenShuxin.AbpPro;
 
 public class AbpProApplicationAutoMapperProfile : Profile

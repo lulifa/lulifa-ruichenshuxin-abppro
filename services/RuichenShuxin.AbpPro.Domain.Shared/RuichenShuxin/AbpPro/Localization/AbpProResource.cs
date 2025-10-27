@@ -1,6 +1,4 @@
-﻿using Volo.Abp.Localization;
-
-namespace RuichenShuxin.AbpPro;
+﻿namespace RuichenShuxin.AbpPro;
 
 [LocalizationResourceName("AbpPro")]
 public class AbpProResource

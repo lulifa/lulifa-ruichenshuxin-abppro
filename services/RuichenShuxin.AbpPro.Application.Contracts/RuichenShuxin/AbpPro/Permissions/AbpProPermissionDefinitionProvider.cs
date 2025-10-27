@@ -1,9 +1,4 @@
-using RuichenShuxin.AbpPro.Localization;
-using Volo.Abp.Authorization.Permissions;
-using Volo.Abp.Localization;
-using Volo.Abp.MultiTenancy;
-
-namespace RuichenShuxin.AbpPro.Permissions;
+namespace RuichenShuxin.AbpPro;
 
 public class AbpProPermissionDefinitionProvider : PermissionDefinitionProvider
 {

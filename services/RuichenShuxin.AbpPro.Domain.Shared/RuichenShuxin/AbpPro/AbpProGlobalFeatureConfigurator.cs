@@ -1,7 +1,4 @@
-﻿using Volo.Abp.GlobalFeatures;
-using Volo.Abp.Threading;
-
-namespace RuichenShuxin.AbpPro;
+﻿namespace RuichenShuxin.AbpPro;
 
 public static class AbpProGlobalFeatureConfigurator
 {

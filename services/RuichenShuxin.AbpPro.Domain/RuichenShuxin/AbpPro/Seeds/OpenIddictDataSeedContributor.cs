@@ -1,20 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using OpenIddict.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Threading.Tasks;
-using Volo.Abp.Authorization.Permissions;
-using Volo.Abp.Data;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.MultiTenancy;
-using Volo.Abp.OpenIddict.Applications;
-using Volo.Abp.OpenIddict.Scopes;
-using Volo.Abp.PermissionManagement;
-using Volo.Abp.Uow;
-
-namespace RuichenShuxin.AbpPro;
+﻿namespace RuichenShuxin.AbpPro;
 
 /* Creates initial data that is needed to property run the application
  * and make client-to-server communication possible.

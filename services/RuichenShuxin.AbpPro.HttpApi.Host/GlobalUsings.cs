@@ -1,0 +1,28 @@
+﻿// Global using directives
+
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.Extensions.Localization;
+global using RuichenShuxin.AbpPro.Core;
+global using RuichenShuxin.AbpPro.EntityFrameworkCore;
+global using RuichenShuxin.AbpPro.OAuth;
+global using Serilog;
+global using Serilog.Events;
+global using System;
+global using System.Collections.Generic;
+global using System.Globalization;
+global using System.Threading.Tasks;
+global using Volo.Abp;
+global using Volo.Abp.Account.Web;
+global using Volo.Abp.AspNetCore.MultiTenancy;
+global using Volo.Abp.AspNetCore.Mvc.UI.RazorPages;
+global using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite;
+global using Volo.Abp.AspNetCore.Serilog;
+global using Volo.Abp.Autofac;
+global using Volo.Abp.DependencyInjection;
+global using Volo.Abp.Localization;
+global using Volo.Abp.Modularity;
+global using Volo.Abp.OpenIddict.Applications;
+global using Volo.Abp.Swashbuckle;
+global using Volo.Abp.Ui.Branding;

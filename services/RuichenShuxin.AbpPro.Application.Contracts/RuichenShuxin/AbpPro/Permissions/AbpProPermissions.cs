@@ -1,4 +1,4 @@
-namespace RuichenShuxin.AbpPro.Permissions;
+namespace RuichenShuxin.AbpPro;
 
 public static class AbpProPermissions
 {

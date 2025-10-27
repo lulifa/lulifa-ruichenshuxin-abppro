@@ -1,8 +1,4 @@
-﻿using System;
-using Volo.Abp.Application.Dtos;
-using Volo.Abp.Application.Services;
-
-namespace RuichenShuxin.AbpPro.Books;
+﻿namespace RuichenShuxin.AbpPro;
 
 public interface IBookAppService :
     ICrudAppService< //Defines CRUD methods

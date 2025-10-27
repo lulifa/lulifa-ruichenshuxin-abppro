@@ -1,7 +1,4 @@
-﻿using System;
-using Volo.Abp.Application.Dtos;
-
-namespace RuichenShuxin.AbpPro.Books;
+﻿namespace RuichenShuxin.AbpPro;
 
 public class BookDto : AuditedEntityDto<Guid>
 {
