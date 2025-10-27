@@ -1,0 +1,103 @@
+﻿<Project>
+  <ItemGroup>
+
+    <PackageReference Update="Volo.Abp" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.AspNetCore" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.AspNetCore.Mvc" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite" Version="4.3.5"/>
+    <PackageReference Update="Volo.Abp.AspNetCore.MultiTenancy" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.AspNetCore.Serilog" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Autofac" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.AutoMapper" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Authorization" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Caching" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Caching.StackExchangeRedis" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Core" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.DistributedLocking" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Emailing" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.EntityFrameworkCore" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.EntityFrameworkCore.MySQL" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Features" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.GlobalFeatures" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Http.Client" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Localization" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Settings" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.Swashbuckle" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Validation" Version="$(VoloAbpProPackageVersion)"/>
+
+
+    <PackageReference Update="Volo.Abp.Account.Application" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.Account.Application.Contracts" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Account.EntityFrameworkCore" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Account.HttpApi" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Account.HttpApi.Client" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Account.Web" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.Account.Web.OpenIddict" Version="$(VoloAbpProPackageVersion)"/>
+
+    <PackageReference Update="Volo.Abp.AuditLogging.Domain" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.AuditLogging.Domain.Shared" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="$(VoloAbpProPackageVersion)"/>
+
+    <PackageReference Update="Volo.Abp.BackgroundJobs.Domain" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.BackgroundJobs.Domain.Shared" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.BackgroundJobs.EntityFrameworkCore" Version="$(VoloAbpProPackageVersion)"/>
+
+    <PackageReference Update="Volo.Abp.BlobStoring.Database.Domain" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.BlobStoring.Database.Domain.Shared" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.BlobStoring.Database.EntityFrameworkCore" Version="$(VoloAbpProPackageVersion)"/>
+
+
+    <PackageReference Update="Volo.Abp.Ddd.Application" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Ddd.Application.Contracts" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Ddd.Domain" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Ddd.Domain.Shared" Version="$(VoloAbpProPackageVersion)"/>
+    
+    <PackageReference Update="Volo.Abp.FeatureManagement.Application" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.FeatureManagement.Application.Contracts" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.FeatureManagement.Domain" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.FeatureManagement.Domain.Shared" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.FeatureManagement.EntityFrameworkCore" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.FeatureManagement.HttpApi" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.FeatureManagement.HttpApi.Client" Version="$(VoloAbpProPackageVersion)" />
+
+    <PackageReference Update="Volo.Abp.Identity.Application" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.Identity.Application.Contracts" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.Identity.Domain" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.Identity.Domain.Shared" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.Identity.EntityFrameworkCore" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.Identity.HttpApi" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.Identity.HttpApi.Client" Version="$(VoloAbpProPackageVersion)" />
+
+
+    <PackageReference Update="Volo.Abp.OpenIddict.Domain" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.OpenIddict.Domain.Shared" Version="$(VoloAbpProPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.OpenIddict.EntityFrameworkCore" Version="$(VoloAbpProPackageVersion)"/>
+
+    <PackageReference Update="Volo.Abp.PermissionManagement.Application" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.PermissionManagement.Application.Contracts" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.PermissionManagement.Domain" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.PermissionManagement.Domain.Identity" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.PermissionManagement.Domain.OpenIddict" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.PermissionManagement.Domain.Shared" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.PermissionManagement.HttpApi" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.PermissionManagement.HttpApi.Client" Version="$(VoloAbpProPackageVersion)" />
+
+    <PackageReference Update="Volo.Abp.SettingManagement.Application" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.SettingManagement.Application.Contracts" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.SettingManagement.Domain" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.SettingManagement.Domain.Shared" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.SettingManagement.HttpApi" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.SettingManagement.HttpApi.Client" Version="$(VoloAbpProPackageVersion)" />
+
+    <PackageReference Update="Volo.Abp.TenantManagement.Application" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.TenantManagement.Application.Contracts" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.TenantManagement.Domain" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.TenantManagement.Domain.Shared" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.TenantManagement.EntityFrameworkCore" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.TenantManagement.HttpApi" Version="$(VoloAbpProPackageVersion)" />
+    <PackageReference Update="Volo.Abp.TenantManagement.HttpApi.Client" Version="$(VoloAbpProPackageVersion)" />
+
+  </ItemGroup>
+</Project>

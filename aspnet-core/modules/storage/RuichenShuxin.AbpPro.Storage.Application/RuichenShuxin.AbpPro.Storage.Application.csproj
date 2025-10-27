@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>RuichenShuxin.AbpPro.Storage</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AutoMapper" />
+    <PackageReference Include="Volo.Abp.Ddd.Application" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RuichenShuxin.AbpPro.Storage.Application.Contracts\RuichenShuxin.AbpPro.Storage.Application.Contracts.csproj" />
+    <ProjectReference Include="..\RuichenShuxin.AbpPro.Storage.Domain\RuichenShuxin.AbpPro.Storage.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

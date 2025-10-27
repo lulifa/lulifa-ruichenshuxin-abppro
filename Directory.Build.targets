@@ -1,0 +1,61 @@
+﻿<Project>
+  <!-- 引入其他 props 文件 -->
+  <Import Project="Directory.Build.Other.props" />
+  <Import Project="Directory.Build.Volo.props" />
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Authors>lulifa(卢立法)</Authors>
+    <Company>RuichenShuxin</Company>
+    <Version>9.3.5</Version>
+    <Copyright>Copyright © 2025 lulifa(卢立法)</Copyright>
+    <Description>RuichenShuxin.AbpPro 是一个基于 ABP 框架构建的现代化后台管理系统，开箱即用，支持快速开发与二次扩展。</Description>
+
+
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <PackageVersion>9.3.5</PackageVersion>
+    <RepositoryUrl>https://github.com/lulifa/lulifa-ruichenshuxin-abppro.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/lulifa/lulifa-ruichenshuxin-abppro.git</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>package-readme.md</PackageReadmeFile>
+
+
+    <NoWarn>$(NoWarn);CS1591;CS0436;CS8618;NU1803</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+
+    <AbpProjectType>app</AbpProjectType>
+
+    <!-- Define versions for referenced packages -->
+    <VoloAbpProPackageVersion>9.3.5</VoloAbpProPackageVersion>
+    <MicrosoftExtensionsPackageVersion>9.0.10</MicrosoftExtensionsPackageVersion>
+    <MicrosoftAspNetCorePackageVersion>9.0.10</MicrosoftAspNetCorePackageVersion>
+    <MicrosoftEntityFrameworkCorePackageVersion>9.0.10</MicrosoftEntityFrameworkCorePackageVersion>
+    <DotNetCoreCAPPackageVersion>8.3.5</DotNetCoreCAPPackageVersion>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fody" Version="6.8.0" PrivateAssets="All">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="ConfigureAwait.Fody" Version="3.3.2" PrivateAssets="All"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)icon.png" Pack="true" PackagePath="" />
+    <None Include="$(MSBuildThisFileDirectory)package-readme.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="**\*.abppkg" />
+    <None Remove="**\*.abppkg.analyze.json" />
+    <Content Remove="$(UserProfile)\.nuget\packages\*\*\contentFiles\any\*\*.abppkg*" />
+  </ItemGroup>
+
+</Project>
+

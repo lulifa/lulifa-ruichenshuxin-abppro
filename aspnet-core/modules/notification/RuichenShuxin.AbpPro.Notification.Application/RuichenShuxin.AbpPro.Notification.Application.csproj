@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>RuichenShuxin.AbpPro.Notification</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AutoMapper"  />
+    <PackageReference Include="Volo.Abp.Ddd.Application"  />
+    <ProjectReference Include="..\RuichenShuxin.AbpPro.Notification.Application.Contracts\RuichenShuxin.AbpPro.Notification.Application.Contracts.csproj" />
+    <ProjectReference Include="..\RuichenShuxin.AbpPro.Notification.Domain\RuichenShuxin.AbpPro.Notification.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
