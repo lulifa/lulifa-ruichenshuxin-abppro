@@ -34,8 +34,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Localization\AbpPro\*.json" />
-    <Content Remove="Localization\AbpPro\*.json" />
+    <EmbeddedResource Include="RuichenShuxin\AbpPro\Localization\AbpPro\*.json" />
+    <Content Remove="RuichenShuxin\AbpPro\Localization\AbpPro\*.json" />
   </ItemGroup>
 
 </Project>

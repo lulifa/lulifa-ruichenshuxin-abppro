@@ -249,7 +249,7 @@ public static class AbpProCoreServiceExtensions
 
     public static IServiceCollection ConfigureAbpProDataSeed(this IServiceCollection services)
     {
-        services.AddHostedService<AbpProCoreDataSeedBackgroundWorker>();
+        services.AddHostedService<AbpProCoreDataSeedWorker>();
 
         return services;
     }
