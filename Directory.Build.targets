@@ -31,7 +31,7 @@
     <AbpProjectType>app</AbpProjectType>
 
     <!-- Define versions for referenced packages -->
-    <VoloAbpProPackageVersion>9.3.5</VoloAbpProPackageVersion>
+    <VoloAbpPackageVersion>9.3.5</VoloAbpPackageVersion>
     <MicrosoftExtensionsPackageVersion>9.0.10</MicrosoftExtensionsPackageVersion>
     <MicrosoftAspNetCorePackageVersion>9.0.10</MicrosoftAspNetCorePackageVersion>
     <MicrosoftEntityFrameworkCorePackageVersion>9.0.10</MicrosoftEntityFrameworkCorePackageVersion>
