@@ -1,18 +1,17 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using RuichenShuxin.AbpPro.Permissions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using RuichenShuxin.AbpPro.Permissions;
-using Volo.Abp.Application.Dtos;
-using Volo.Abp.Application.Services;
-using Volo.Abp.Domain.Repositories;
 using System.Linq.Dynamic.Core;
+using System.Threading.Tasks;
+using Volo.Abp.Application.Dtos;
+using Volo.Abp.Domain.Repositories;
 
 namespace RuichenShuxin.AbpPro.Books;
 
 [Authorize(AbpProPermissions.Books.Default)]
-public class BookAppService : ApplicationService, IBookAppService
+public class BookAppService : AbpProAppService, IBookAppService
 {
     private readonly IRepository<Book, Guid> _repository;
 

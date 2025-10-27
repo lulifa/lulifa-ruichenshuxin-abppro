@@ -1,14 +1,7 @@
-﻿using RuichenShuxin.AbpPro.Localization;
-using Volo.Abp.Application.Services;
+﻿using RuichenShuxin.AbpPro.Core;
 
 namespace RuichenShuxin.AbpPro;
 
-/* Inherit your application services from this class.
- */
-public abstract class AbpProAppService : ApplicationService
+public abstract class AbpProAppService : AbpProCoreApplicationServiceBase<AbpProResource, AbpProApplicationModule>
 {
-    protected AbpProAppService()
-    {
-        LocalizationResource = typeof(AbpProResource);
-    }
 }

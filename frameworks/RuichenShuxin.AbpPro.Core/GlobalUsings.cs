@@ -35,6 +35,8 @@ global using System.Linq;
 global using System.Net;
 global using System.Threading;
 global using System.Threading.Tasks;
+global using Volo.Abp.Application.Dtos;
+global using Volo.Abp.Application.Services;
 global using Volo.Abp.AspNetCore.ExceptionHandling;
 global using Volo.Abp.AspNetCore.MultiTenancy;
 global using Volo.Abp.AspNetCore.Mvc;

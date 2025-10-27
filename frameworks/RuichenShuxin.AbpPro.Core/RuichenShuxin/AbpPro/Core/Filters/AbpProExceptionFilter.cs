@@ -67,9 +67,9 @@ public class AbpProExceptionFilter : AbpExceptionFilter
     /// <summary>
     /// 构建 WrapResult
     /// </summary>
-    private WrapResult<object> CreateWrapResult(ExceptionContext context)
+    private AbpProCoreWrapResult<object> CreateWrapResult(ExceptionContext context)
     {
-        var result = new WrapResult<object>();
+        var result = new AbpProCoreWrapResult<object>();
         var localizer = context.GetRequiredService<IStringLocalizer<AbpProLocalizationResource>>();
 
         switch (context.Exception)
@@ -117,10 +117,10 @@ public class AbpProExceptionFilter : AbpExceptionFilter
 
         if (controllerAction == null) return false;
 
-        if (controllerAction.ControllerTypeInfo.GetCustomAttributes(typeof(WrapResultAttribute), true).Any())
+        if (controllerAction.ControllerTypeInfo.GetCustomAttributes(typeof(AbpProCoreWrapResultAttribute), true).Any())
             return true;
 
-        if (context.ActionDescriptor.GetMethodInfo().GetCustomAttributes(typeof(WrapResultAttribute), true).Any())
+        if (context.ActionDescriptor.GetMethodInfo().GetCustomAttributes(typeof(AbpProCoreWrapResultAttribute), true).Any())
             return true;
 
         return false;

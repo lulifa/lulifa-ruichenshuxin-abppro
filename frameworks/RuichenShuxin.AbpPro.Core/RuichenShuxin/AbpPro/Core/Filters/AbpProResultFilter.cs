@@ -27,9 +27,9 @@ public class AbpProResultFilter : IResultFilter, ITransientDependency
 
 
 
-        var controllerHasWrap = controllerActionDescriptor.ControllerTypeInfo.GetCustomAttributes(typeof(WrapResultAttribute), true).Any();
+        var controllerHasWrap = controllerActionDescriptor.ControllerTypeInfo.GetCustomAttributes(typeof(AbpProCoreWrapResultAttribute), true).Any();
 
-        var actionHasWrap = context.ActionDescriptor.GetMethodInfo().GetCustomAttributes(typeof(WrapResultAttribute), true).Any();
+        var actionHasWrap = context.ActionDescriptor.GetMethodInfo().GetCustomAttributes(typeof(AbpProCoreWrapResultAttribute), true).Any();
 
         // 没有 Wrap 特性 且 不在白名单路由中 → 不处理
         if (!controllerHasWrap && !actionHasWrap && !isMatchRoute) return;
@@ -43,7 +43,7 @@ public class AbpProResultFilter : IResultFilter, ITransientDependency
             _ => null,
         };
 
-        var wrapResult = new WrapResult<object>();
+        var wrapResult = new AbpProCoreWrapResult<object>();
 
         wrapResult.SetSuccess(originalValue);
 
