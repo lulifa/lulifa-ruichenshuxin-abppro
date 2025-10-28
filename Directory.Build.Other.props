@@ -1,27 +1,28 @@
 ﻿<Project>
   <ItemGroup>
 
-    <PackageReference Update="Microsoft.EntityFrameworkCore" Version="9.0.10" />
-    <PackageReference Update="Microsoft.EntityFrameworkCore.Tools" Version="9.0.10" />
-    <PackageReference Update="Microsoft.Extensions.FileProviders.Embedded" Version="9.0.10" />
-    <PackageReference Update="Microsoft.Extensions.Hosting" Version="9.0.5" />
+    <PackageReference Update="Microsoft.EntityFrameworkCore" Version="$(MicrosoftPackageVersion)"/>
+    <PackageReference Update="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftPackageVersion)"/>
+    <PackageReference Update="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)"/>
+    <PackageReference Update="Microsoft.Extensions.Hosting" Version="$(MicrosoftPackageVersion)"/>
 
-    <PackageReference Update="AspNetCore.HealthChecks.UI" Version="9.0.0" />
-    <PackageReference Update="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
-    <PackageReference Update="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="9.0.0" />
-    <PackageReference Update="AspNet.Security.OAuth.GitHub" Version="9.4.1" />
-    <PackageReference Update="AspNet.Security.OAuth.Gitee" Version="9.4.1" />
-    <PackageReference Update="AspNet.Security.OAuth.QQ" Version="9.4.1" />
-    <PackageReference Update="AspNet.Security.OAuth.WeiXin" Version="9.4.1" />
-    <PackageReference Update="AspNet.Security.OAuth.WorkWeixin" Version="9.4.1" />
-    <PackageReference Update="AspNet.Security.OAuth.Bilibili" Version="9.4.1" />
+    <PackageReference Update="AspNetCore.HealthChecks.UI" Version="$(AspNetCorePackageVersion)"/>
+    <PackageReference Update="AspNetCore.HealthChecks.UI.Client" Version="$(AspNetCorePackageVersion)" />
+    <PackageReference Update="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="$(AspNetCorePackageVersion)"/>
 
-    <PackageReference Update="Serilog.AspNetCore" Version="9.0.0" />
-    <PackageReference Update="Serilog.Extensions.Logging" Version="9.0.0" />
-    <PackageReference Update="Serilog.Sinks.Async" Version="2.1.0" />
+    <PackageReference Update="AspNet.Security.OAuth.GitHub" Version="$(AspNetSecurityOAuthPackageVersion)"/>
+    <PackageReference Update="AspNet.Security.OAuth.Gitee" Version="$(AspNetSecurityOAuthPackageVersion)"/>
+    <PackageReference Update="AspNet.Security.OAuth.QQ" Version="$(AspNetSecurityOAuthPackageVersion)"/>
+    <PackageReference Update="AspNet.Security.OAuth.WeiXin" Version="$(AspNetSecurityOAuthPackageVersion)"/>
+    <PackageReference Update="AspNet.Security.OAuth.WorkWeixin" Version="$(AspNetSecurityOAuthPackageVersion)"/>
+    <PackageReference Update="AspNet.Security.OAuth.Bilibili" Version="$(AspNetSecurityOAuthPackageVersion)"/>
+
+    <PackageReference Update="Serilog.AspNetCore" Version="9.0.0"/>
+    <PackageReference Update="Serilog.Extensions.Logging" Version="9.0.0"/>
+    <PackageReference Update="Serilog.Sinks.Async" Version="2.1.0"/>
     <PackageReference Update="Serilog.Sinks.File" Version="6.0.0" />
-    <PackageReference Update="Serilog.Sinks.Console" Version="6.0.0" />
-    
+    <PackageReference Update="Serilog.Sinks.Console" Version="6.0.0"/>
+
 
   </ItemGroup>
 </Project>

@@ -12,29 +12,22 @@
     <Description>RuichenShuxin.AbpPro 是一个基于 ABP 框架构建的现代化后台管理系统，开箱即用，支持快速开发与二次扩展。</Description>
 
 
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryType>git</RepositoryType>
-    <PackageVersion>9.3.5</PackageVersion>
     <RepositoryUrl>https://github.com/lulifa/lulifa-ruichenshuxin-abppro.git</RepositoryUrl>
     <PackageProjectUrl>https://github.com/lulifa/lulifa-ruichenshuxin-abppro.git</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>package-readme.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
 
     <NoWarn>$(NoWarn);CS1591;CS0436;CS8618;NU1803</NoWarn>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-
     <Nullable>enable</Nullable>
-    <ImplicitUsings>true</ImplicitUsings>
-
     <AbpProjectType>app</AbpProjectType>
 
     <!-- Define versions for referenced packages -->
     <VoloAbpPackageVersion>9.3.5</VoloAbpPackageVersion>
-    <MicrosoftExtensionsPackageVersion>9.0.10</MicrosoftExtensionsPackageVersion>
-    <MicrosoftAspNetCorePackageVersion>9.0.10</MicrosoftAspNetCorePackageVersion>
-    <MicrosoftEntityFrameworkCorePackageVersion>9.0.10</MicrosoftEntityFrameworkCorePackageVersion>
+    <MicrosoftPackageVersion>9.0.10</MicrosoftPackageVersion>
+    <AspNetCorePackageVersion>9.0.0</AspNetCorePackageVersion>
+    <AspNetSecurityOAuthPackageVersion>9.4.1</AspNetSecurityOAuthPackageVersion>
     <DotNetCoreCAPPackageVersion>8.3.5</DotNetCoreCAPPackageVersion>
 
   </PropertyGroup>
