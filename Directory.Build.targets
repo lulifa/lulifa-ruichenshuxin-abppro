@@ -20,7 +20,7 @@
 
 
     <NoWarn>$(NoWarn);CS1591;CS0436;CS8618;NU1803</NoWarn>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <AbpProjectType>app</AbpProjectType>
 
     <!-- Define versions for referenced packages -->
@@ -28,7 +28,7 @@
     <MicrosoftPackageVersion>9.0.10</MicrosoftPackageVersion>
     <AspNetCorePackageVersion>9.0.0</AspNetCorePackageVersion>
     <AspNetSecurityOAuthPackageVersion>9.4.1</AspNetSecurityOAuthPackageVersion>
-    <DotNetCoreCAPPackageVersion>8.3.5</DotNetCoreCAPPackageVersion>
+    <DotNetCoreCAPPackageVersion>8.4.1</DotNetCoreCAPPackageVersion>
 
   </PropertyGroup>
 

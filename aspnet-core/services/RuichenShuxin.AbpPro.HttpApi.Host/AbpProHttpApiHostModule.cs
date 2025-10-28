@@ -9,6 +9,7 @@ namespace RuichenShuxin.AbpPro;
     typeof(AbpProEntityFrameworkCoreModule),
     typeof(AbpAccountWebOpenIddictModule),
     typeof(AbpProOAuthModule),
+    typeof(AbpProCAPEventBusModule),
     typeof(AbpSwashbuckleModule),
     typeof(AbpAspNetCoreSerilogModule)
     )]

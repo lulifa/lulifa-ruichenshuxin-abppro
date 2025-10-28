@@ -2,8 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <AssemblyName>RuichenShuxin.AbpPro.CAP</AssemblyName>
+    <RootNamespace />
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetCore.CAP" />
+    <PackageReference Include="Volo.Abp.EventBus" />
+    <PackageReference Include="Volo.Abp.Json" />
+    <PackageReference Include="DotNetCore.CAP.Dashboard" />
+    <PackageReference Include="DotNetCore.CAP.MySql" />
+    <PackageReference Include="DotNetCore.CAP.RabbitMQ" />
+    <PackageReference Include="DotNetCore.CAP.InMemoryStorage" />
+    <PackageReference Include="DotNetCore.CAP.RedisStreams " />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RuichenShuxin.AbpPro.Core\RuichenShuxin.AbpPro.Core.csproj" />
+  </ItemGroup>
 
 </Project>

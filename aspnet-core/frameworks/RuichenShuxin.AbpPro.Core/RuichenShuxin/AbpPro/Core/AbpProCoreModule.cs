@@ -11,7 +11,9 @@ public class AbpProCoreModule : AbpModule
 
         context.Services.ConfigureOptions<AppOptions>()
                         .ConfigureOptions<AuthServerOptions>()
-                        .ConfigureOptions<MultiTenancyOptions>();
+                        .ConfigureOptions<PlatformCapOptions>()
+                        .ConfigureOptions<MultiTenancyOptions>()
+                        .ConfigureOptions<RedisOptions>();
 
     }
 

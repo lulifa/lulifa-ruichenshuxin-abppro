@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\frameworks\RuichenShuxin.AbpPro.CAP\RuichenShuxin.AbpPro.CAP.csproj" />
     <ProjectReference Include="..\..\frameworks\RuichenShuxin.AbpPro.OAuth\RuichenShuxin.AbpPro.OAuth.csproj" />
     <ProjectReference Include="..\RuichenShuxin.AbpPro.Application\RuichenShuxin.AbpPro.Application.csproj" />
     <ProjectReference Include="..\RuichenShuxin.AbpPro.EntityFrameworkCore\RuichenShuxin.AbpPro.EntityFrameworkCore.csproj" />

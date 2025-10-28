@@ -17,6 +17,14 @@
     <PackageReference Update="AspNet.Security.OAuth.WorkWeixin" Version="$(AspNetSecurityOAuthPackageVersion)"/>
     <PackageReference Update="AspNet.Security.OAuth.Bilibili" Version="$(AspNetSecurityOAuthPackageVersion)"/>
 
+    <PackageReference Update="DotNetCore.CAP" Version="$(DotNetCoreCAPPackageVersion)"/>
+    <PackageReference Update="DotNetCore.CAP.Dashboard" Version="$(DotNetCoreCAPPackageVersion)"/>
+    <PackageReference Update="DotNetCore.CAP.MySql" Version="$(DotNetCoreCAPPackageVersion)" />
+    <PackageReference Update="DotNetCore.CAP.RabbitMQ" Version="$(DotNetCoreCAPPackageVersion)"/>
+    <PackageReference Update="DotNetCore.CAP.InMemoryStorage" Version="$(DotNetCoreCAPPackageVersion)"/>
+    <PackageReference Update="DotNetCore.CAP.RedisStreams " Version="$(DotNetCoreCAPPackageVersion)"/>
+    
+
     <PackageReference Update="Serilog.AspNetCore" Version="9.0.0"/>
     <PackageReference Update="Serilog.Extensions.Logging" Version="9.0.0"/>
     <PackageReference Update="Serilog.Sinks.Async" Version="2.1.0"/>

@@ -17,9 +17,11 @@
     <PackageReference Update="Volo.Abp.Emailing" Version="$(VoloAbpPackageVersion)"/>
     <PackageReference Update="Volo.Abp.EntityFrameworkCore" Version="$(VoloAbpPackageVersion)"/>
     <PackageReference Update="Volo.Abp.EntityFrameworkCore.MySQL" Version="$(VoloAbpPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.EventBus" Version="$(VoloAbpPackageVersion)"/>
     <PackageReference Update="Volo.Abp.Features" Version="$(VoloAbpPackageVersion)" />
     <PackageReference Update="Volo.Abp.GlobalFeatures" Version="$(VoloAbpPackageVersion)"/>
     <PackageReference Update="Volo.Abp.Http.Client" Version="$(VoloAbpPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.Json" Version="$(VoloAbpPackageVersion)"/>
     <PackageReference Update="Volo.Abp.Localization" Version="$(VoloAbpPackageVersion)"/>
     <PackageReference Update="Volo.Abp.Settings" Version="$(VoloAbpPackageVersion)" />
     <PackageReference Update="Volo.Abp.Swashbuckle" Version="$(VoloAbpPackageVersion)"/>
