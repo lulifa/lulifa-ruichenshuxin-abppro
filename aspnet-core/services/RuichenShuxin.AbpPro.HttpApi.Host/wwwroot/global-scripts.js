@@ -7,7 +7,7 @@
 
         const iconMap = {
             'GitHub': '<i class="fa fa-github me-2"></i>',
-            'Gitee': '<i class="fas fa-git-alt me-2"></i>',
+            'Gitee': '<i class="fas fa-gitlab me-2"></i>',
             'QQ': '<i class="fab fa-qq me-2"></i>',
             'Weixin': '<i class="fab fa-weixin me-2"></i>',
             'WorkWeixin': '<i class="fas fa-building me-2"></i>',
@@ -15,6 +15,7 @@
             'Microsoft': '<i class="fab fa-microsoft me-2"></i>',
             'Google': '<i class="fab fa-google me-2"></i>'
         };
+
 
 
         const colorMap = {
