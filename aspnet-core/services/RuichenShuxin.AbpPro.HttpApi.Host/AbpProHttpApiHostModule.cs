@@ -34,7 +34,8 @@ public class AbpProHttpApiHostModule : AbpModule
                         .ConfigureAbpProCors()
                         .ConfigureAbpProMultiTenancy()
                         .ConfigureAbpProExceptions()
-                        .ConfigureAbpProDataSeed();
+                        .ConfigureAbpProDataSeed()
+                        .ConfigureLocalization();
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
