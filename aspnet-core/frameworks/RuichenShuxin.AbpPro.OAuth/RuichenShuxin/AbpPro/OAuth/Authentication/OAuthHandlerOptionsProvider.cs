@@ -9,5 +9,12 @@ public abstract class OAuthHandlerOptionsProvider<TOptions> : IOAuthHandlerOptio
         SettingProvider = settingProvider;
     }
 
-    public abstract Task SetOptionsAsync(TOptions options);
+    public virtual Task SetOptionsAsync(TOptions options)
+    {
+        options.CorrelationCookie.SameSite = SameSiteMode.Lax;
+        options.CorrelationCookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+        options.CorrelationCookie.HttpOnly = true;
+
+        return Task.CompletedTask;
+    }
 }

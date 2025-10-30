@@ -19,5 +19,7 @@ public class GiteeAuthHandlerOptionsProvider : OAuthHandlerOptionsProvider<Gitee
         {
             options.ClientSecret = clientSecret;
         }
+
+        await base.SetOptionsAsync(options);
     }
 }

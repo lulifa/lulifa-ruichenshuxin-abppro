@@ -19,5 +19,7 @@ public class BilibiliAuthHandlerOptionsProvider : OAuthHandlerOptionsProvider<Bi
         {
             options.ClientSecret = clientSecret;
         }
+
+        await base.SetOptionsAsync(options);
     }
 }

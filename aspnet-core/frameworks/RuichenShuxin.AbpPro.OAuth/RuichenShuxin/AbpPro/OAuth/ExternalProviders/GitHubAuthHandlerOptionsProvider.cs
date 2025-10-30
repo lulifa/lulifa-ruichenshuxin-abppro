@@ -19,5 +19,7 @@ public class GitHubAuthHandlerOptionsProvider : OAuthHandlerOptionsProvider<GitH
         {
             options.ClientSecret = clientSecret;
         }
+
+        await base.SetOptionsAsync(options);
     }
 }
