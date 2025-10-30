@@ -156,7 +156,7 @@ public static class AbpProCoreServiceExtensions
                 options.SwaggerDoc(AbpProCoreConsts.Swagger.Version, new OpenApiInfo
                 {
                     Title = AbpProCoreConsts.Swagger.ApiTitle,
-                    Version = AbpProCoreConsts.Swagger.Version + DateTime.Now.Ticks.ToString()
+                    Version = AbpProCoreConsts.Swagger.Version
                 });
                 options.DocInclusionPredicate((docName, description) => true);
                 options.CustomSchemaIds(type => type.FullName);
@@ -226,7 +226,7 @@ public static class AbpProCoreServiceExtensions
 
         services.Configure<AbpMultiTenancyOptions>(options =>
         {
-            options.IsEnabled = multiTenancyOptions.Enabled;
+            options.IsEnabled = multiTenancyOptions.IsEnabled;
         });
 
         return services;
@@ -268,7 +268,7 @@ public static class AbpProCoreServiceExtensions
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection ConfigureLocalization(this IServiceCollection services)
+    public static IServiceCollection ConfigureAbpProLocalization(this IServiceCollection services)
     {
         services.Configure<AbpLocalizationOptions>(options =>
         {
@@ -278,7 +278,7 @@ public static class AbpProCoreServiceExtensions
 
             options.Languages.Add(new LanguageInfo("ar", "ar", "العربية"));
             options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
-            options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch"));            
+            options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch"));
             options.Languages.Add(new LanguageInfo("en-GB", "en-GB", "English (UK)"));
             options.Languages.Add(new LanguageInfo("es", "es", "Español"));
             options.Languages.Add(new LanguageInfo("fi", "fi", "Finnish"));
@@ -294,6 +294,47 @@ public static class AbpProCoreServiceExtensions
             options.Languages.Add(new LanguageInfo("sv", "sv", "Svenska"));
             options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
         });
+
+        return services;
+
+    }
+
+    /// <summary>
+    /// 分布式缓存相关配置
+    /// </summary>
+    /// <param name="services"></param>
+    /// <returns></returns>
+    public static IServiceCollection ConfigureAbpProCache(this IServiceCollection services)
+    {
+        var redisOptions = services.GetConfiguration().GetOptions<RedisOptions>();
+
+        services.Configure<AbpDistributedCacheOptions>(options =>
+        {
+            options.KeyPrefix = $"{AbpProCoreConsts.ApplicationName}:";
+        });
+
+        var dataProtectionBuilder = services.AddDataProtection().SetApplicationName(AbpProCoreConsts.ApplicationName);
+
+        if (redisOptions.IsEnabled)
+        {
+            services.Configure<RedisCacheOptions>(options =>
+            {
+                options.Configuration = redisOptions.Configuration;
+                options.InstanceName = redisOptions.InstanceName;
+            });
+
+            var redis = ConnectionMultiplexer.Connect(redisOptions.Configuration);
+
+            services.AddSingleton<IDistributedLockProvider>(sp =>
+            {
+                return new RedisDistributedSynchronizationProvider(redis.GetDatabase());
+            });
+
+            if (!services.GetHostingEnvironment().IsDevelopment())
+            {
+                dataProtectionBuilder.PersistKeysToStackExchangeRedis(redis, $"{AbpProCoreConsts.ApplicationName}-Protection-Keys");
+            }
+        }
 
         return services;
 

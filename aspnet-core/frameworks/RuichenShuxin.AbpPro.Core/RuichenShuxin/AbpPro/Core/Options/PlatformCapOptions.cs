@@ -1,6 +1,6 @@
 ﻿namespace RuichenShuxin.AbpPro.Core;
 
-public class PlatformCapOptions
+public class PlatformCapOptions : IEnabledOptions, IHasRedisOptions
 {
     public bool IsEnabled { get; set; }
 
@@ -8,7 +8,7 @@ public class PlatformCapOptions
 
     public CAPRabbitMQOptions RabbitMQ { get; set; }
 
-    public CAPRedisOptions Redis { get; set; }
+    public RedisConnectionOptions Redis { get; set; }
 
 }
 
@@ -41,9 +41,4 @@ public class CAPRabbitMQOptions
     public string ExchangeName { get; set; }
 
     public string VirtualHost { get; set; }
-}
-
-public class CAPRedisOptions
-{
-    public string Configuration { get; set; }
 }

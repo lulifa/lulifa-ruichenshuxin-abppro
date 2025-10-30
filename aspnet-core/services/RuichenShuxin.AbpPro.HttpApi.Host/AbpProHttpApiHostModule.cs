@@ -11,6 +11,7 @@ namespace RuichenShuxin.AbpPro;
     typeof(AbpProOAuthModule),
     typeof(AbpProCAPEventBusModule),
     typeof(AbpSwashbuckleModule),
+    typeof(AbpCachingStackExchangeRedisModule),
     typeof(AbpAspNetCoreSerilogModule)
     )]
 public class AbpProHttpApiHostModule : AbpModule
@@ -35,7 +36,8 @@ public class AbpProHttpApiHostModule : AbpModule
                         .ConfigureAbpProMultiTenancy()
                         .ConfigureAbpProExceptions()
                         .ConfigureAbpProDataSeed()
-                        .ConfigureLocalization();
+                        .ConfigureAbpProLocalization()
+                        .ConfigureAbpProCache();
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)

@@ -1,6 +1,7 @@
 ﻿namespace RuichenShuxin.AbpPro.Core;
 
-public class MultiTenancyOptions
+public class MultiTenancyOptions : IEnabledOptions
 {
-    public bool Enabled { get; set; }
+    public bool IsEnabled { get; set; }
+
 }

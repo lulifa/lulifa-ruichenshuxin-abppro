@@ -36,7 +36,7 @@ public static class AbpProCoreApplicationExtensions
     {
         var multiTenancyOptions = configuration.GetOptions<MultiTenancyOptions>();
 
-        if (multiTenancyOptions.Enabled)
+        if (multiTenancyOptions.IsEnabled)
         {
             app.UseMultiTenancy();
         }

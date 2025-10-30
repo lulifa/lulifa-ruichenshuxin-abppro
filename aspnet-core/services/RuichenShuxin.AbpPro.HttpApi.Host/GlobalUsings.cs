@@ -21,6 +21,7 @@ global using Volo.Abp.AspNetCore.Mvc.UI.RazorPages;
 global using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite;
 global using Volo.Abp.AspNetCore.Serilog;
 global using Volo.Abp.Autofac;
+global using Volo.Abp.Caching.StackExchangeRedis;
 global using Volo.Abp.DependencyInjection;
 global using Volo.Abp.Localization;
 global using Volo.Abp.Modularity;

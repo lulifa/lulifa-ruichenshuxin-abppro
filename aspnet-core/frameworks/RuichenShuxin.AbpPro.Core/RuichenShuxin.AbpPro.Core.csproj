@@ -8,6 +8,7 @@
 
   <ItemGroup>
 
+    <PackageReference Include="DistributedLock.Redis" />
     <PackageReference Include="Volo.Abp" />
     <PackageReference Include="Volo.Abp.AspNetCore" />
     <PackageReference Include="Volo.Abp.Autofac" />
@@ -22,6 +23,7 @@
     <PackageReference Include="AspNetCore.HealthChecks.UI" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" />
 
   </ItemGroup>
 

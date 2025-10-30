@@ -1,8 +1,11 @@
 ﻿// Global using directives
 
 global using HealthChecks.UI.Client;
+global using Medallion.Threading;
+global using Medallion.Threading.Redis;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.Cors;
+global using Microsoft.AspNetCore.DataProtection;
 global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 global using Microsoft.AspNetCore.Extensions.DependencyInjection;
 global using Microsoft.AspNetCore.Hosting;
@@ -14,6 +17,7 @@ global using Microsoft.AspNetCore.Mvc.Abstractions;
 global using Microsoft.AspNetCore.Mvc.Filters;
 global using Microsoft.AspNetCore.Routing;
 global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Caching.StackExchangeRedis;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -27,6 +31,7 @@ global using Microsoft.OpenApi.Models;
 global using OpenIddict.Server.AspNetCore;
 global using OpenIddict.Validation.AspNetCore;
 global using RuichenShuxin.AbpPro.Localization;
+global using StackExchange.Redis;
 global using Swashbuckle.AspNetCore.SwaggerGen;
 global using System;
 global using System.Collections.Generic;
@@ -44,6 +49,7 @@ global using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 global using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 global using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite.Bundling;
 global using Volo.Abp.Authorization;
+global using Volo.Abp.Caching;
 global using Volo.Abp.Data;
 global using Volo.Abp.DependencyInjection;
 global using Volo.Abp.Domain.Entities;
