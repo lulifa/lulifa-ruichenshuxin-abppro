@@ -49,6 +49,7 @@ public class AbpProHttpApiHostModule : AbpModule
 
         app.UseForwardedHeaders();
         app.UseAbpProRequestLocalization();
+        app.UseCookiePolicy();
 
         app.UseRouting();
         app.MapAbpStaticAssets();

@@ -1,4 +1,6 @@
-﻿namespace RuichenShuxin.AbpPro.Core;
+﻿using Volo.Abp.AspNetCore.Mvc.AntiForgery;
+
+namespace RuichenShuxin.AbpPro.Core;
 
 public static class AbpProCoreServiceExtensions
 {
@@ -81,6 +83,14 @@ public static class AbpProCoreServiceExtensions
         {
             options.IsDynamicClaimsEnabled = true;
         });
+
+        // CSRF/XSRF https://abp.io/docs/latest/framework/infrastructure/csrf-anti-forgery
+        services.Configure<AbpAntiForgeryOptions>(options =>
+        {
+            options.AutoValidate = true;
+        });
+
+        services.AddSameSiteCookiePolicy();
 
         return services;
     }
