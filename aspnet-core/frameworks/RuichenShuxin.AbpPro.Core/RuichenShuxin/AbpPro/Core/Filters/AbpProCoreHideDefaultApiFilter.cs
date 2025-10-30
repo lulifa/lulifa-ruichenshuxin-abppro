@@ -1,6 +1,6 @@
 ﻿namespace RuichenShuxin.AbpPro.Core;
 
-public class AbpProHideDefaultApiFilter : IDocumentFilter
+public class AbpProCoreHideDefaultApiFilter : IDocumentFilter
 {
     private readonly List<string> _hiddenPathPatterns = new()
     {

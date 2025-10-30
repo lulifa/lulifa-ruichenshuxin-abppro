@@ -11,6 +11,7 @@ global using Volo.Abp.Identity;
 global using Volo.Abp.Localization;
 global using Volo.Abp.Modularity;
 global using Volo.Abp.PermissionManagement;
+global using Volo.Abp.Reflection;
 global using Volo.Abp.SettingManagement;
 global using Volo.Abp.TenantManagement;
 global using Volo.Abp.Threading;

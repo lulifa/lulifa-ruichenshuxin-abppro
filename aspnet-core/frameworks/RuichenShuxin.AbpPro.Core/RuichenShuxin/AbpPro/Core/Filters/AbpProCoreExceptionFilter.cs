@@ -2,7 +2,7 @@
 
 [Dependency(ReplaceServices = true)]
 [ExposeServices(typeof(AbpExceptionFilter))]
-public class AbpProExceptionFilter : AbpExceptionFilter
+public class AbpProCoreExceptionFilter : AbpExceptionFilter
 {
     protected override bool ShouldHandleException(ExceptionContext context)
     {

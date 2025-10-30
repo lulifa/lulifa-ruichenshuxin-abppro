@@ -1,6 +1,6 @@
 ﻿namespace RuichenShuxin.AbpPro.Core;
 
-public class AbpProResultFilter : IResultFilter, ITransientDependency
+public class AbpProCoreResultFilter : IResultFilter, ITransientDependency
 {
     // 定义需要强制 Wrap 的 ABP 系统接口路径（可扩展到配置文件）
     private static readonly string[] WrapRoutePrefixes =

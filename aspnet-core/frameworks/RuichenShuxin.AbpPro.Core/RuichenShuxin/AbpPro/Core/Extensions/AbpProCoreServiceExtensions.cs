@@ -171,8 +171,8 @@ public static class AbpProCoreServiceExtensions
                 options.DocInclusionPredicate((docName, description) => true);
                 options.CustomSchemaIds(type => type.FullName);
 
-                options.DocumentFilter<AbpProHideDefaultApiFilter>();
-                options.OperationFilter<AbpProOperationFilter>();
+                options.DocumentFilter<AbpProCoreHideDefaultApiFilter>();
+                options.OperationFilter<AbpProCoreOperationFilter>();
 
             });
 
@@ -252,9 +252,9 @@ public static class AbpProCoreServiceExtensions
     {
         services.AddMvc(options =>
         {
-            options.Filters.Add(typeof(AbpProExceptionFilter));
+            options.Filters.Add(typeof(AbpProCoreExceptionFilter));
 
-            options.Filters.Add(typeof(AbpProResultFilter));
+            options.Filters.Add(typeof(AbpProCoreResultFilter));
 
         });
 

@@ -1,10 +1,10 @@
 ﻿namespace RuichenShuxin.AbpPro.Core;
 
-public class AbpProOperationFilter : IOperationFilter
+public class AbpProCoreOperationFilter : IOperationFilter
 {
     private readonly AbpMultiTenancyOptions _multiTenancyOptions;
     private readonly AbpAspNetCoreMultiTenancyOptions _aspNetCoreMultiTenancyOptions;
-    public AbpProOperationFilter(IOptions<AbpMultiTenancyOptions> multiTenancyOptions, IOptions<AbpAspNetCoreMultiTenancyOptions> aspNetCoreMultiTenancyOptions)
+    public AbpProCoreOperationFilter(IOptions<AbpMultiTenancyOptions> multiTenancyOptions, IOptions<AbpAspNetCoreMultiTenancyOptions> aspNetCoreMultiTenancyOptions)
     {
         _multiTenancyOptions = multiTenancyOptions.Value;
         _aspNetCoreMultiTenancyOptions = aspNetCoreMultiTenancyOptions.Value;
