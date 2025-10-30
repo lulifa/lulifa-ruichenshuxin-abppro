@@ -25,8 +25,8 @@ public class AbpProEntityFrameworkCoreModule : AbpModule
     {
         context.Services.AddAbpDbContext<AbpProDbContext>(options =>
         {
-                /* Remove "includeAllEntities: true" to create
-                 * default repositories only for aggregate roots */
+            /* Remove "includeAllEntities: true" to create
+             * default repositories only for aggregate roots */
             options.AddDefaultRepositories(includeAllEntities: true);
         });
 
@@ -37,10 +37,11 @@ public class AbpProEntityFrameworkCoreModule : AbpModule
 
             options.UseMySQL(builder =>
             {
-                builder.TranslateParameterizedCollectionsToConstants();
+                builder.TranslateParameterizedCollectionsToConstants()
+                       .UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
             });
 
         });
-        
+
     }
 }
