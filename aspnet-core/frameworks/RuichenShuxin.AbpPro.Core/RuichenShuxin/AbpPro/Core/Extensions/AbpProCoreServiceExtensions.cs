@@ -108,8 +108,8 @@ public static class AbpProCoreServiceExtensions
         services.Configure<AppUrlOptions>(options =>
         {
             options.Applications["MVC"].RootUrl = appOptions.SelfUrl;
-            options.Applications["Angular"].RootUrl = appOptions.AngularUrl;
-            options.Applications["Angular"].Urls[AbpProCoreConsts.Urls.PasswordReset] = "account/reset-password";
+            options.Applications["Vue"].RootUrl = appOptions.VueUrl;
+            options.Applications["Vue"].Urls[AbpProCoreConsts.Urls.PasswordReset] = "account/reset-password";
             options.RedirectAllowedUrls.AddRange(appOptions.RedirectAllowedUrls?.Split(',') ?? Array.Empty<string>());
         });
 
