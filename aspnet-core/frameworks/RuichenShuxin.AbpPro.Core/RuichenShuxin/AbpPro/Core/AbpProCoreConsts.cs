@@ -8,6 +8,11 @@ public static class AbpProCoreConsts
     public const string ApplicationName = "AbpPro";
 
     /// <summary>
+    /// Wrap
+    /// </summary>
+    public const string AbpWrapResult = "_AbpWrapResult";
+
+    /// <summary>
     /// URL相关常量
     /// </summary>
     public static class Urls

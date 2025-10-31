@@ -202,6 +202,7 @@ public static class AbpProCoreServiceExtensions
                             .ToArray() ?? Array.Empty<string>()
                     )
                     .WithAbpExposedHeaders()
+                    .WithExposedHeaders(AbpProCoreConsts.AbpWrapResult)
                     .SetIsOriginAllowedToAllowWildcardSubdomains()
                     .AllowAnyHeader()
                     .AllowAnyMethod()

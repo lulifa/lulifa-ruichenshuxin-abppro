@@ -4,13 +4,13 @@ public class AbpProCoreHideDefaultApiFilter : IDocumentFilter
 {
     private readonly List<string> _hiddenPathPatterns = new()
     {
-        //"/api/abp",
-        //"/api/account",
-        //"/api/identity",
-        //"/api/setting-management",
-        //"/api/permission-management",
-        //"/api/feature-management",
-        //"/api/multi-tenancy"
+        "/api/abp",
+        "/api/account",
+        "/api/identity",
+        "/api/setting-management",
+        "/api/permission-management",
+        "/api/feature-management",
+        "/api/multi-tenancy"
     };
 
     public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)

@@ -29,6 +29,9 @@ public class AbpProCoreExceptionFilter : AbpExceptionFilter
     {
         if (!ShouldWrapResult(context)) return false;
 
+        // 设置Wrap标识Header
+        context.HttpContext.Response.Headers[AbpProCoreConsts.AbpWrapResult] = "true";
+
         context.HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
 
         context.Result = new ObjectResult(CreateWrapResult(context));
