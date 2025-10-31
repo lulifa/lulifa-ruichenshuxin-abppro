@@ -11,6 +11,7 @@ global using System.Linq.Dynamic.Core;
 global using System.Threading.Tasks;
 global using Volo.Abp.Account;
 global using Volo.Abp.Application.Dtos;
+global using Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations;
 global using Volo.Abp.AutoMapper;
 global using Volo.Abp.Domain.Repositories;
 global using Volo.Abp.FeatureManagement;
