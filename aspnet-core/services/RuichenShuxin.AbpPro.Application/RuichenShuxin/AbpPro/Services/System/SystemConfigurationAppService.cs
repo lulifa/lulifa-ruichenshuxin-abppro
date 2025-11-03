@@ -1,6 +1,5 @@
 ﻿namespace RuichenShuxin.AbpPro;
 
-[Authorize]
 public class SystemConfigurationAppService : AbpProAppService, ISystemConfigurationAppService
 {
     protected readonly IAbpApplicationConfigurationAppService Original;
