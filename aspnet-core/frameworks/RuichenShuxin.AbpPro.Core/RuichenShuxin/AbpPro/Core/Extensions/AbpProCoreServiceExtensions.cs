@@ -1,4 +1,5 @@
-﻿using Volo.Abp.AspNetCore.Mvc.AntiForgery;
+﻿using System.IO;
+using Volo.Abp.AspNetCore.Mvc.AntiForgery;
 
 namespace RuichenShuxin.AbpPro.Core;
 
@@ -152,7 +153,7 @@ public static class AbpProCoreServiceExtensions
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    public static IServiceCollection ConfigureAbpProSwagger(this IServiceCollection services)
+    public static IServiceCollection ConfigureAbpProSwagger(this IServiceCollection services, params Type[] xmlFromModules)
     {
         var authOptions = services.GetConfiguration().GetOptions<AuthServerOptions>();
 
@@ -173,6 +174,17 @@ public static class AbpProCoreServiceExtensions
 
                 options.DocumentFilter<AbpProCoreHideDefaultApiFilter>();
                 options.OperationFilter<AbpProCoreOperationFilter>();
+
+                foreach (var moduleType in xmlFromModules)
+                {
+                    var xmlFile = $"{moduleType.Assembly.GetName().Name}.xml";
+                    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+                    if (File.Exists(xmlPath))
+                    {
+                        options.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
+                    }
+                }
 
             });
 

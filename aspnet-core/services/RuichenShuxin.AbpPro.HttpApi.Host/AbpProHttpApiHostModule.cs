@@ -31,13 +31,13 @@ public class AbpProHttpApiHostModule : AbpModule
                         .ConfigureAbpProUrls()
                         .ConfigureAbpProBundles()
                         .ConfigureAbpProHealthChecks()
-                        .ConfigureAbpProSwagger()
                         .ConfigureAbpProCors()
                         .ConfigureAbpProMultiTenancy()
                         .ConfigureAbpProExceptions()
                         .ConfigureAbpProDataSeed()
                         .ConfigureAbpProLocalization()
-                        .ConfigureAbpProCache();
+                        .ConfigureAbpProCache()
+                        .ConfigureAbpProSwagger(typeof(AbpProHttpApiModule), typeof(AbpProApplicationContractsModule));
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)

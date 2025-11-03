@@ -1,9 +1,10 @@
 ﻿namespace RuichenShuxin.AbpPro;
 
-public class VoloApplicationConfigurationAppService : AbpProAppService, IVoloApplicationConfigurationAppService
+[Authorize]
+public class SystemConfigurationAppService : AbpProAppService, ISystemConfigurationAppService
 {
     protected readonly IAbpApplicationConfigurationAppService Original;
-    public VoloApplicationConfigurationAppService(IAbpApplicationConfigurationAppService abpApplicationConfigurationAppService)
+    public SystemConfigurationAppService(IAbpApplicationConfigurationAppService abpApplicationConfigurationAppService)
     {
         Original = abpApplicationConfigurationAppService;
     }
