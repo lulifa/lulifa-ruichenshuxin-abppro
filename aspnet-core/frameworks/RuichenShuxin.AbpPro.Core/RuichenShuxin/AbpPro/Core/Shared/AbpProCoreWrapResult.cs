@@ -2,34 +2,32 @@
 
 public class AbpProCoreWrapResult<T>
 {
-    public bool Success { get; private set; }
+    public string Code { get; private set; }
 
     public string Message { get; private set; }
 
-    public T Data { get; private set; }
+    public string Details { get; set; }
 
-    public string Code { get; private set; }
+    public T Result { get; private set; }
 
     public AbpProCoreWrapResult()
     {
-        Success = true;
-        Message = "Success";
-        Data = default;
-        Code = "200";
+
     }
 
-    public void SetSuccess(T data, string message = "Success", string code = "200")
+    public void SetSuccess(T result, string message = "OK", string code = "200", string details = null)
     {
-        Success = true;
-        Data = data;
-        Code = code;
-    }
-
-    public void SetFail(string message = "Fail", string code = "500")
-    {
-        Success = false;
+        Result = result;
         Message = message;
         Code = code;
+        Details = details;
+    }
+
+    public void SetFail(string message = "Fail", string code = "500", string details = null)
+    {
+        Message = message;
+        Code = code;
+        Details = details;
     }
 
 }
