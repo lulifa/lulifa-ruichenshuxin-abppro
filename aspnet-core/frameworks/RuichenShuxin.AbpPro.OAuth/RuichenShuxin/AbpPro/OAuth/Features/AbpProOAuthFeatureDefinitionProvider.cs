@@ -9,7 +9,7 @@ public class AbpProOAuthFeatureDefinitionProvider : FeatureDefinitionProvider
               displayName: L("Features:ExternalOAuthLogin"));
 
         group.AddFeature(
-            name: AbpProOAuthFeatureNames.GitHub.Enabled,
+            name: AbpProOAuthFeatureNames.GitHub.Enable,
             defaultValue: "true",
             displayName: L("Features:GithubOAuthEnable"),
             description: L("Features:GithubOAuthEnableDesc"),

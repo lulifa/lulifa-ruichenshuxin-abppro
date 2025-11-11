@@ -9,7 +9,7 @@ public class AbpProOAuthFeatureNames
         /// <summary>
         /// 启用Github认证登录
         /// </summary>
-        public const string Enabled = Prefix + ".Enabled";
+        public const string Enable = Prefix + ".Enable";
     }
     public static class Gitee
     {
@@ -17,7 +17,7 @@ public class AbpProOAuthFeatureNames
         /// <summary>
         /// 启用Gitee认证登录
         /// </summary>
-        public const string Enable = Prefix + ".Enabled";
+        public const string Enable = Prefix + ".Enable";
     }
     public static class QQ
     {
@@ -25,7 +25,7 @@ public class AbpProOAuthFeatureNames
         /// <summary>
         /// 启用QQ认证登录
         /// </summary>
-        public const string Enable = Prefix + ".Enabled";
+        public const string Enable = Prefix + ".Enable";
     }
     public static class WeChat
     {
@@ -33,7 +33,7 @@ public class AbpProOAuthFeatureNames
         /// <summary>
         /// 启用微信认证登录
         /// </summary>
-        public const string Enable = Prefix + ".Enabled";
+        public const string Enable = Prefix + ".Enable";
     }
     public static class WeCom
     {
@@ -41,7 +41,7 @@ public class AbpProOAuthFeatureNames
         /// <summary>
         /// 启用企业微信认证登录
         /// </summary>
-        public const string Enable = Prefix + ".Enabled";
+        public const string Enable = Prefix + ".Enable";
     }
     public static class Bilibili
     {
@@ -49,7 +49,7 @@ public class AbpProOAuthFeatureNames
         /// <summary>
         /// 启用Bilibili认证登录
         /// </summary>
-        public const string Enable = Prefix + ".Enabled";
+        public const string Enable = Prefix + ".Enable";
     }
 
 }

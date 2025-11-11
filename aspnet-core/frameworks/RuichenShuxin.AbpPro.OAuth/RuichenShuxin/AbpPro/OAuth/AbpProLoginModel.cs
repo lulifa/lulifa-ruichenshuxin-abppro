@@ -5,7 +5,7 @@ public class AbpProLoginModel : LoginModel
 {
     private static readonly Dictionary<string, string> _providerFeaturesMap = new Dictionary<string, string>
     {
-        [GitHubAuthenticationDefaults.AuthenticationScheme] = AbpProOAuthFeatureNames.GitHub.Enabled,
+        [GitHubAuthenticationDefaults.AuthenticationScheme] = AbpProOAuthFeatureNames.GitHub.Enable,
         [GiteeAuthenticationDefaults.AuthenticationScheme] = AbpProOAuthFeatureNames.Gitee.Enable,
         [QQAuthenticationDefaults.AuthenticationScheme] = AbpProOAuthFeatureNames.QQ.Enable,
         [WeixinAuthenticationDefaults.AuthenticationScheme] = AbpProOAuthFeatureNames.WeChat.Enable,
