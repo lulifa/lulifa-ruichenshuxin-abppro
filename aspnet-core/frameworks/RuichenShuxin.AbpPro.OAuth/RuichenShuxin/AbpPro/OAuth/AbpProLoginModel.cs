@@ -5,7 +5,7 @@ public class AbpProLoginModel : LoginModel
 {
     private static readonly Dictionary<string, string> _providerFeaturesMap = new Dictionary<string, string>
     {
-        [GitHubAuthenticationDefaults.AuthenticationScheme] = AbpProOAuthFeatureNames.GitHub.Enable,
+        [GitHubAuthenticationDefaults.AuthenticationScheme] = AbpProOAuthFeatureNames.GitHub.Enabled,
         [GiteeAuthenticationDefaults.AuthenticationScheme] = AbpProOAuthFeatureNames.Gitee.Enable,
         [QQAuthenticationDefaults.AuthenticationScheme] = AbpProOAuthFeatureNames.QQ.Enable,
         [WeixinAuthenticationDefaults.AuthenticationScheme] = AbpProOAuthFeatureNames.WeChat.Enable,
@@ -24,6 +24,24 @@ public class AbpProLoginModel : LoginModel
         : base(schemeProvider, accountOptions, identityOptions, identityDynamicClaimsPrincipalContributorCache, webHostEnvironment)
     {
         _featureChecker = featureChecker;
+    }
+
+    public override async Task<IActionResult> OnGetAsync()
+    {
+        var returnUrl = Request.Query["ReturnUrl"].FirstOrDefault();
+
+        returnUrl = Uri.UnescapeDataString(returnUrl ?? "");
+
+        if (QueryHelpers.ParseQuery(returnUrl).TryGetValue("provider", out var provider))
+        {
+            var providers = await GetExternalProviders();
+
+            if (providers.Any(p => p.AuthenticationScheme.Equals(provider, StringComparison.OrdinalIgnoreCase)))
+            {
+                return await OnPostExternalLogin(provider);
+            }
+        }
+        return await base.OnGetAsync();
     }
 
     protected async override Task<List<ExternalProviderModel>> GetExternalProviders()
@@ -46,5 +64,4 @@ public class AbpProLoginModel : LoginModel
         return enabledProviders;
 
     }
-
 }
