@@ -37,6 +37,13 @@
     "Unspecified": "System",
     "SeeAllUsers": "查看所有用户",
     "TakePhoto": "拍摄照片",
-    "ChoosePhoto": "选择照片"
+    "ChoosePhoto": "选择照片",
+    "Tenant:020001": "已经存在名为 {Name} 的租户!",
+    "Tenant:020002": "租户: {Tenant} 不存在!",
+    "Tenant:020101": "无法打开默认连接字符串指向的数据库连接!",
+    "Tenant:020102": "默认连接字符串指向的数据库已经存在!",
+    "Tenant:020103": "无法打开 {Name} 指向的数据库连接!",
+    "Tenant:020104": "不支持 {Name} 类型的数据库连接检查!",
+    "IfUseCustomDataBaseDefaultConnectionStringIsRequiredMessage": "如果使用自定义数据库,默认连接字符串必须输入!"
   }
 }

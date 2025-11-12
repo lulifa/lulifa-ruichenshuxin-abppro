@@ -11,18 +11,18 @@ using RuichenShuxin.AbpPro.EntityFrameworkCore;
 namespace RuichenShuxin.AbpPro.Migrations
 {
     [DbContext(typeof(AbpProDbContext))]
-    [Migration("20251017050418_Initial")]
-    partial class Initial
+    [Migration("20251112083630_InitialDatabase")]
+    partial class InitialDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.6")
+                .HasAnnotation("ProductVersion", "9.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("RuichenShuxin.AbpPro.Books.Book", b =>
+            modelBuilder.Entity("RuichenShuxin.AbpPro.Book", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("char(36)");
@@ -1867,6 +1867,12 @@ namespace RuichenShuxin.AbpPro.Migrations
                         .HasColumnType("datetime(6)")
                         .HasColumnName("DeletionTime");
 
+                    b.Property<DateTime?>("DisableTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("EnableTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("EntityVersion")
                         .HasColumnType("int");
 
@@ -1874,6 +1880,9 @@ namespace RuichenShuxin.AbpPro.Migrations
                         .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()

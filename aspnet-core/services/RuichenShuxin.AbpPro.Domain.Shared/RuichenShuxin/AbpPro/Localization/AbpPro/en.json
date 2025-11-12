@@ -33,6 +33,13 @@
     "Permission:Books.Delete": "Deleting the books",
     "Menu:Home": "Home",
     "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information visit",
-    "Welcome": "Welcome"
+    "Welcome": "Welcome",
+    "Tenant:020001": "Unable to create duplicate tenants {Name}!",
+    "Tenant:020002": "Tenant: {Tenant} not found!",
+    "Tenant:020101": "The default connection string cannot open a connection to the database!",
+    "Tenant:020102": "The database pointed to by the default connection string already exists!",
+    "Tenant:020103": "Unable to open the database connection pointed to by {Name}!",
+    "Tenant:020104": "Database connection check of the {Name} type is not supported!",
+    "IfUseCustomDataBaseDefaultConnectionStringIsRequiredMessage": "If you use a custom database, the default connection string must be required!"
   }
 }

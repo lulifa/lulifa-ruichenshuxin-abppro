@@ -12,6 +12,14 @@ public static class AbpProCoreConsts
     /// </summary>
     public const string AbpWrapResult = "_AbpWrapResult";
 
+
+    public static int MaxLength64 { get; set; } = 64;
+    public static int MaxLength128 { get; set; } = 128;
+    public static int MaxLength256 { get; set; } = 256;
+    public static int MaxLength512 { get; set; } = 512;
+    public static int MaxLength1024 { get; set; } = 1024;
+
+
     /// <summary>
     /// URL相关常量
     /// </summary>

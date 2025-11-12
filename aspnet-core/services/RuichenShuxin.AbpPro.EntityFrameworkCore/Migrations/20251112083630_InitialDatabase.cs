@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RuichenShuxin.AbpPro.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -394,6 +394,9 @@ namespace RuichenShuxin.AbpPro.Migrations
                     Name = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false),
                     NormalizedName = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false),
                     EntityVersion = table.Column<int>(type: "int", nullable: false),
+                    DisableTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    EnableTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     ExtraProperties = table.Column<string>(type: "longtext", nullable: false),
                     ConcurrencyStamp = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
                     CreationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
