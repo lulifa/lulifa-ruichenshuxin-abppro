@@ -25,14 +25,14 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
 
 
     [AllowAnonymous]
-    public async virtual Task<FindTenantResultDto> FindTenantByNameAsync(string name)
+    public virtual async Task<FindTenantResultDto> FindTenantByNameAsync(string name)
     {
         var result = await AbpTenantAppService.FindTenantByNameAsync(name);
 
         return result;
     }
 
-    public async virtual Task<TenantDto> GetAsync(Guid id)
+    public virtual async Task<TenantDto> GetAsync(Guid id)
     {
         var tenant = await TenantRepository.FindAsync(id);
         if (tenant == null)
@@ -43,7 +43,7 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
         return ObjectMapper.Map<Tenant, TenantDto>(tenant);
     }
 
-    public async virtual Task<PagedResultDto<TenantDto>> GetListAsync(TenantGetListInput input)
+    public virtual async Task<PagedResultDto<TenantDto>> GetListAsync(TenantGetListInput input)
     {
         var count = await TenantRepository.GetCountAsync(input.Filter);
         var list = await TenantRepository.GetListAsync(
@@ -60,7 +60,7 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
     }
 
     [Authorize(TenantManagementPermissions.Tenants.Create)]
-    public async virtual Task<TenantDto> CreateAsync(TenantCreateDto input)
+    public virtual async Task<TenantDto> CreateAsync(TenantCreateDto input)
     {
         var tenant = await TenantManager.CreateAsync(input.Name);
 
@@ -117,7 +117,7 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
     }
 
     [Authorize(TenantManagementPermissions.Tenants.Create)]
-    public async virtual Task<TenantDto> UpdateAsync(Guid id, TenantUpdateDto input)
+    public virtual async Task<TenantDto> UpdateAsync(Guid id, TenantUpdateDto input)
     {
         var tenant = await TenantRepository.GetAsync(id);
 
@@ -145,7 +145,7 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
     }
 
     [Authorize(TenantManagementPermissions.Tenants.Create)]
-    public async virtual Task DeleteAsync(Guid id)
+    public virtual async Task DeleteAsync(Guid id)
     {
         var tenant = await TenantRepository.FindAsync(id);
 
