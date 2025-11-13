@@ -21,10 +21,11 @@ public abstract class AbpProCoreCrudControllerBase<
     TEntityDto,
     TKey,
     TGetListInput,
-    TCreateUpdateInput,
+    TCreateInput,
+    TUpdateInput,
     TResource>
     : AbpProCoreControllerBase<TResource>
-    where TAppService : ICrudAppService<TEntityDto, TKey, TGetListInput, TCreateUpdateInput>
+    where TAppService : ICrudAppService<TEntityDto, TKey, TGetListInput, TCreateInput, TUpdateInput>
     where TResource : class
 {
     protected readonly TAppService AppService;
@@ -35,11 +36,11 @@ public abstract class AbpProCoreCrudControllerBase<
     }
 
     [HttpPost]
-    public virtual Task<TEntityDto> CreateAsync(TCreateUpdateInput input)
+    public virtual Task<TEntityDto> CreateAsync(TCreateInput input)
         => AppService.CreateAsync(input);
 
     [HttpPut("{id}")]
-    public virtual Task<TEntityDto> UpdateAsync(TKey id, TCreateUpdateInput input)
+    public virtual Task<TEntityDto> UpdateAsync(TKey id, TUpdateInput input)
         => AppService.UpdateAsync(id, input);
 
     [HttpDelete("{id}")]
@@ -62,21 +63,27 @@ public abstract class AbpProCoreCrudControllerBaseWithGuid<
     TAppService,
     TEntityDto,
     TGetListInput,
-    TCreateUpdateInput,
+    TCreateInput,
+    TUpdateInput,
     TResource>
     : AbpProCoreCrudControllerBase<
         TAppService,
         TEntityDto,
         Guid,
         TGetListInput,
-        TCreateUpdateInput,
+        TCreateInput,
+        TUpdateInput,
         TResource>
-    where TAppService : ICrudAppService<TEntityDto, Guid, TGetListInput, TCreateUpdateInput>
+    where TAppService : ICrudAppService<TEntityDto, Guid, TGetListInput, TCreateInput, TUpdateInput>
     where TResource : class
 {
     protected AbpProCoreCrudControllerBaseWithGuid(TAppService appService)
         : base(appService)
     {
     }
+    /// <summary>
+    /// 方便访问 AppService 实例（可调用自定义方法）
+    /// </summary>
+    protected TAppService App => AppService;
 }
 

@@ -15,15 +15,17 @@ public abstract class AbpProController<
     TEntityDto,
     TKey,
     TGetListInput,
-    TCreateUpdateInput>
+    TCreateInput,
+    TUpdateInput>
     : AbpProCoreCrudControllerBase<
         TAppService,
         TEntityDto,
         TKey,
         TGetListInput,
-        TCreateUpdateInput,
+        TCreateInput,
+        TUpdateInput,
         AbpProResource>
-    where TAppService : ICrudAppService<TEntityDto, TKey, TGetListInput, TCreateUpdateInput>
+    where TAppService : class, ICrudAppService<TEntityDto, TKey, TGetListInput, TCreateInput, TUpdateInput>
 {
     protected AbpProController(TAppService appService)
         : base(appService)
@@ -38,14 +40,16 @@ public abstract class AbpProController<
     TAppService,
     TEntityDto,
     TGetListInput,
-    TCreateUpdateInput>
+    TCreateInput,
+    TUpdateInput>
     : AbpProCoreCrudControllerBaseWithGuid<
         TAppService,
         TEntityDto,
         TGetListInput,
-        TCreateUpdateInput,
+        TCreateInput,
+        TUpdateInput,
         AbpProResource>
-    where TAppService : ICrudAppService<TEntityDto, Guid, TGetListInput, TCreateUpdateInput>
+    where TAppService : class, ICrudAppService<TEntityDto, Guid, TGetListInput, TCreateInput, TUpdateInput>
 {
     protected AbpProController(TAppService appService)
         : base(appService)

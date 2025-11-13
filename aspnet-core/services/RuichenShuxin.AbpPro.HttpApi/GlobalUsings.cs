@@ -8,7 +8,7 @@ global using System.Threading.Tasks;
 global using Volo.Abp.Account;
 global using Volo.Abp.Application.Dtos;
 global using Volo.Abp.Application.Services;
-global using Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations;
+global using Volo.Abp.AspNetCore.Mvc.MultiTenancy;
 global using Volo.Abp.FeatureManagement;
 global using Volo.Abp.Identity;
 global using Volo.Abp.Localization;

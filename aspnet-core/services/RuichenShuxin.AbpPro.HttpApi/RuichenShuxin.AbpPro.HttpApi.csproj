@@ -19,8 +19,4 @@
     <ProjectReference Include="..\RuichenShuxin.AbpPro.Application.Contracts\RuichenShuxin.AbpPro.Application.Contracts.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="RuichenShuxin\AbpPro\Controllers\System\" />
-  </ItemGroup>
-
 </Project>

@@ -9,6 +9,7 @@ public class BookController : AbpProController<
     IBookAppService,
     BookDto,
     PagedAndSortedResultRequestDto,
+    CreateUpdateBookDto,
     CreateUpdateBookDto>
 {
     public BookController(IBookAppService appService) : base(appService)
