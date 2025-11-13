@@ -4,7 +4,7 @@
 /// 租户管理
 /// 🚢🌞🌛✨
 /// </summary>
-[Route("api/system/tenant")]
+[Route("api/system/tenants")]
 public class SystemTenantController : AbpProController<
     ISystemTenantAppService,
     TenantDto,
@@ -17,16 +17,11 @@ public class SystemTenantController : AbpProController<
     }
 
 
-    [HttpGet("find-by-name")]
+    [HttpGet]
+    [Route("by-name/{name}")]
     public async Task<FindTenantResultDto> FindTenantByNameAsync(string name)
     {
         return await AppService.FindTenantByNameAsync(name);
-    }
-
-    [HttpGet("by-name/{name}")]
-    public async Task<TenantDto> GetAsync(string name)
-    {
-        return await AppService.GetAsync(name);
     }
 
 }

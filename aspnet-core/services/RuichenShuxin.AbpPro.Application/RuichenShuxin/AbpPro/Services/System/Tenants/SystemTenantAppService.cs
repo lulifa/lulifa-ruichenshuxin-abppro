@@ -43,17 +43,6 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
         return ObjectMapper.Map<Tenant, TenantDto>(tenant);
     }
 
-    public async virtual Task<TenantDto> GetAsync(string name)
-    {
-        var tenant = await TenantRepository.FindByNameAsync(name);
-        if (tenant == null)
-        {
-            throw new BusinessException(SystemTenantErrorCodes.TenantIdOrNameNotFound)
-                .WithData("Tenant", name);
-        }
-        return ObjectMapper.Map<Tenant, TenantDto>(tenant);
-    }
-
     public async virtual Task<PagedResultDto<TenantDto>> GetListAsync(TenantGetListInput input)
     {
         var count = await TenantRepository.GetCountAsync(input.Filter);

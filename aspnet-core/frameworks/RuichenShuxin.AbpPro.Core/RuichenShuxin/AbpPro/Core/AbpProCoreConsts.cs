@@ -13,11 +13,15 @@ public static class AbpProCoreConsts
     public const string AbpWrapResult = "_AbpWrapResult";
 
 
-    public static int MaxLength64 { get; set; } = 64;
-    public static int MaxLength128 { get; set; } = 128;
-    public static int MaxLength256 { get; set; } = 256;
-    public static int MaxLength512 { get; set; } = 512;
-    public static int MaxLength1024 { get; set; } = 1024;
+    public const int MaxLength64 = 64;
+
+    public const int MaxLength128 = 128;
+
+    public const int MaxLength256 = 256;
+
+    public const int MaxLength512 = 512;
+
+    public const int MaxLength1024 = 1024;
 
 
     /// <summary>

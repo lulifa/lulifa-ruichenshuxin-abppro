@@ -10,5 +10,4 @@ public interface ISystemTenantAppService :
 {
 
     Task<FindTenantResultDto> FindTenantByNameAsync(string name);
-    Task<TenantDto> GetAsync(string name);
 }
