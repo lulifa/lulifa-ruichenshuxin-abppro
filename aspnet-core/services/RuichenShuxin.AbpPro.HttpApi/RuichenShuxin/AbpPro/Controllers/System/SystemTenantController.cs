@@ -18,7 +18,7 @@ public class SystemTenantController : AbpProController<
 
 
     [HttpGet]
-    [Route("by-name/{name}")]
+    [Route("search/{name}")]
     public virtual Task<FindTenantResultDto> FindTenantByNameAsync(string name)
     {
         return AppService.FindTenantByNameAsync(name);
