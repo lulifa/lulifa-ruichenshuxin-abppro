@@ -13,4 +13,5 @@ public class TenantDto : ExtensibleAuditedEntityDto<Guid>, IHasConcurrencyStamp
     public DateTime? DisableTime { get; set; }
 
     public string ConcurrencyStamp { get; set; }
+
 }
