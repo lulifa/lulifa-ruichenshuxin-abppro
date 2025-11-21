@@ -7,10 +7,4 @@ public abstract class TenantCreateOrUpdateBase : ExtensibleObject
 
     public string Name { get; set; }
 
-    public bool IsActive { get; set; } = true;
-
-    public DateTime? EnableTime { get; set; }
-
-    public DateTime? DisableTime { get; set; }
-
 }

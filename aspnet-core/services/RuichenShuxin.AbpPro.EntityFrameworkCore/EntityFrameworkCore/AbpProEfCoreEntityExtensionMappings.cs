@@ -35,27 +35,6 @@ public static class AbpProEfCoreEntityExtensionMappings
              * https://docs.abp.io/en/abp/latest/Customizing-Application-Modules-Extending-Entities
              */
 
-            ObjectExtensionManager.Instance
-                         .MapEfCoreProperty<Tenant, bool>(
-                             "IsActive",
-                             (entityBuilder, propertyBuilder) =>
-                             {
-
-                             }
-                         ).MapEfCoreProperty<Tenant, DateTime?>(
-                            "EnableTime",
-                             (entityBuilder, propertyBuilder) =>
-                             {
-
-                             }
-                         ).MapEfCoreProperty<Tenant, DateTime?>(
-                            "DisableTime",
-                             (entityBuilder, propertyBuilder) =>
-                             {
-
-                             }
-                         );
-
         });
     }
 }

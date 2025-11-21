@@ -64,12 +64,6 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
     {
         var tenant = await TenantManager.CreateAsync(input.Name);
 
-        tenant.SetIsActive(input.IsActive);
-
-        tenant.SetEnableTime(input.EnableTime);
-
-        tenant.SetDisableTime(input.DisableTime);
-
         input.MapExtraPropertiesTo(tenant);
 
         if (!input.UseSharedDatabase)
@@ -116,7 +110,7 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
 
     }
 
-    [Authorize(TenantManagementPermissions.Tenants.Create)]
+    [Authorize(TenantManagementPermissions.Tenants.Update)]
     public virtual async Task<TenantDto> UpdateAsync(Guid id, TenantUpdateDto input)
     {
         var tenant = await TenantRepository.GetAsync(id);
@@ -125,12 +119,6 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
         {
             await TenantManager.ChangeNameAsync(tenant, input.Name);
         }
-
-        tenant.SetIsActive(input.IsActive);
-
-        tenant.SetEnableTime(input.EnableTime);
-
-        tenant.SetDisableTime(input.DisableTime);
 
         tenant.SetConcurrencyStampIfNotNull(input.ConcurrencyStamp);
 

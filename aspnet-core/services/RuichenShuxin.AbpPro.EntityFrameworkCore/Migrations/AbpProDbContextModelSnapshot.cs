@@ -1864,12 +1864,6 @@ namespace RuichenShuxin.AbpPro.Migrations
                         .HasColumnType("datetime(6)")
                         .HasColumnName("DeletionTime");
 
-                    b.Property<DateTime?>("DisableTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime?>("EnableTime")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<int>("EntityVersion")
                         .HasColumnType("int");
 
@@ -1877,9 +1871,6 @@ namespace RuichenShuxin.AbpPro.Migrations
                         .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("ExtraProperties");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
