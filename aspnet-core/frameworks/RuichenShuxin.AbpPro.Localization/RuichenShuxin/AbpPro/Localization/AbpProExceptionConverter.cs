@@ -1,6 +1,6 @@
 ﻿namespace RuichenShuxin.AbpPro.Localization;
 
-public class AbpProExceptionConverter : IAbpExceptionConverter, ITransientDependency
+public class AbpProExceptionConverter : IAbpProExceptionConverter, ITransientDependency
 {
     private readonly AbpExceptionLocalizationOptions _options;
     private readonly IStringLocalizerFactory _localizerFactory;

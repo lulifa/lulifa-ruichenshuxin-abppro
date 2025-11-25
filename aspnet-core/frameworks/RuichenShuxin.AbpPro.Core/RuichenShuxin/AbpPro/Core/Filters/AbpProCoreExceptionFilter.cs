@@ -98,7 +98,7 @@ public class AbpProCoreExceptionFilter : AbpExceptionFilter, ITransientDependenc
             default:
                 if (context.Exception is IHasErrorCode codeException)
                 {
-                    var exceptionConverter = context.GetRequiredService<IAbpExceptionConverter>();
+                    var exceptionConverter = context.GetRequiredService<IAbpProExceptionConverter>();
                     var message = exceptionConverter.TryToLocalizeExceptionMessage(context.Exception);
 
                     if (codeException.Code.IsNullOrWhiteSpace())
