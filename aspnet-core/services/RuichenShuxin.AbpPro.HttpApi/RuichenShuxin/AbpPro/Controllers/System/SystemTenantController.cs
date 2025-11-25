@@ -24,4 +24,38 @@ public class SystemTenantController : AbpProController<
         return AppService.FindTenantByNameAsync(name);
     }
 
+    [HttpGet]
+    [Route("{id}/connection-string/{name}")]
+    public virtual Task<TenantConnectionStringDto> GetConnectionStringAsync(Guid id, string name)
+    {
+        return AppService.GetConnectionStringAsync(id, name);
+    }
+
+    [HttpGet]
+    [Route("{id}/connection-string")]
+    public virtual Task<ListResultDto<TenantConnectionStringDto>> GetConnectionStringAsync(Guid id)
+    {
+        return AppService.GetConnectionStringAsync(id);
+    }
+
+    [HttpPut]
+    [Route("{id}/connection-string")]
+    public virtual Task<TenantConnectionStringDto> SetConnectionStringAsync(Guid id, TenantConnectionStringSetInput input)
+    {
+        return AppService.SetConnectionStringAsync(id, input);
+    }
+
+    [HttpDelete]
+    [Route("{id}/connection-string/{name}")]
+    public virtual Task DeleteConnectionStringAsync(Guid id, string name)
+    {
+        return AppService.DeleteConnectionStringAsync(id, name);
+    }
+    [HttpPost]
+    [Route("connection-string/check")]
+    public virtual Task CheckConnectionStringAsync(TenantConnectionStringCheckInput input)
+    {
+        return AppService.CheckConnectionStringAsync(input);
+    }
+
 }

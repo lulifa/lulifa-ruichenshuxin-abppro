@@ -23,6 +23,17 @@ public static class AbpProCoreConsts
 
     public const int MaxLength1024 = 1024;
 
+    /// <summary>
+    /// 数据库类型相关常量
+    /// </summary>
+    public static class DatabaseProviderNames
+    {
+        public const string MySql = "mysql";
+        public const string Oracle = "oracle";
+        public const string Postgres = "postgres";
+        public const string Sqlite = "sqlite";
+        public const string SqlServer = "sqlserver";
+    }
 
     /// <summary>
     /// URL相关常量

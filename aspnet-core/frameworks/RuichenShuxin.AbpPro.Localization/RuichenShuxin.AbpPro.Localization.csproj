@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <AssemblyName>RuichenShuxin.AbpPro.Language</AssemblyName>
+    <AssemblyName>RuichenShuxin.AbpPro.Localization</AssemblyName>
     <RootNamespace />
   </PropertyGroup>
 

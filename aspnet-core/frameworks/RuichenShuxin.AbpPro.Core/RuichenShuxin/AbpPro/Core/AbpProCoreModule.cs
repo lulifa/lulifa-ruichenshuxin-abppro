@@ -19,7 +19,14 @@ public class AbpProCoreModule : AbpModule
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        base.ConfigureServices(context);
+        Configure<AbpTenantConnectionStringCheckOptions>(options =>
+        {
+            options.ConnectionStringCheckers[AbpProCoreConsts.DatabaseProviderNames.MySql] = new MySqlConnectionStringChecker();
+            options.ConnectionStringCheckers[AbpProCoreConsts.DatabaseProviderNames.Oracle] = new OracleConnectionStringChecker();
+            options.ConnectionStringCheckers[AbpProCoreConsts.DatabaseProviderNames.Postgres] = new NpgsqlConnectionStringChecker();
+            options.ConnectionStringCheckers[AbpProCoreConsts.DatabaseProviderNames.Sqlite] = new SqliteConnectionStringChecker();
+            options.ConnectionStringCheckers[AbpProCoreConsts.DatabaseProviderNames.SqlServer] = new SqlServerConnectionStringChecker();
+        });
     }
 
 }

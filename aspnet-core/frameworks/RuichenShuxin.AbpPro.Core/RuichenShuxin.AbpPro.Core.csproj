@@ -8,6 +8,12 @@
 
   <ItemGroup>
 
+    <PackageReference Include="MySqlConnector" />
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" />
+    <PackageReference Include="Npgsql" />
+    <PackageReference Include="Microsoft.Data.SqlClient" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" />
+    
     <PackageReference Include="DistributedLock.Redis" />
     <PackageReference Include="Volo.Abp" />
     <PackageReference Include="Volo.Abp.AspNetCore" />

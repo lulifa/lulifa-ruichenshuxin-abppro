@@ -9,5 +9,16 @@ public interface ISystemTenantAppService :
             TenantUpdateDto>
 {
 
-    Task<FindTenantResultDto> FindTenantByNameAsync(string name);
+    Task<FindTenantResultDto> FindTenantByNameAsync([Required] string name);
+
+    Task<TenantConnectionStringDto> GetConnectionStringAsync(Guid id, [Required] string connectionName);
+
+    Task<ListResultDto<TenantConnectionStringDto>> GetConnectionStringAsync(Guid id);
+
+    Task<TenantConnectionStringDto> SetConnectionStringAsync(Guid id, TenantConnectionStringSetInput input);
+
+    Task DeleteConnectionStringAsync(Guid id, [Required] string connectionName);
+
+    Task CheckConnectionStringAsync(TenantConnectionStringCheckInput input);
+
 }

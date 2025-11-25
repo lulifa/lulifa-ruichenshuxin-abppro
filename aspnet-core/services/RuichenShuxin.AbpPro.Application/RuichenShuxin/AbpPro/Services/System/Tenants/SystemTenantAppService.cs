@@ -8,19 +8,22 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
     protected ITenantRepository TenantRepository { get; }
     protected ITenantManager TenantManager { get; }
     protected IDataSeeder DataSeeder { get; }
+    protected AbpTenantConnectionStringCheckOptions ConnectionStringCheckOptions { get; }
 
     public SystemTenantAppService(
         IAbpTenantAppService abpTenantAppService,
         ITenantRepository tenantRepository,
         ITenantManager tenantManager,
         IDistributedEventBus eventBus,
-        IDataSeeder dataSeeder)
+        IDataSeeder dataSeeder,
+        IOptions<AbpTenantConnectionStringCheckOptions> connectionStringCheckOptions)
     {
         AbpTenantAppService = abpTenantAppService;
         EventBus = eventBus;
         TenantRepository = tenantRepository;
         TenantManager = tenantManager;
         DataSeeder = dataSeeder;
+        ConnectionStringCheckOptions = connectionStringCheckOptions.Value;
     }
 
 
@@ -147,4 +150,114 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
         await CurrentUnitOfWork.SaveChangesAsync();
 
     }
+
+    [Authorize(TenantManagementPermissions.Tenants.ManageConnectionStrings)]
+    public async virtual Task<TenantConnectionStringDto> GetConnectionStringAsync(Guid id, string name)
+    {
+        var tenant = await TenantRepository.GetAsync(id);
+
+        var tenantConnectionString = tenant.FindConnectionString(name);
+
+        return new TenantConnectionStringDto
+        {
+            Name = name,
+            Value = tenantConnectionString
+        };
+    }
+
+    [Authorize(TenantManagementPermissions.Tenants.ManageConnectionStrings)]
+    public async virtual Task<ListResultDto<TenantConnectionStringDto>> GetConnectionStringAsync(Guid id)
+    {
+        var tenant = await TenantRepository.GetAsync(id);
+
+        return new ListResultDto<TenantConnectionStringDto>(
+            ObjectMapper.Map<List<TenantConnectionString>, List<TenantConnectionStringDto>>(tenant.ConnectionStrings.ToList()));
+    }
+
+    [Authorize(TenantManagementPermissions.Tenants.ManageConnectionStrings)]
+    public async virtual Task<TenantConnectionStringDto> SetConnectionStringAsync(Guid id, TenantConnectionStringSetInput input)
+    {
+        var tenant = await TenantRepository.GetAsync(id);
+
+        var oldConnectionString = tenant.FindConnectionString(input.Name);
+
+        CurrentUnitOfWork.OnCompleted(async () =>
+        {
+            var eto = new TenantConnectionStringUpdatedEto
+            {
+                Id = tenant.Id,
+                Name = tenant.Name,
+                NewValue = input.Value,
+                ConnectionStringName = input.Name,
+                OldValue = oldConnectionString,
+            };
+
+            await EventBus.PublishAsync(eto);
+        });
+
+        tenant.SetConnectionString(input.Name, input.Value);
+
+        await TenantRepository.UpdateAsync(tenant);
+
+        await CurrentUnitOfWork.SaveChangesAsync();
+
+        return new TenantConnectionStringDto
+        {
+            Name = input.Name,
+            Value = input.Value
+        };
+    }
+
+    [Authorize(TenantManagementPermissions.Tenants.ManageConnectionStrings)]
+    public async virtual Task DeleteConnectionStringAsync(Guid id, string name)
+    {
+        var tenant = await TenantRepository.GetAsync(id);
+
+        var oldConnectionString = tenant.FindConnectionString(name);
+
+        tenant.RemoveConnectionString(name);
+
+        CurrentUnitOfWork.OnCompleted(async () =>
+        {
+            var eto = new TenantConnectionStringUpdatedEto
+            {
+                Id = tenant.Id,
+                Name = tenant.Name,
+                ConnectionStringName = name,
+                OldValue = oldConnectionString,
+            };
+
+            await EventBus.PublishAsync(eto);
+        });
+
+        await TenantRepository.UpdateAsync(tenant);
+
+        await CurrentUnitOfWork.SaveChangesAsync();
+    }
+
+    public async virtual Task CheckConnectionStringAsync(TenantConnectionStringCheckInput input)
+    {
+        if (!ConnectionStringCheckOptions.ConnectionStringCheckers.TryGetValue(input.Provider, out var connectionStringChecker))
+        {
+            throw new BusinessException(SystemTenantErrorCodes.ConnectionStringProviderNotSupport)
+                 .WithData("Name", input.Provider);
+        }
+
+        var checkResult = await connectionStringChecker.CheckAsync(input.ConnectionString);
+
+        if (checkResult.Error != null)
+        {
+            Logger.LogWarning(checkResult.Error, "An error occurred while checking the database connection.");
+        }
+
+        // 检查连接是否可用
+        if (!checkResult.Connected)
+        {
+            throw input.Name.IsNullOrWhiteSpace()
+                ? new BusinessException(SystemTenantErrorCodes.InvalidDefaultConnectionString)
+                : new BusinessException(SystemTenantErrorCodes.InvalidConnectionString)
+                    .WithData("Name", input.Name);
+        }
+    }
+
 }

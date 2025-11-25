@@ -4,6 +4,7 @@
 /// Controller 基类（最顶层，定义资源类型）
 /// </summary>
 [AbpProCoreWrapResult]
+[RemoteService]
 public abstract class AbpProCoreControllerBase<TResource> : AbpControllerBase
     where TResource : class
 {
