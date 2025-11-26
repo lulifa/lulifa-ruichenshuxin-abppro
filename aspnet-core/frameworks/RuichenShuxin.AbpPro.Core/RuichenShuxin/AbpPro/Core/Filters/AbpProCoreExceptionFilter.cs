@@ -1,8 +1,10 @@
-﻿namespace RuichenShuxin.AbpPro.Core;
+﻿using Volo.Abp.AspNetCore.ExceptionHandling;
+
+namespace RuichenShuxin.AbpPro.Core;
 
 [Dependency(ReplaceServices = true)]
 [ExposeServices(typeof(AbpExceptionFilter))]
-public class AbpProCoreExceptionFilter : AbpExceptionFilter
+public class AbpProCoreExceptionFilter : AbpExceptionFilter, ITransientDependency
 {
     protected override bool ShouldHandleException(ExceptionContext context)
     {
@@ -11,62 +13,43 @@ public class AbpProCoreExceptionFilter : AbpExceptionFilter
 
     protected override async Task HandleAndWrapException(ExceptionContext context)
     {
-        var logger = context.GetService<ILogger<AbpExceptionFilter>>(NullLogger<AbpExceptionFilter>.Instance)!;
+        if (await HandleWrapResultAsync(context)) return;
 
-        var logLevel = context.Exception.GetLogLevel();
+        await base.HandleAndWrapException(context);
+    }
 
-        logger.LogException(context.Exception, logLevel);
+    private bool ShouldWrapResult(ExceptionContext context)
+    {
+        var controllerAction = context.ActionDescriptor.AsControllerActionDescriptor();
+        if (controllerAction == null) return false;
 
-        if (HandleWrapResult(context)) return;
-
-        await HandleDefaultExceptionAsync(context);
+        // 使用泛型方法，更简洁
+        return controllerAction.ControllerTypeInfo.GetCustomAttributes<AbpProCoreWrapResultAttribute>(true).Any() ||
+               controllerAction.MethodInfo.GetCustomAttributes<AbpProCoreWrapResultAttribute>(true).Any();
     }
 
     /// <summary>
     /// 如果开启 WrapResult 特性，则进行处理
     /// </summary>
-    private bool HandleWrapResult(ExceptionContext context)
+    private async Task<bool> HandleWrapResultAsync(ExceptionContext context)
     {
         if (!ShouldWrapResult(context)) return false;
 
-        // 设置Wrap标识Header
+        // 执行异常通知
+        await context.GetRequiredService<IExceptionNotifier>()
+                     .NotifyAsync(new ExceptionNotificationContext(context.Exception));
+
+        // 使用ABP的状态码查找器，保持与ABP一致的行为
+        var statusCodeFinder = context.GetRequiredService<IHttpExceptionStatusCodeFinder>();
+        var statusCode = (int)statusCodeFinder.GetStatusCode(context.HttpContext, context.Exception);
+
+        // 设置响应
         context.HttpContext.Response.Headers[AbpProCoreConsts.AbpWrapResult] = "true";
-
-        context.HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
-
+        context.HttpContext.Response.StatusCode = statusCode;
         context.Result = new ObjectResult(CreateWrapResult(context));
-
         context.ExceptionHandled = true;
 
         return true;
-    }
-
-    private async Task HandleDefaultExceptionAsync(ExceptionContext context)
-    {
-        var options = context.GetRequiredService<IOptions<AbpExceptionHandlingOptions>>().Value;
-
-        var converter = context.GetRequiredService<IExceptionToErrorInfoConverter>();
-
-        var remoteError = converter.Convert(context.Exception, opt =>
-        {
-            opt.SendExceptionsDetailsToClients = options.SendExceptionsDetailsToClients;
-            opt.SendStackTraceToClients = options.SendStackTraceToClients;
-        });
-
-        if (context.Exception is AbpAuthorizationException)
-        {
-            await context.HttpContext.RequestServices
-                .GetRequiredService<IAbpAuthorizationExceptionHandler>()
-                .HandleAsync(context.Exception.As<AbpAuthorizationException>(), context.HttpContext);
-        }
-        else
-        {
-            context.HttpContext.Response.StatusCode = (int)context
-                .GetRequiredService<IHttpExceptionStatusCodeFinder>()
-                .GetStatusCode(context.HttpContext, context.Exception);
-
-            context.Result = new ObjectResult(new RemoteServiceErrorResponse(remoteError));
-        }
     }
 
     /// <summary>
@@ -118,18 +101,5 @@ public class AbpProCoreExceptionFilter : AbpExceptionFilter
         return result;
     }
 
-    private bool ShouldWrapResult(ExceptionContext context)
-    {
-        var controllerAction = context.ActionDescriptor.AsControllerActionDescriptor();
 
-        if (controllerAction == null) return false;
-
-        if (controllerAction.ControllerTypeInfo.GetCustomAttributes(typeof(AbpProCoreWrapResultAttribute), true).Any())
-            return true;
-
-        if (context.ActionDescriptor.GetMethodInfo().GetCustomAttributes(typeof(AbpProCoreWrapResultAttribute), true).Any())
-            return true;
-
-        return false;
-    }
 }
