@@ -2,7 +2,7 @@
 
 [Dependency(ReplaceServices = true)]
 [ExposeServices(typeof(AbpExceptionFilter))]
-public class AbpProCoreExceptionFilter : AbpExceptionFilter, ITransientDependency
+public class AbpProCoreExceptionFilter : AbpExceptionFilter
 {
     protected override bool ShouldHandleException(ExceptionContext context)
     {
@@ -35,6 +35,8 @@ public class AbpProCoreExceptionFilter : AbpExceptionFilter, ITransientDependenc
         context.HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
 
         context.Result = new ObjectResult(CreateWrapResult(context));
+
+        context.ExceptionHandled = true;
 
         return true;
     }
