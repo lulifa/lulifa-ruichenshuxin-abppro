@@ -5,16 +5,17 @@ public class NpgsqlConnectionStringChecker : IDataBaseConnectionStringChecker, I
     public virtual async Task<DataBaseConnectionStringCheckResult> CheckAsync(string connectionString)
     {
         var result = new DataBaseConnectionStringCheckResult();
-        var connString = new NpgsqlConnectionStringBuilder(connectionString)
-        {
-            Timeout = 1
-        };
-
-        var oldDatabaseName = connString.Database;
-        connString.Database = "postgres";
 
         try
         {
+            var connString = new NpgsqlConnectionStringBuilder(connectionString)
+            {
+                Timeout = 1
+            };
+
+            var oldDatabaseName = connString.Database;
+            connString.Database = "postgres";
+
             await using var conn = new NpgsqlConnection(connString.ConnectionString);
             await conn.OpenAsync();
             result.Connected = true;

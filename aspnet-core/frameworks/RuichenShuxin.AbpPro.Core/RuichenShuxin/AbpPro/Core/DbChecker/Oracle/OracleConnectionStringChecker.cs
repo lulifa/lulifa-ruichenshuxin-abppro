@@ -5,13 +5,14 @@ public class OracleConnectionStringChecker : IDataBaseConnectionStringChecker, I
     public virtual async Task<DataBaseConnectionStringCheckResult> CheckAsync(string connectionString)
     {
         var result = new DataBaseConnectionStringCheckResult();
-        var connString = new OracleConnectionStringBuilder(connectionString)
-        {
-            ConnectionTimeout = 1
-        };
 
         try
         {
+            var connString = new OracleConnectionStringBuilder(connectionString)
+            {
+                ConnectionTimeout = 1
+            };
+
             await using var conn = new OracleConnection(connString.ConnectionString);
             await conn.OpenAsync();
             result.Connected = true;
