@@ -41,6 +41,7 @@ public class AbpProDomainSharedModule : AbpModule
         Configure<AbpExceptionLocalizationOptions>(options =>
         {
             options.MapCodeNamespace("AbpPro", typeof(AbpProResource));
+            options.MapCodeNamespace(SystemTenantErrorCodes.Namespace, typeof(AbpProResource));
         });
     }
 }
