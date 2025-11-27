@@ -23,6 +23,7 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
         navigationDefineitions.AddRange(GetVbenDemos());
         navigationDefineitions.AddRange(GetDashboard());
         navigationDefineitions.AddRange(GetSaas());
+        navigationDefineitions.AddRange(GetPlatform());
 
         foreach (var navigationDefineition in navigationDefineitions)
         {
@@ -172,6 +173,58 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
             .SetProperty("title", "abp.saas.tenants"));
 
         return new NavigationDefinition(saas);
+    }
+
+    private static NavigationDefinition GetPlatform()
+    {
+        var platform = new ApplicationMenu(
+            name: "Vben5Platform",
+            displayName: "平台管理",
+            url: "/platform",
+            component: "",
+            description: "平台管理",
+            icon: "ep:platform")
+            .SetProperty("title", "abp.platform.title");
+        platform.AddItem(
+          new ApplicationMenu(
+              name: "Vben5PlatformDataDictionaries",
+              displayName: "数据字典",
+              url: "/platform/data-dictionaries",
+              component: "/platform/data-dictionaries/index",
+              icon: "material-symbols:dictionary-outline",
+              description: "数据字典")
+            .SetProperty("title", "abp.platform.dataDictionaries"));
+        platform.AddItem(
+          new ApplicationMenu(
+              name: "Vben5PlatformLayouts",
+              displayName: "布局管理",
+              url: "/platform/layouts",
+              component: "/platform/layouts/index",
+              icon: "material-symbols-light:responsive-layout",
+              description: "布局管理")
+            .SetProperty("title", "abp.platform.layouts"));
+        platform.AddItem(
+          new ApplicationMenu(
+              name: "Vben5PlatformMenus",
+              displayName: "菜单管理",
+              url: "/platform/menus",
+              component: "/platform/menus/index",
+              icon: "material-symbols-light:menu",
+              description: "菜单管理")
+            .SetProperty("title", "abp.platform.menus"));
+
+        var messages = platform.AddItem(
+          new ApplicationMenu(
+              name: "Vben5PlatformMessages",
+              displayName: "消息管理",
+              url: "/platform/messages",
+              component: "",
+              icon: "tabler:message-cog",
+              description: "消息管理",
+              multiTenancySides: MultiTenancySides.Host)
+            .SetProperty("title", "abp.platform.messages.title"));
+
+        return new NavigationDefinition(platform);
     }
 
 }
