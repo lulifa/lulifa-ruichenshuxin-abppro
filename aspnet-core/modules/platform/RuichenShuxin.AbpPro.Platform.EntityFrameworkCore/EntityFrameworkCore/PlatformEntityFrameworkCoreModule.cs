@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.Modularity;
-
-namespace RuichenShuxin.AbpPro.Platform.EntityFrameworkCore;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 [DependsOn(
     typeof(PlatformDomainModule),
@@ -15,10 +11,16 @@ public class PlatformEntityFrameworkCoreModule : AbpModule
         context.Services.AddAbpDbContext<PlatformDbContext>(options =>
         {
             options.AddDefaultRepositories<IPlatformDbContext>(includeAllEntities: true);
-            
-            /* Add custom repositories here. Example:
-            * options.AddRepository<Question, EfCoreQuestionRepository>();
-            */
+
+            options.AddRepository<Menu, EfCoreMenuRepository>();
+            options.AddRepository<UserMenu, EfCoreUserMenuRepository>();
+            options.AddRepository<RoleMenu, EfCoreRoleMenuRepository>();
+            options.AddRepository<UserFavoriteMenu, EfCoreUserFavoriteMenuRepository>();
+
+            options.AddRepository<Layout, EfCoreLayoutRepository>();
+
+            options.AddRepository<Data, EfCoreDataRepository>();
+
         });
     }
 }

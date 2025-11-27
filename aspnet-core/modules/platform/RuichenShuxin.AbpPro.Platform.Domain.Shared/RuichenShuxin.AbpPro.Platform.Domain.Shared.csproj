@@ -13,8 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Localization\Platform\*.json" />
-    <Content Remove="Localization\Platform\*.json" />
+    <EmbeddedResource Include="RuichenShuxin\AbpPro\Platform\Localization\Resources\*.json" />
+    <Content Remove="RuichenShuxin\AbpPro\Platform\Localization\Resources\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\frameworks\RuichenShuxin.AbpPro.Core\RuichenShuxin.AbpPro.Core.csproj" />
   </ItemGroup>
 
 </Project>

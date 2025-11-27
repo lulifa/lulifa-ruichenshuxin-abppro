@@ -1,5 +1,4 @@
-﻿using RuichenShuxin.AbpPro.Platform.Localization;
-using Volo.Abp.AspNetCore.Mvc;
+﻿using Volo.Abp.AspNetCore.Mvc;
 
 namespace RuichenShuxin.AbpPro.Platform;
 

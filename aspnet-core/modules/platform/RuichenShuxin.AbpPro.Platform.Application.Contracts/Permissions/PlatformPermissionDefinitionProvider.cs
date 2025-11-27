@@ -1,5 +1,4 @@
-﻿using RuichenShuxin.AbpPro.Platform.Localization;
-using Volo.Abp.Authorization.Permissions;
+﻿using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Localization;
 
 namespace RuichenShuxin.AbpPro.Platform.Permissions;

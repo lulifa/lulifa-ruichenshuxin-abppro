@@ -32,7 +32,7 @@ public class AbpProDomainSharedModule : AbpModule
             options.Resources
                 .Add<AbpProResource>("en")
                 .AddBaseTypes(typeof(AbpValidationResource))
-                .AddVirtualJson("/RuichenShuxin/AbpPro/Localization/AbpPro");
+                .AddVirtualJson("/RuichenShuxin/AbpPro/Localization/Resources");
 
             options.DefaultResourceType = typeof(AbpProResource);
 

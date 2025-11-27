@@ -39,7 +39,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
     }
 
     [UnitOfWork]
-    public async virtual Task SeedAsync(DataSeedContext context)
+    public virtual async Task SeedAsync(DataSeedContext context)
     {
         using (_currentTenant.Change(context.TenantId))
         {

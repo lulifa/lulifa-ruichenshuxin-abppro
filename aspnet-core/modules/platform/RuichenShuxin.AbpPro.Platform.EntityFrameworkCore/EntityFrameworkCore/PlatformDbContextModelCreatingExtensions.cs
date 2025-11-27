@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Volo.Abp;
-
-namespace RuichenShuxin.AbpPro.Platform.EntityFrameworkCore;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 public static class PlatformDbContextModelCreatingExtensions
 {
@@ -10,24 +7,181 @@ public static class PlatformDbContextModelCreatingExtensions
     {
         Check.NotNull(builder, nameof(builder));
 
-        /* Configure all entities here. Example:
-
-        builder.Entity<Question>(b =>
+        builder.Entity<Layout>(b =>
         {
-            //Configure table & schema name
-            b.ToTable(PlatformDbProperties.DbTablePrefix + "Questions", PlatformDbProperties.DbSchema);
+            b.ToTable(PlatformDbProperties.DbTablePrefix + "Layouts", PlatformDbProperties.DbSchema);
 
-            b.ConfigureByConvention();
+            b.Property(p => p.Framework)
+                .HasMaxLength(AbpProCoreConsts.MaxLength64)
+                .HasColumnName(nameof(Layout.Framework))
+                .IsRequired();
 
-            //Properties
-            b.Property(q => q.Title).IsRequired().HasMaxLength(QuestionConsts.MaxTitleLength);
-
-            //Relations
-            b.HasMany(question => question.Tags).WithOne().HasForeignKey(qt => qt.QuestionId);
-
-            //Indexes
-            b.HasIndex(q => q.CreationTime);
+            b.ConfigureRoute();
         });
-        */
+
+
+        builder.Entity<Menu>(b =>
+        {
+            b.ToTable(PlatformDbProperties.DbTablePrefix + "Menus", PlatformDbProperties.DbSchema);
+
+            b.ConfigureRoute();
+
+            b.Property(p => p.Framework)
+                .HasMaxLength(AbpProCoreConsts.MaxLength64)
+                .HasColumnName(nameof(Menu.Framework))
+                .IsRequired();
+            b.Property(p => p.Component)
+                .HasMaxLength(AbpProCoreConsts.MaxLength256)
+                .HasColumnName(nameof(Menu.Component))
+                .IsRequired();
+            b.Property(p => p.Code)
+                .HasMaxLength(PlatformConsts.MaxCodeLength)
+                .HasColumnName(nameof(Menu.Code))
+                .IsRequired();
+        });
+
+        builder.Entity<RoleMenu>(x =>
+        {
+            x.ToTable(PlatformDbProperties.DbTablePrefix + "RoleMenus", PlatformDbProperties.DbSchema);
+
+            x.Property(p => p.RoleName)
+                .IsRequired()
+                .HasMaxLength(AbpProCoreConsts.MaxLength256)
+                .HasColumnName(nameof(RoleMenu.RoleName));
+
+            x.ConfigureByConvention();
+
+            x.HasIndex(i => new { i.RoleName, i.MenuId });
+        });
+
+        builder.Entity<UserMenu>(x =>
+        {
+            x.ToTable(PlatformDbProperties.DbTablePrefix + "UserMenus", PlatformDbProperties.DbSchema);
+
+            x.ConfigureByConvention();
+
+            x.HasIndex(i => new { i.UserId, i.MenuId });
+        });
+
+        builder.Entity<UserFavoriteMenu>(x =>
+        {
+            x.ToTable(PlatformDbProperties.DbTablePrefix + "UserFavoriteMenus", PlatformDbProperties.DbSchema);
+
+            x.Property(p => p.Framework)
+                .HasMaxLength(AbpProCoreConsts.MaxLength64)
+                .HasColumnName(nameof(Menu.Framework))
+                .IsRequired();
+            x.Property(p => p.DisplayName)
+                .HasMaxLength(AbpProCoreConsts.MaxLength128)
+                .HasColumnName(nameof(Route.DisplayName))
+                .IsRequired();
+            x.Property(p => p.Name)
+                .HasMaxLength(AbpProCoreConsts.MaxLength64)
+                .HasColumnName(nameof(Route.Name))
+                .IsRequired();
+            x.Property(p => p.Path)
+                .HasMaxLength(AbpProCoreConsts.MaxLength256)
+                .HasColumnName(nameof(Route.Path))
+                .IsRequired();
+
+            x.Property(p => p.Icon)
+                .HasMaxLength(AbpProCoreConsts.MaxLength512)
+                .HasColumnName(nameof(UserFavoriteMenu.Icon));
+            x.Property(p => p.Color)
+                .HasMaxLength(AbpProCoreConsts.MaxLength64)
+                .HasColumnName(nameof(UserFavoriteMenu.Color));
+            x.Property(p => p.AliasName)
+                .HasMaxLength(AbpProCoreConsts.MaxLength128)
+                .HasColumnName(nameof(UserFavoriteMenu.AliasName));
+
+            x.ConfigureByConvention();
+
+            x.HasIndex(i => new { i.UserId, i.MenuId });
+        });
+
+        builder.Entity<Data>(x =>
+        {
+            x.ToTable(PlatformDbProperties.DbTablePrefix + "Datas", PlatformDbProperties.DbSchema);
+
+            x.Property(p => p.Code)
+                .HasMaxLength(AbpProCoreConsts.MaxLength1024)
+                .HasColumnName(nameof(Data.Code))
+                .IsRequired();
+            x.Property(p => p.Name)
+                .HasMaxLength(AbpProCoreConsts.MaxLength64)
+                .HasColumnName(nameof(Data.Name))
+                .IsRequired();
+            x.Property(p => p.DisplayName)
+               .HasMaxLength(AbpProCoreConsts.MaxLength128)
+               .HasColumnName(nameof(Data.DisplayName))
+               .IsRequired();
+            x.Property(p => p.Description)
+                .HasMaxLength(AbpProCoreConsts.MaxLength1024)
+                .HasColumnName(nameof(Data.Description));
+
+            x.ConfigureByConvention();
+
+            x.HasMany(p => p.Items)
+                .WithOne()
+                .HasForeignKey(fk => fk.DataId)
+                .IsRequired();
+
+            x.HasIndex(i => new { i.Name });
+        });
+
+        builder.Entity<DataItem>(x =>
+        {
+            x.ToTable(PlatformDbProperties.DbTablePrefix + "DataItems", PlatformDbProperties.DbSchema);
+
+            x.Property(p => p.DefaultValue)
+                .HasMaxLength(AbpProCoreConsts.MaxLength128)
+                .HasColumnName(nameof(DataItem.DefaultValue));
+            x.Property(p => p.Name)
+                .HasMaxLength(AbpProCoreConsts.MaxLength64)
+                .HasColumnName(nameof(DataItem.Name))
+                .IsRequired();
+            x.Property(p => p.DisplayName)
+               .HasMaxLength(AbpProCoreConsts.MaxLength128)
+               .HasColumnName(nameof(DataItem.DisplayName))
+               .IsRequired();
+            x.Property(p => p.Description)
+                .HasMaxLength(AbpProCoreConsts.MaxLength1024)
+                .HasColumnName(nameof(DataItem.Description));
+
+            x.Property(p => p.AllowBeNull).HasDefaultValue(true);
+
+            x.ConfigureByConvention();
+
+            x.HasIndex(i => new { i.Name });
+        });
+
+    }
+
+    public static EntityTypeBuilder<TRoute> ConfigureRoute<TRoute>(
+        this EntityTypeBuilder<TRoute> builder)
+        where TRoute : Route
+    {
+        builder
+            .Property(p => p.DisplayName)
+            .HasMaxLength(AbpProCoreConsts.MaxLength128)
+            .HasColumnName(nameof(Route.DisplayName))
+            .IsRequired();
+        builder
+            .Property(p => p.Name)
+            .HasMaxLength(AbpProCoreConsts.MaxLength64)
+            .HasColumnName(nameof(Route.Name))
+            .IsRequired();
+        builder
+            .Property(p => p.Path)
+            .HasMaxLength(AbpProCoreConsts.MaxLength256)
+            .HasColumnName(nameof(Route.Path));
+        builder
+            .Property(p => p.Redirect)
+            .HasMaxLength(AbpProCoreConsts.MaxLength256)
+            .HasColumnName(nameof(Route.Redirect));
+
+        builder.ConfigureByConvention();
+
+        return builder;
     }
 }

@@ -1,17 +1,9 @@
-﻿using Volo.Abp.Modularity;
-using Volo.Abp.Localization;
-using RuichenShuxin.AbpPro.Platform.Localization;
-using Volo.Abp.Domain;
-using Volo.Abp.Localization.ExceptionHandling;
-using Volo.Abp.Validation;
-using Volo.Abp.Validation.Localization;
-using Volo.Abp.VirtualFileSystem;
-
-namespace RuichenShuxin.AbpPro.Platform;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 [DependsOn(
     typeof(AbpValidationModule),
-    typeof(AbpDddDomainSharedModule)
+    typeof(AbpDddDomainSharedModule),
+    typeof(AbpProCoreModule)
 )]
 public class PlatformDomainSharedModule : AbpModule
 {
@@ -25,14 +17,14 @@ public class PlatformDomainSharedModule : AbpModule
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Resources
-                .Add<PlatformResource>("en")
+                .Add<PlatformResource>(AbpProLocalizationConsts.DefaultCultureName)
                 .AddBaseTypes(typeof(AbpValidationResource))
-                .AddVirtualJson("/Localization/Platform");
+                .AddVirtualJson("/RuichenShuxin/AbpPro/Platform/Localization/Resources");
         });
 
         Configure<AbpExceptionLocalizationOptions>(options =>
         {
-            options.MapCodeNamespace("Platform", typeof(PlatformResource));
+            options.MapCodeNamespace(PlatformErrorCodes.Namespace, typeof(PlatformResource));
         });
     }
 }

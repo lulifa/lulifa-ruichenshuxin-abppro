@@ -1,5 +1,4 @@
-﻿using RuichenShuxin.AbpPro.Platform.Localization;
-using Volo.Abp.Application.Services;
+﻿using Volo.Abp.Application.Services;
 
 namespace RuichenShuxin.AbpPro.Platform;
 

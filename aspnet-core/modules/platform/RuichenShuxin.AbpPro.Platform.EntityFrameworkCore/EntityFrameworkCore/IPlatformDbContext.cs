@@ -1,12 +1,13 @@
-﻿using Volo.Abp.Data;
-using Volo.Abp.EntityFrameworkCore;
-
-namespace RuichenShuxin.AbpPro.Platform.EntityFrameworkCore;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 [ConnectionStringName(PlatformDbProperties.ConnectionStringName)]
 public interface IPlatformDbContext : IEfCoreDbContext
 {
-    /* Add DbSet for each Aggregate Root here. Example:
-     * DbSet<Question> Questions { get; }
-     */
+    DbSet<Menu> Menus { get; }
+    DbSet<Layout> Layouts { get; }
+    DbSet<RoleMenu> RoleMenus { get; }
+    DbSet<UserMenu> UserMenus { get; }
+    DbSet<UserFavoriteMenu> UserFavoriteMenus { get; }
+    DbSet<Data> Datas { get; }
+    DbSet<DataItem> DataItems { get; }
 }
