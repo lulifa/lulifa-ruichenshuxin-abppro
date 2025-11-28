@@ -39,11 +39,7 @@ public class AbpProHttpApiHostModule : AbpModule
                         .ConfigureAbpProDataSeed()
                         .ConfigureAbpProLocalization()
                         .ConfigureAbpProCache()
-                        .ConfigureAbpProSwagger(
-                            typeof(AbpProHttpApiModule),
-                            typeof(AbpProApplicationContractsModule),
-                            typeof(PlatformHttpApiModule),
-                            typeof(PlatformApplicationContractsModule));
+                        .ConfigureAbpProSwagger();
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)

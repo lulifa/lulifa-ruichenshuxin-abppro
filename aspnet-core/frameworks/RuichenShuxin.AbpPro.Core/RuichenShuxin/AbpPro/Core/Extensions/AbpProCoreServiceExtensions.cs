@@ -153,7 +153,7 @@ public static class AbpProCoreServiceExtensions
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    public static IServiceCollection ConfigureAbpProSwagger(this IServiceCollection services, params Type[] xmlFromModules)
+    public static IServiceCollection ConfigureAbpProSwagger(this IServiceCollection services)
     {
         var authOptions = services.GetConfiguration().GetOptions<AuthServerOptions>();
 
@@ -175,15 +175,11 @@ public static class AbpProCoreServiceExtensions
                 options.DocumentFilter<AbpProCoreHideDefaultApiFilter>();
                 options.OperationFilter<AbpProCoreOperationFilter>();
 
-                foreach (var moduleType in xmlFromModules)
+                // 自动扫描所有 XML 注释
+                var xmlFiles = Directory.GetFiles(AppContext.BaseDirectory, "*.xml");
+                foreach (var xmlPath in xmlFiles)
                 {
-                    var xmlFile = $"{moduleType.Assembly.GetName().Name}.xml";
-                    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-
-                    if (File.Exists(xmlPath))
-                    {
-                        options.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
-                    }
+                    options.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
                 }
 
             });

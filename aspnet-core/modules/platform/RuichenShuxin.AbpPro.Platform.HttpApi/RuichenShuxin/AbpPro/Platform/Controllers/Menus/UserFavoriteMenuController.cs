@@ -1,5 +1,8 @@
 ﻿namespace RuichenShuxin.AbpPro.Platform;
 
+/// <summary>
+/// 个人定制菜单
+/// </summary>
 [Route("api/platform/menus/favorites")]
 public class UserFavoriteMenuController : PlatformController, IUserFavoriteMenuAppService
 {
