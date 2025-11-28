@@ -3,6 +3,9 @@
 [DependsOn(
     typeof(AbpProDomainModule),
     typeof(AbpProApplicationContractsModule),
+
+    typeof(PlatformApplicationModule),
+
     typeof(AbpPermissionManagementApplicationModule),
     typeof(AbpFeatureManagementApplicationModule),
     typeof(AbpIdentityApplicationModule),

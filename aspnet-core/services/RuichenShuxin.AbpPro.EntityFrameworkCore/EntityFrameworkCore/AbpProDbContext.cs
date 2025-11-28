@@ -52,6 +52,7 @@ public class AbpProDbContext :
         base.OnModelCreating(builder);
 
         /* Include modules to your migration db context */
+        builder.ConfigurePlatform();
 
         builder.ConfigurePermissionManagement();
         builder.ConfigureSettingManagement();

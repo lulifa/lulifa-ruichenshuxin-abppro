@@ -2,6 +2,9 @@ namespace RuichenShuxin.AbpPro;
 
 [DependsOn(
     typeof(AbpProDomainSharedModule),
+
+    typeof(PlatformDomainModule),
+
     typeof(AbpAuditLoggingDomainModule),
     typeof(AbpCachingModule),
     typeof(AbpBackgroundJobsDomainModule),

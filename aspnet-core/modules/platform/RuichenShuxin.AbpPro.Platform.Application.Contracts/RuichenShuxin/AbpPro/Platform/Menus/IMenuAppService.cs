@@ -8,6 +8,9 @@ public interface IMenuAppService :
         MenuCreateDto,
         MenuUpdateDto>
 {
+
+    Task<ListResultDto<MenuDto>> GetCurrentUserMenuListAsync(GetMenuInput input);
+
     Task<ListResultDto<MenuDto>> GetAllAsync(MenuGetAllInput input);
 
     Task<ListResultDto<MenuDto>> GetUserMenuListAsync(MenuGetByUserInput input);
@@ -22,5 +25,4 @@ public interface IMenuAppService :
 
     Task SetRoleStartupAsync(Guid id, RoleMenuStartupInput input);
 
-    Task<ListResultDto<MenuDto>> GetCurrentUserMenuListAsync(GetMenuInput input);
 }

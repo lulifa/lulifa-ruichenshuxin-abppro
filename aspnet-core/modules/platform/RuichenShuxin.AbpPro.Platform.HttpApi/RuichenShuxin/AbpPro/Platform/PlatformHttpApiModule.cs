@@ -1,10 +1,4 @@
-﻿using Localization.Resources.AbpUi;
-using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.Localization;
-using Volo.Abp.Modularity;
-
-namespace RuichenShuxin.AbpPro.Platform;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 [DependsOn(
     typeof(PlatformApplicationContractsModule),

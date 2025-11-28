@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\modules\platform\RuichenShuxin.AbpPro.Platform.Application.Contracts\RuichenShuxin.AbpPro.Platform.Application.Contracts.csproj" />
     <ProjectReference Include="..\RuichenShuxin.AbpPro.Domain.Shared\RuichenShuxin.AbpPro.Domain.Shared.csproj" />
   </ItemGroup>
 

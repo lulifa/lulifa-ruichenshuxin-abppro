@@ -6,6 +6,7 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Options;
 global using RuichenShuxin.AbpPro.Core;
+global using RuichenShuxin.AbpPro.Platform;
 global using System;
 global using System.Collections.Generic;
 global using System.Linq;

@@ -1,9 +1,5 @@
 ﻿namespace RuichenShuxin.AbpPro;
 
-/// <summary>
-/// 租户管理
-/// 🚢🌞🌛✨
-/// </summary>
 [Route("api/system/tenants")]
 public class SystemTenantController : AbpProController<
     ISystemTenantAppService,

@@ -2,6 +2,9 @@
 
 [DependsOn(
     typeof(AbpProDomainSharedModule),
+
+    typeof(PlatformApplicationContractsModule),
+
     typeof(AbpFeatureManagementApplicationContractsModule),
     typeof(AbpSettingManagementApplicationContractsModule),
     typeof(AbpIdentityApplicationContractsModule),

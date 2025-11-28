@@ -1,6 +1,7 @@
 ﻿// Global using directives
 
 global using RuichenShuxin.AbpPro.Core;
+global using RuichenShuxin.AbpPro.Platform;
 global using Volo.Abp.AuditLogging;
 global using Volo.Abp.BackgroundJobs;
 global using Volo.Abp.BlobStoring.Database;

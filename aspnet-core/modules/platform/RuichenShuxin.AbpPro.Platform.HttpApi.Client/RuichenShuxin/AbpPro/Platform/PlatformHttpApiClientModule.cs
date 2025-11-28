@@ -1,9 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.Http.Client;
-using Volo.Abp.Modularity;
-using Volo.Abp.VirtualFileSystem;
-
-namespace RuichenShuxin.AbpPro.Platform;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 [DependsOn(
     typeof(PlatformApplicationContractsModule),

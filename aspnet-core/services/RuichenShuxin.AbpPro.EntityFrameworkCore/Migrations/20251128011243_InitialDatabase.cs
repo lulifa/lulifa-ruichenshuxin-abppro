@@ -557,6 +557,162 @@ namespace RuichenShuxin.AbpPro.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "PlatformDatas",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    TenantId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false),
+                    Code = table.Column<string>(type: "varchar(1024)", maxLength: 1024, nullable: false),
+                    DisplayName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
+                    Description = table.Column<string>(type: "varchar(1024)", maxLength: 1024, nullable: true),
+                    ParentId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    IsStatic = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "longtext", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime(6)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlatformDatas", x => x.Id);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "PlatformLayouts",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    Framework = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false),
+                    DataId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "longtext", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    TenantId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    Path = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
+                    Name = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false),
+                    DisplayName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
+                    Description = table.Column<string>(type: "longtext", nullable: true),
+                    Redirect = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlatformLayouts", x => x.Id);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "PlatformMenus",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    Framework = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false),
+                    Code = table.Column<string>(type: "varchar(23)", maxLength: 23, nullable: false),
+                    Component = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
+                    ParentId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    LayoutId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    IsPublic = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "longtext", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    TenantId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    Path = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
+                    Name = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false),
+                    DisplayName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
+                    Description = table.Column<string>(type: "longtext", nullable: true),
+                    Redirect = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlatformMenus", x => x.Id);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "PlatformRoleMenus",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    TenantId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    MenuId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    RoleName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
+                    Startup = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "char(36)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlatformRoleMenus", x => x.Id);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "PlatformUserFavoriteMenus",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    TenantId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    MenuId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    UserId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    AliasName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: true),
+                    Color = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: true),
+                    Framework = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false),
+                    Name = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false),
+                    DisplayName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
+                    Path = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
+                    Icon = table.Column<string>(type: "varchar(512)", maxLength: 512, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "char(36)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlatformUserFavoriteMenus", x => x.Id);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "PlatformUserMenus",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    TenantId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    MenuId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    UserId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    Startup = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "char(36)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlatformUserMenus", x => x.Id);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "AbpAuditLogActions",
                 columns: table => new
                 {
@@ -845,6 +1001,42 @@ namespace RuichenShuxin.AbpPro.Migrations
                         column: x => x.ApplicationId,
                         principalTable: "OpenIddictApplications",
                         principalColumn: "Id");
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "PlatformDataItems",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    TenantId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false),
+                    DisplayName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
+                    DefaultValue = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: true),
+                    Description = table.Column<string>(type: "varchar(1024)", maxLength: 1024, nullable: true),
+                    AllowBeNull = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true),
+                    IsStatic = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    ValueType = table.Column<int>(type: "int", nullable: false),
+                    DataId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "longtext", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime(6)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlatformDataItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PlatformDataItems_PlatformDatas_DataId",
+                        column: x => x.DataId,
+                        principalTable: "PlatformDatas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
@@ -1165,6 +1357,36 @@ namespace RuichenShuxin.AbpPro.Migrations
                 name: "IX_OpenIddictTokens_ReferenceId",
                 table: "OpenIddictTokens",
                 column: "ReferenceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlatformDataItems_DataId",
+                table: "PlatformDataItems",
+                column: "DataId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlatformDataItems_Name",
+                table: "PlatformDataItems",
+                column: "Name");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlatformDatas_Name",
+                table: "PlatformDatas",
+                column: "Name");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlatformRoleMenus_RoleName_MenuId",
+                table: "PlatformRoleMenus",
+                columns: new[] { "RoleName", "MenuId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlatformUserFavoriteMenus_UserId_MenuId",
+                table: "PlatformUserFavoriteMenus",
+                columns: new[] { "UserId", "MenuId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlatformUserMenus_UserId_MenuId",
+                table: "PlatformUserMenus",
+                columns: new[] { "UserId", "MenuId" });
         }
 
         /// <inheritdoc />
@@ -1258,6 +1480,24 @@ namespace RuichenShuxin.AbpPro.Migrations
                 name: "OpenIddictTokens");
 
             migrationBuilder.DropTable(
+                name: "PlatformDataItems");
+
+            migrationBuilder.DropTable(
+                name: "PlatformLayouts");
+
+            migrationBuilder.DropTable(
+                name: "PlatformMenus");
+
+            migrationBuilder.DropTable(
+                name: "PlatformRoleMenus");
+
+            migrationBuilder.DropTable(
+                name: "PlatformUserFavoriteMenus");
+
+            migrationBuilder.DropTable(
+                name: "PlatformUserMenus");
+
+            migrationBuilder.DropTable(
                 name: "AbpBlobContainers");
 
             migrationBuilder.DropTable(
@@ -1277,6 +1517,9 @@ namespace RuichenShuxin.AbpPro.Migrations
 
             migrationBuilder.DropTable(
                 name: "OpenIddictAuthorizations");
+
+            migrationBuilder.DropTable(
+                name: "PlatformDatas");
 
             migrationBuilder.DropTable(
                 name: "AbpAuditLogs");
