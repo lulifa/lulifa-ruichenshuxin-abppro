@@ -12,7 +12,7 @@ public static class PlatformDbContextModelCreatingExtensions
             b.ToTable(PlatformDbProperties.DbTablePrefix + "Layouts", PlatformDbProperties.DbSchema);
 
             b.Property(p => p.Framework)
-                .HasMaxLength(AbpProCoreConsts.MaxLength64)
+                .HasMaxLength(PlatformConsts.MaxLength64)
                 .HasColumnName(nameof(Layout.Framework))
                 .IsRequired();
 
@@ -27,11 +27,11 @@ public static class PlatformDbContextModelCreatingExtensions
             b.ConfigureRoute();
 
             b.Property(p => p.Framework)
-                .HasMaxLength(AbpProCoreConsts.MaxLength64)
+                .HasMaxLength(PlatformConsts.MaxLength64)
                 .HasColumnName(nameof(Menu.Framework))
                 .IsRequired();
             b.Property(p => p.Component)
-                .HasMaxLength(AbpProCoreConsts.MaxLength256)
+                .HasMaxLength(PlatformConsts.MaxLength256)
                 .HasColumnName(nameof(Menu.Component))
                 .IsRequired();
             b.Property(p => p.Code)
@@ -46,7 +46,7 @@ public static class PlatformDbContextModelCreatingExtensions
 
             x.Property(p => p.RoleName)
                 .IsRequired()
-                .HasMaxLength(AbpProCoreConsts.MaxLength256)
+                .HasMaxLength(PlatformConsts.MaxLength256)
                 .HasColumnName(nameof(RoleMenu.RoleName));
 
             x.ConfigureByConvention();
@@ -68,30 +68,30 @@ public static class PlatformDbContextModelCreatingExtensions
             x.ToTable(PlatformDbProperties.DbTablePrefix + "UserFavoriteMenus", PlatformDbProperties.DbSchema);
 
             x.Property(p => p.Framework)
-                .HasMaxLength(AbpProCoreConsts.MaxLength64)
+                .HasMaxLength(PlatformConsts.MaxLength64)
                 .HasColumnName(nameof(Menu.Framework))
                 .IsRequired();
             x.Property(p => p.DisplayName)
-                .HasMaxLength(AbpProCoreConsts.MaxLength128)
+                .HasMaxLength(PlatformConsts.MaxLength128)
                 .HasColumnName(nameof(Route.DisplayName))
                 .IsRequired();
             x.Property(p => p.Name)
-                .HasMaxLength(AbpProCoreConsts.MaxLength64)
+                .HasMaxLength(PlatformConsts.MaxLength64)
                 .HasColumnName(nameof(Route.Name))
                 .IsRequired();
             x.Property(p => p.Path)
-                .HasMaxLength(AbpProCoreConsts.MaxLength256)
+                .HasMaxLength(PlatformConsts.MaxLength256)
                 .HasColumnName(nameof(Route.Path))
                 .IsRequired();
 
             x.Property(p => p.Icon)
-                .HasMaxLength(AbpProCoreConsts.MaxLength512)
+                .HasMaxLength(PlatformConsts.MaxLength512)
                 .HasColumnName(nameof(UserFavoriteMenu.Icon));
             x.Property(p => p.Color)
-                .HasMaxLength(AbpProCoreConsts.MaxLength64)
+                .HasMaxLength(PlatformConsts.MaxLength64)
                 .HasColumnName(nameof(UserFavoriteMenu.Color));
             x.Property(p => p.AliasName)
-                .HasMaxLength(AbpProCoreConsts.MaxLength128)
+                .HasMaxLength(PlatformConsts.MaxLength128)
                 .HasColumnName(nameof(UserFavoriteMenu.AliasName));
 
             x.ConfigureByConvention();
@@ -104,19 +104,19 @@ public static class PlatformDbContextModelCreatingExtensions
             x.ToTable(PlatformDbProperties.DbTablePrefix + "Datas", PlatformDbProperties.DbSchema);
 
             x.Property(p => p.Code)
-                .HasMaxLength(AbpProCoreConsts.MaxLength1024)
+                .HasMaxLength(PlatformConsts.MaxLength1024)
                 .HasColumnName(nameof(Data.Code))
                 .IsRequired();
             x.Property(p => p.Name)
-                .HasMaxLength(AbpProCoreConsts.MaxLength64)
+                .HasMaxLength(PlatformConsts.MaxLength64)
                 .HasColumnName(nameof(Data.Name))
                 .IsRequired();
             x.Property(p => p.DisplayName)
-               .HasMaxLength(AbpProCoreConsts.MaxLength128)
+               .HasMaxLength(PlatformConsts.MaxLength128)
                .HasColumnName(nameof(Data.DisplayName))
                .IsRequired();
             x.Property(p => p.Description)
-                .HasMaxLength(AbpProCoreConsts.MaxLength1024)
+                .HasMaxLength(PlatformConsts.MaxLength1024)
                 .HasColumnName(nameof(Data.Description));
 
             x.ConfigureByConvention();
@@ -134,18 +134,18 @@ public static class PlatformDbContextModelCreatingExtensions
             x.ToTable(PlatformDbProperties.DbTablePrefix + "DataItems", PlatformDbProperties.DbSchema);
 
             x.Property(p => p.DefaultValue)
-                .HasMaxLength(AbpProCoreConsts.MaxLength128)
+                .HasMaxLength(PlatformConsts.MaxLength128)
                 .HasColumnName(nameof(DataItem.DefaultValue));
             x.Property(p => p.Name)
-                .HasMaxLength(AbpProCoreConsts.MaxLength64)
+                .HasMaxLength(PlatformConsts.MaxLength64)
                 .HasColumnName(nameof(DataItem.Name))
                 .IsRequired();
             x.Property(p => p.DisplayName)
-               .HasMaxLength(AbpProCoreConsts.MaxLength128)
+               .HasMaxLength(PlatformConsts.MaxLength128)
                .HasColumnName(nameof(DataItem.DisplayName))
                .IsRequired();
             x.Property(p => p.Description)
-                .HasMaxLength(AbpProCoreConsts.MaxLength1024)
+                .HasMaxLength(PlatformConsts.MaxLength1024)
                 .HasColumnName(nameof(DataItem.Description));
 
             x.Property(p => p.AllowBeNull).HasDefaultValue(true);
@@ -163,21 +163,21 @@ public static class PlatformDbContextModelCreatingExtensions
     {
         builder
             .Property(p => p.DisplayName)
-            .HasMaxLength(AbpProCoreConsts.MaxLength128)
+            .HasMaxLength(PlatformConsts.MaxLength128)
             .HasColumnName(nameof(Route.DisplayName))
             .IsRequired();
         builder
             .Property(p => p.Name)
-            .HasMaxLength(AbpProCoreConsts.MaxLength64)
+            .HasMaxLength(PlatformConsts.MaxLength64)
             .HasColumnName(nameof(Route.Name))
             .IsRequired();
         builder
             .Property(p => p.Path)
-            .HasMaxLength(AbpProCoreConsts.MaxLength256)
+            .HasMaxLength(PlatformConsts.MaxLength256)
             .HasColumnName(nameof(Route.Path));
         builder
             .Property(p => p.Redirect)
-            .HasMaxLength(AbpProCoreConsts.MaxLength256)
+            .HasMaxLength(PlatformConsts.MaxLength256)
             .HasColumnName(nameof(Route.Redirect));
 
         builder.ConfigureByConvention();

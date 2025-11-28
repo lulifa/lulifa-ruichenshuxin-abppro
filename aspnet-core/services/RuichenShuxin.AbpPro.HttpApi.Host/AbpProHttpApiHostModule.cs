@@ -1,3 +1,5 @@
+using RuichenShuxin.AbpPro.Platform;
+
 namespace RuichenShuxin.AbpPro;
 
 [DependsOn(
@@ -37,7 +39,11 @@ public class AbpProHttpApiHostModule : AbpModule
                         .ConfigureAbpProDataSeed()
                         .ConfigureAbpProLocalization()
                         .ConfigureAbpProCache()
-                        .ConfigureAbpProSwagger(typeof(AbpProHttpApiModule), typeof(AbpProApplicationContractsModule));
+                        .ConfigureAbpProSwagger(
+                            typeof(AbpProHttpApiModule),
+                            typeof(AbpProApplicationContractsModule),
+                            typeof(PlatformHttpApiModule),
+                            typeof(PlatformApplicationContractsModule));
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)

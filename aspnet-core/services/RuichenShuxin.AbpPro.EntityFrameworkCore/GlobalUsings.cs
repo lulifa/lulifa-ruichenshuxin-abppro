@@ -4,6 +4,7 @@ global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Design;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
+global using RuichenShuxin.AbpPro.Core;
 global using RuichenShuxin.AbpPro.Platform;
 global using System;
 global using System.IO;

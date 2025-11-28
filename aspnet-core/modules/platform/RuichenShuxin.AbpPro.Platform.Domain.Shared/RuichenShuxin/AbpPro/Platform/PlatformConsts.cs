@@ -2,6 +2,17 @@
 
 public static class PlatformConsts
 {
+
+    public static int MaxLength64 { get; set; } = AbpProCoreConsts.MaxLength64;
+
+    public static int MaxLength128 { get; set; } = AbpProCoreConsts.MaxLength128;
+
+    public static int MaxLength256 { get; set; } = AbpProCoreConsts.MaxLength256;
+
+    public static int MaxLength512 { get; set; } = AbpProCoreConsts.MaxLength512;
+
+    public static int MaxLength1024 { get; set; } = AbpProCoreConsts.MaxLength1024;
+
     /// <summary>
     /// 编号不足位补足字符，如编号为 3，长度5位，补足字符为 0，则编号为00003
     /// </summary>

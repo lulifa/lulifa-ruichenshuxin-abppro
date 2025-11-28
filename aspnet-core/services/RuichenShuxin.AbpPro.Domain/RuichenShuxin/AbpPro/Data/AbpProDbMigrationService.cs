@@ -88,9 +88,9 @@ public class AbpProDbMigrationService : ITransientDependency
 
         await _dataSeeder.SeedAsync(new DataSeedContext(tenant?.Id)
             .WithProperty(IdentityDataSeedContributor.AdminEmailPropertyName,
-                AbpProConsts.AdminEmailDefaultValue)
+                AbpProDbProperties.AdminEmailDefaultValue)
             .WithProperty(IdentityDataSeedContributor.AdminPasswordPropertyName,
-                AbpProConsts.AdminPasswordDefaultValue)
+                AbpProDbProperties.AdminPasswordDefaultValue)
         );
     }
 
