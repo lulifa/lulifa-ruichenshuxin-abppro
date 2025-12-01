@@ -116,18 +116,18 @@ public class Vben5NavigationSeedContributor : IDataSeedContributor, ITransientDe
                 Options.LayoutName,
                 CodeNumberGenerator.CreateCode(40),
                 "Vben5 Admin 布局约束",
-                "Vben5 Admin Layout Meta Dictionary",
+                "Vben5 Admin模板布局约束",
                 null,
                 tenantId,
                 true);
 
         data.AddItem(
             GuidGenerator,
-            "hideMenu",
-            "不在菜单显示",
-            "false",
-            ValueType.Boolean,
-            "当前路由不在菜单显示",
+            "title",
+            "标题",
+            "",
+            ValueType.String,
+            "用于配置页面的标题，会在菜单和标签页中显示。一般会配合国际化使用。",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
@@ -135,152 +135,172 @@ public class Vben5NavigationSeedContributor : IDataSeedContributor, ITransientDe
             "图标",
             "",
             ValueType.String,
-            "图标，也是菜单图标",
+            "用于配置页面的图标，会在菜单和标签页中显示。一般会配合图标库使用，如果是http链接，会自动加载图片。",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
-            "currentActiveMenu",
-            "当前激活的菜单",
+            "activeIcon",
+            "激活图标",
             "",
             ValueType.String,
-            "用于配置详情页时左侧激活的菜单路径",
+            "用于配置页面的激活图标，会在菜单中显示。一般会配合图标库使用，如果是http链接，会自动加载图片。",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
-            "ignoreKeepAlive",
-            "KeepAlive缓存",
+            "keepAlive",
+            "是否开启缓存",
+            "true",
+            ValueType.Boolean,
+            "用于配置页面是否开启缓存，开启后页面会缓存，不会重新加载，仅在标签页启用时有效。",
+            isStatic: true);
+        data.AddItem(
+            GuidGenerator,
+            "hideInMenu",
+            "是否在菜单中隐藏",
             "false",
             ValueType.Boolean,
-            "是否忽略KeepAlive缓存",
+            "用于配置页面是否在菜单中隐藏，隐藏后页面不会在菜单中显示。",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
-            "frameSrc",
-            "IFrame地址",
-            "",
-            ValueType.String,
-            "内嵌iframe的地址",
-            isStatic: true);
-        data.AddItem(
-            GuidGenerator,
-            "transitionName",
-            "路由切换动画",
-            "",
-            ValueType.String,
-            "指定该路由切换的动画名",
-            isStatic: true);
-        data.AddItem(
-            GuidGenerator,
-            "roles",
-            "可以访问的角色",
-            "",
-            ValueType.Array,
-            "可以访问的角色，只在权限模式为Role的时候有效",
-            isStatic: true);
-        data.AddItem(
-            GuidGenerator,
-            "title",
-            "路由标题",
-            "",
-            ValueType.String,
-            "路由title 一般必填",
-            false,
-            isStatic: true);
-        data.AddItem(
-            GuidGenerator,
-            "carryParam",
-            "在tab页显示",
+            "hideInTab",
+            "是否在标签页中隐藏",
             "false",
             ValueType.Boolean,
-            "如果该路由会携带参数，且需要在tab页上面显示。则需要设置为true",
+            "用于配置页面是否在标签页中隐藏，隐藏后页面不会在标签页中显示。",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
-            "hideBreadcrumb",
-            "隐藏面包屑",
+            "hideInBreadcrumb",
+            "是否在面包屑中隐藏",
             "false",
             ValueType.Boolean,
-            "隐藏该路由在面包屑上面的显示",
-            isStatic: true);
-        data.AddItem(
-           GuidGenerator,
-           "ignoreAuth",
-           "忽略权限",
-           "false",
-           ValueType.Boolean,
-           "是否忽略权限，只在权限模式为Role的时候有效",
+            "用于配置页面是否在面包屑中隐藏，隐藏后页面不会在面包屑中显示。",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "hideChildrenInMenu",
-            "隐藏所有子菜单",
+            "是否隐藏子菜单",
             "false",
             ValueType.Boolean,
-            "隐藏所有子菜单",
+            "用于配置页面的子页面是否在菜单中隐藏，隐藏后子页面不会在菜单中显示。",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
-            "hideTab",
-            "不在标签页显示",
-            "false",
-            ValueType.Boolean,
-            "当前路由不在标签页显示",
+            "authority",
+            "页面权限",
+            "",
+            ValueType.Array,
+            "用于配置页面的权限，只有拥有对应权限的用户才能访问页面，不配置则不需要权限。",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
-            "affix",
-            "固定标签页",
-            "false",
-            ValueType.Boolean,
+            "badge",
+            "页面徽标",
+            "",
+            ValueType.String,
+            "用于配置页面的徽标，会在菜单显示。",
+            isStatic: true);
+        data.AddItem(
+           GuidGenerator,
+           "badgeType",
+           "徽标类型",
+           "normal",
+           ValueType.String,
+           "用于配置页面的徽标类型，dot 为小红点，normal 为文本。",
+            isStatic: true);
+        data.AddItem(
+            GuidGenerator,
+            "badgeVariants",
+            "徽标颜色",
+            "success",
+            ValueType.String,
+            "用于配置页面的徽标颜色,'default' | 'destructive' | 'primary' | 'success' | 'warning' | string",
+            isStatic: true);
+        data.AddItem(
+            GuidGenerator,
+            "activePath",
+            "当前激活的菜单",
+            "",
+            ValueType.String,
+            "用于配置当前激活的菜单，有时候页面没有显示在菜单内，需要激活父级菜单时使用。",
+            isStatic: true);
+        data.AddItem(
+            GuidGenerator,
+            "affixTab",
             "是否固定标签页",
-            isStatic: true);
-        data.AddItem(
-            GuidGenerator,
-            "requiredFeatures",
-            "必要的功能",
-            "",
-            ValueType.String,
-            "多个功能间用英文 , 分隔",
-            isStatic: true);
-        data.AddItem(
-            GuidGenerator,
-            "dynamicLevel",
-            "可打开Tab页数",
-            "",
-            ValueType.Numeic,
-            "动态路由可打开Tab页数",
-            isStatic: true);
-        data.AddItem(
-            GuidGenerator,
-            "hidePathForChildren",
-            "忽略本级path",
-            "",
-            ValueType.Boolean,
-            "是否在子级菜单的完整path中忽略本级path。2.5.3以上版本有效",
-            isStatic: true);
-        data.AddItem(
-            GuidGenerator,
-            "orderNo",
-            "菜单排序",
-            "",
-            ValueType.Numeic,
-            "菜单排序，只对第一级有效",
-            isStatic: true);
-        data.AddItem(
-            GuidGenerator,
-            "realPath",
-            "实际Path",
-            "",
-            ValueType.String,
-            "动态路由的实际Path, 即去除路由的动态部分;",
-            isStatic: true);
-        data.AddItem(
-            GuidGenerator,
-            "frameFormat",
-            "格式化IFrame",
             "false",
             ValueType.Boolean,
-            "扩展的格式化frame，{token}: 在打开的iframe页面传递token请求头");
+            "用于配置页面是否固定标签页，固定后页面不可关闭。",
+            isStatic: true);
+        data.AddItem(
+            GuidGenerator,
+            "affixTabOrder",
+            "固定标签页排序,",
+            "0",
+            ValueType.Numeic,
+            "用于配置页面固定标签页的排序, 采用升序排序。",
+            isStatic: true);
+        data.AddItem(
+            GuidGenerator,
+            "iframeSrc",
+            "内嵌页面地址",
+            "",
+            ValueType.String,
+            "用于配置内嵌页面的 iframe 地址，设置后会在当前页面内嵌对应的页面。",
+            isStatic: true);
+        data.AddItem(
+            GuidGenerator,
+            "ignoreAccess",
+            "是否忽略权限",
+            "false",
+            ValueType.Boolean,
+            "用于配置页面是否忽略权限，直接可以访问。",
+            isStatic: true);
+        data.AddItem(
+            GuidGenerator,
+            "link",
+            "外链跳转路径",
+            "",
+            ValueType.String,
+            "用于配置外链跳转路径，会在新窗口打开。",
+            isStatic: true);
+        data.AddItem(
+            GuidGenerator,
+            "maxNumOfOpenTab",
+            "标签页最大打开数量",
+            "-1",
+            ValueType.Numeic,
+            "用于配置标签页最大打开数量，设置后会在打开新标签页时自动关闭最早打开的标签页(仅在打开同名标签页时生效)。",
+            isStatic: true);
+        data.AddItem(
+            GuidGenerator,
+            "menuVisibleWithForbidden",
+            "是否可见菜单无权限",
+            "false",
+            ValueType.Boolean,
+            "用于配置页面在菜单可以看到，但是访问会被重定向到403。");
+        data.AddItem(
+            GuidGenerator,
+            "openInNewWindow",
+            "是否在新页面打开",
+            "false",
+            ValueType.Boolean,
+            "设置为 true 时，会在新窗口打开页面。");
+        data.AddItem(
+            GuidGenerator,
+            "order",
+            "页面排序",
+            "0",
+            ValueType.Numeic,
+            "用于配置页面的排序，用于路由到菜单排序。注意: 排序仅针对一级菜单有效，二级菜单的排序需要在对应的一级菜单中按代码顺序设置。");
+        data.AddItem(
+            GuidGenerator,
+            "noBasicLayout",
+            "是否不使用基础布局",
+            "false",
+            ValueType.Boolean,
+            "用于配置当前路由不使用基础布局，仅在顶级时生效。默认情况下，所有的路由都会被包裹在基础布局中（包含顶部以及侧边等导航部件），如果你的页面不需要这些部件，可以设置 noBasicLayout 为 true。");
 
         return data;
     }

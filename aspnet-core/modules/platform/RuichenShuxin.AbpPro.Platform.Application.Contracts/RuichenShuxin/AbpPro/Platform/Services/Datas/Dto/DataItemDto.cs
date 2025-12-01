@@ -12,5 +12,7 @@ public class DataItemDto : EntityDto<Guid>
 
     public bool AllowBeNull { get; set; }
 
+    public bool IsStatic { get; set; }
+
     public ValueType ValueType { get; set; }
 }
