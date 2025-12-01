@@ -7,8 +7,8 @@ public class Vben5NavigationOptions
     public string LayoutPath { get; set; }
     public Vben5NavigationOptions()
     {
-        UI = "Vue Vben5 Admin";
+        UI = "Vben5";
         LayoutName = "Vben5 Admin Layout";
-        LayoutPath = "LAYOUT";
+        LayoutPath = "BasicLayout";
     }
 }

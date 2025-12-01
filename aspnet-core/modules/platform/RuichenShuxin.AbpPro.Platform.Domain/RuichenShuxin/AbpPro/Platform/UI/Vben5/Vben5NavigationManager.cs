@@ -153,24 +153,24 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
     private static NavigationDefinition GetSaas()
     {
         var saas = new ApplicationMenu(
-            name: "Vben5Saas",
-            displayName: "Saas",
-            url: "/saas",
+            name: "Vben5System",
+            displayName: "系统管理",
+            url: "/system",
             component: "",
-            description: "Saas",
-            icon: "ant-design:cloud-server-outlined",
+            description: "System",
+            icon: "arcticons:activity-manager",
             multiTenancySides: MultiTenancySides.Host)
-            .SetProperty("title", "abp.saas.title");
+            .SetProperty("title", "abp.system.title");
         saas.AddItem(
           new ApplicationMenu(
-              name: "Vben5SaasTenants",
+              name: "Vben5SystemTenants",
               displayName: "租户管理",
-              url: "/saas/tenants",
-              component: "/saas/tenants/index",
+              url: "/system/tenants",
+              component: "/system/tenants/index",
               icon: "arcticons:tenantcloud-pro",
               description: "租户管理",
               multiTenancySides: MultiTenancySides.Host)
-            .SetProperty("title", "abp.saas.tenants"));
+            .SetProperty("title", "abp.system.tenants"));
 
         return new NavigationDefinition(saas);
     }
@@ -212,17 +212,6 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
               icon: "material-symbols-light:menu",
               description: "菜单管理")
             .SetProperty("title", "abp.platform.menus"));
-
-        var messages = platform.AddItem(
-          new ApplicationMenu(
-              name: "Vben5PlatformMessages",
-              displayName: "消息管理",
-              url: "/platform/messages",
-              component: "",
-              icon: "tabler:message-cog",
-              description: "消息管理",
-              multiTenancySides: MultiTenancySides.Host)
-            .SetProperty("title", "abp.platform.messages.title"));
 
         return new NavigationDefinition(platform);
     }
