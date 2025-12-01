@@ -114,9 +114,9 @@ public class Vben5NavigationSeedContributor : IDataSeedContributor, ITransientDe
         var data = await DataDictionaryDataSeeder
             .SeedAsync(
                 Options.LayoutName,
-                CodeNumberGenerator.CreateCode(10),
-                "Vben Admin 布局约束",
-                "Vben Admin Layout Meta Dictionary",
+                CodeNumberGenerator.CreateCode(40),
+                "Vben5 Admin 布局约束",
+                "Vben5 Admin Layout Meta Dictionary",
                 null,
                 tenantId,
                 true);
