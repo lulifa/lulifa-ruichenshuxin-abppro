@@ -1,10 +1,4 @@
-﻿using JetBrains.Annotations;
-using System.Collections.Generic;
-using Volo.Abp;
-using Volo.Abp.Data;
-using Volo.Abp.MultiTenancy;
-
-namespace RuichenShuxin.AbpPro.Platform;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 public class ApplicationMenu : IHasExtraProperties
 {

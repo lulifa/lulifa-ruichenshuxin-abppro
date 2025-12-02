@@ -1,11 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Threading.Tasks;
-using Volo.Abp.Data;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.MultiTenancy;
-
-namespace RuichenShuxin.AbpPro.Platform;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDependency
 {
@@ -187,13 +180,13 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
             .SetProperty("title", "abp.platform.title");
         platform.AddItem(
           new ApplicationMenu(
-              name: "Vben5PlatformDataDictionaries",
-              displayName: "数据字典",
-              url: "/platform/data-dictionaries",
-              component: "/platform/data-dictionaries/index",
-              icon: "material-symbols:dictionary-outline",
-              description: "数据字典")
-            .SetProperty("title", "abp.platform.dataDictionaries"));
+              name: "Vben5PlatformMenus",
+              displayName: "菜单管理",
+              url: "/platform/menus",
+              component: "/platform/menus/index",
+              icon: "material-symbols-light:menu",
+              description: "菜单管理")
+            .SetProperty("title", "abp.platform.menus"));
         platform.AddItem(
           new ApplicationMenu(
               name: "Vben5PlatformLayouts",
@@ -205,14 +198,13 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
             .SetProperty("title", "abp.platform.layouts"));
         platform.AddItem(
           new ApplicationMenu(
-              name: "Vben5PlatformMenus",
-              displayName: "菜单管理",
-              url: "/platform/menus",
-              component: "/platform/menus/index",
-              icon: "material-symbols-light:menu",
-              description: "菜单管理")
-            .SetProperty("title", "abp.platform.menus"));
-
+              name: "Vben5PlatformDataDictionaries",
+              displayName: "数据字典",
+              url: "/platform/data-dictionaries",
+              component: "/platform/data-dictionaries/index",
+              icon: "material-symbols:dictionary-outline",
+              description: "数据字典")
+            .SetProperty("title", "abp.platform.dataDictionaries"));
         return new NavigationDefinition(platform);
     }
 

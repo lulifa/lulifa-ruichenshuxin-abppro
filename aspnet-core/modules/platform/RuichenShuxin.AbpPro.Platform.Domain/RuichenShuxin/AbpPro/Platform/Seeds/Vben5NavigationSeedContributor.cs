@@ -1,14 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Volo.Abp.Data;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.Guids;
-using Volo.Abp.MultiTenancy;
-
-namespace RuichenShuxin.AbpPro.Platform;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 public class Vben5NavigationSeedContributor : IDataSeedContributor, ITransientDependency
 {
@@ -342,7 +332,7 @@ public class Vben5NavigationSeedContributor : IDataSeedContributor, ITransientDe
                 name: menu.Name,
                 path: menu.Url,
                 code: CodeNumberGenerator.CreateCode(GetNextCode()),
-                component: layout.Path,
+                component: menu.Component.IsNullOrWhiteSpace() ? layout.Path : menu.Component,
                 displayName: menu.DisplayName,
                 redirect: menu.Redirect,
                 description: menu.Description,

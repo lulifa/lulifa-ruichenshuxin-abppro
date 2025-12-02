@@ -1,11 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.Guids;
-
-namespace RuichenShuxin.AbpPro.Platform;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 public class RouteDataSeeder : IRouteDataSeeder, ITransientDependency
 {

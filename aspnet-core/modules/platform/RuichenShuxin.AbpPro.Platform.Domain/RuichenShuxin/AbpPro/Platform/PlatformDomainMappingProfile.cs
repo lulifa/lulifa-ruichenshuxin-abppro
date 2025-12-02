@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace RuichenShuxin.AbpPro.Platform;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 public class PlatformDomainMappingProfile : Profile
 {

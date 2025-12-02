@@ -1,11 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.AutoMapper;
-using Volo.Abp.Domain;
-using Volo.Abp.Domain.Entities.Events.Distributed;
-using Volo.Abp.EventBus;
-using Volo.Abp.Modularity;
-
-namespace RuichenShuxin.AbpPro.Platform;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 [DependsOn(
     typeof(AbpEventBusModule),
