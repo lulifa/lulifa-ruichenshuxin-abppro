@@ -1018,6 +1018,7 @@ namespace RuichenShuxin.AbpPro.Migrations
                     IsStatic = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     ValueType = table.Column<int>(type: "int", nullable: false),
                     DataId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    Order = table.Column<int>(type: "int", nullable: false),
                     ExtraProperties = table.Column<string>(type: "longtext", nullable: false),
                     ConcurrencyStamp = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
                     CreationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),

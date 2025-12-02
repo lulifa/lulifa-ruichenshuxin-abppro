@@ -20,6 +20,8 @@ public class DataItem : FullAuditedAggregateRoot<Guid>, IMultiTenant
 
     public virtual Guid DataId { get; protected set; }
 
+    public virtual int Order { get; set; } = 0;
+
     protected DataItem() { }
 
     internal DataItem(
@@ -31,7 +33,8 @@ public class DataItem : FullAuditedAggregateRoot<Guid>, IMultiTenant
         ValueType valueType = ValueType.String,
         string description = "",
         bool allowBeNull = true,
-        Guid? tenantId = null)
+        Guid? tenantId = null,
+        int order = 0)
     {
         Check.NotNull(id, nameof(id));
         Check.NotNull(dataId, nameof(dataId));
@@ -48,6 +51,7 @@ public class DataItem : FullAuditedAggregateRoot<Guid>, IMultiTenant
         DataId = dataId;
         TenantId = tenantId;
         Description = description;
+        Order = order;
     }
 
     public string SetDefaultValue()

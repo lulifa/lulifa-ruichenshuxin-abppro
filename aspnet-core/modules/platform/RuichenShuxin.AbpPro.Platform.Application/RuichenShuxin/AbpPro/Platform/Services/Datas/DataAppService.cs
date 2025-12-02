@@ -77,7 +77,11 @@ public class DataAppService : PlatformAppService, IDataAppService
     {
         var data = await DataRepository.GetAsync(id);
 
-        return ObjectMapper.Map<Data, DataDto>(data);
+        var dto = ObjectMapper.Map<Data, DataDto>(data);
+
+        dto.Items = dto.Items.OrderBy(item => item.Order).ToList();
+
+        return dto;
     }
 
     public async virtual Task<ListResultDto<DataDto>> GetAllAsync()

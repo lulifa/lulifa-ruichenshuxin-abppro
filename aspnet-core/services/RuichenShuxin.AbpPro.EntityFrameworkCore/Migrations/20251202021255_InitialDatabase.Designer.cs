@@ -11,7 +11,7 @@ using RuichenShuxin.AbpPro.EntityFrameworkCore;
 namespace RuichenShuxin.AbpPro.Migrations
 {
     [DbContext(typeof(AbpProDbContext))]
-    [Migration("20251128011243_InitialDatabase")]
+    [Migration("20251202021255_InitialDatabase")]
     partial class InitialDatabase
     {
         /// <inheritdoc />
@@ -242,6 +242,9 @@ namespace RuichenShuxin.AbpPro.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)")
                         .HasColumnName("Name");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("TenantId")
                         .HasColumnType("char(36)")

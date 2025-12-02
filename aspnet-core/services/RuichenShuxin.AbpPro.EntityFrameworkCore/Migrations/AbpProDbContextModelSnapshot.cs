@@ -240,6 +240,9 @@ namespace RuichenShuxin.AbpPro.Migrations
                         .HasColumnType("varchar(64)")
                         .HasColumnName("Name");
 
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("TenantId")
                         .HasColumnType("char(36)")
                         .HasColumnName("TenantId");

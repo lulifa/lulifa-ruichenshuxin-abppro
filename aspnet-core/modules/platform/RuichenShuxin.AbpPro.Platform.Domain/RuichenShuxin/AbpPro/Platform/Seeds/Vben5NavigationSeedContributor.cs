@@ -279,28 +279,32 @@ public class Vben5NavigationSeedContributor : IDataSeedContributor, ITransientDe
             "是否可见菜单无权限",
             "false",
             ValueType.Boolean,
-            "用于配置页面在菜单可以看到，但是访问会被重定向到403。");
+            "用于配置页面在菜单可以看到，但是访问会被重定向到403。",
+            isStatic: true);
         data.AddItem(
             GuidGenerator,
             "openInNewWindow",
             "是否在新页面打开",
             "false",
             ValueType.Boolean,
-            "设置为 true 时，会在新窗口打开页面。");
+            "设置为 true 时，会在新窗口打开页面。",
+            isStatic: true);
         data.AddItem(
             GuidGenerator,
             "order",
             "页面排序",
             "0",
             ValueType.Numeic,
-            "用于配置页面的排序，用于路由到菜单排序。注意: 排序仅针对一级菜单有效，二级菜单的排序需要在对应的一级菜单中按代码顺序设置。");
+            "用于配置页面的排序，用于路由到菜单排序。注意: 排序仅针对一级菜单有效，二级菜单的排序需要在对应的一级菜单中按代码顺序设置。",
+            isStatic: true);
         data.AddItem(
             GuidGenerator,
             "noBasicLayout",
             "是否不使用基础布局",
             "false",
             ValueType.Boolean,
-            "用于配置当前路由不使用基础布局，仅在顶级时生效。默认情况下，所有的路由都会被包裹在基础布局中（包含顶部以及侧边等导航部件），如果你的页面不需要这些部件，可以设置 noBasicLayout 为 true。");
+            "用于配置当前路由不使用基础布局，仅在顶级时生效。默认情况下，所有的路由都会被包裹在基础布局中（包含顶部以及侧边等导航部件），如果你的页面不需要这些部件，可以设置 noBasicLayout 为 true。",
+            isStatic: true);
 
         return data;
     }

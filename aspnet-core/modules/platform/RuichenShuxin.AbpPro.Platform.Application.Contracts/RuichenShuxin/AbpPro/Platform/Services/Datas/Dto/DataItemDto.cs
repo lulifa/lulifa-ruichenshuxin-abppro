@@ -15,4 +15,6 @@ public class DataItemDto : EntityDto<Guid>
     public bool IsStatic { get; set; }
 
     public ValueType ValueType { get; set; }
+
+    public int Order { get; set; }
 }

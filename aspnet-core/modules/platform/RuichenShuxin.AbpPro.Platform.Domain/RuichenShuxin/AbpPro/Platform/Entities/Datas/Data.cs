@@ -75,8 +75,8 @@ public class Data : FullAuditedAggregateRoot<Guid>, IMultiTenant
                 valueType,
                 description,
                 allowBeNull,
-                TenantId
-                )
+                TenantId,
+                order: Items.Count)
             {
                 IsStatic = isStatic
             };
