@@ -1,6 +1,4 @@
-﻿using Volo.Abp.AspNetCore.ExceptionHandling;
-
-namespace RuichenShuxin.AbpPro.Core;
+﻿namespace RuichenShuxin.AbpPro.Core;
 
 [Dependency(ReplaceServices = true)]
 [ExposeServices(typeof(AbpExceptionFilter))]
