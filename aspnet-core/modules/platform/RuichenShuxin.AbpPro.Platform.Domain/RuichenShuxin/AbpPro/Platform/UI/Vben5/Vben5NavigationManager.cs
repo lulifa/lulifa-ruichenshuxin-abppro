@@ -67,6 +67,7 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
                component: "/dashboard/workspace/index",
                icon: "carbon:workspace",
                description: "工作台")
+           .SetProperty("affixTab", "true")
            .SetProperty("title", "page.dashboard.workspace")
         );
 
@@ -78,7 +79,6 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
                 component: "/dashboard/analytics/index",
                 icon: "lucide:area-chart",
                 description: "分析页")
-            .SetProperty("affixTab", "true")
             .SetProperty("title", "page.dashboard.analytics")
          );
 
