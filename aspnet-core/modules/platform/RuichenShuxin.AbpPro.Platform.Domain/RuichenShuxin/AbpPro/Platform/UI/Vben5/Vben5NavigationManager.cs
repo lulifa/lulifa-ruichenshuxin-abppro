@@ -95,7 +95,7 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
             displayName: "系统管理",
             url: "/system",
             component: "",
-            description: "System",
+            description: "系统管理",
             icon: "arcticons:activity-manager",
             multiTenancySides: MultiTenancySides.Host)
             .SetProperty("title", "abp.system.title");
