@@ -1,6 +1,15 @@
 {
   "Culture": "en",
   "Texts": {
+    "Permission:OrganizationUnitManagement": "Organization unit management",
+    "Permission:ResetPassword": "Reset Password",
+    "Permission:ManageRoles": "Management roles",
+    "Permission:ManageUsers": "Management users",
+    "Permission:ManageClaims": "Management claims",
+    "Permission:ManageOrganizationUnits": "Management organization units",
+    "Permission:IdentityClaimTypeManagement": "Management claim types",
+    "Permission:IdentitySessions": "Management sessions",
+    "Permission:RevokeSession": "Revoke session",
     "AppName": "AbpPro",
     "Menu:AbpPro": "Book Store",
     "Menu:Books": "Books",

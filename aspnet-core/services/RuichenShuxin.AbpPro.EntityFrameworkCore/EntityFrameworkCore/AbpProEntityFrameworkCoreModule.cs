@@ -28,16 +28,16 @@ public class AbpProEntityFrameworkCoreModule : AbpModule
     {
         context.Services.AddAbpDbContext<AbpProDbContext>(options =>
         {
-            /* Remove "includeAllEntities: true" to create
-             * default repositories only for aggregate roots */
             options.AddDefaultRepositories(includeAllEntities: true);
+
+            options.AddRepository<IdentityRole, EfCoreIdentityRoleRepository>();
+            options.AddRepository<IdentityUser, EfCoreIdentityUserRepository>();
+            options.AddRepository<OrganizationUnit, EfCoreOrganizationUnitRepository>();
+
         });
 
         Configure<AbpDbContextOptions>(options =>
         {
-            /* The main point to change your DBMS.
-             * See also AbpProDbContextFactory for EF Core tooling. */
-
             options.UseMySQL(builder =>
             {
                 builder.TranslateParameterizedCollectionsToConstants()

@@ -2,6 +2,7 @@
 
 global using AutoMapper;
 global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Identity;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Options;
@@ -11,6 +12,7 @@ global using System;
 global using System.Collections.Generic;
 global using System.Linq;
 global using System.Linq.Dynamic.Core;
+global using System.Linq.Expressions;
 global using System.Threading.Tasks;
 global using Volo.Abp;
 global using Volo.Abp.Account;
@@ -27,4 +29,7 @@ global using Volo.Abp.MultiTenancy;
 global using Volo.Abp.ObjectExtending;
 global using Volo.Abp.PermissionManagement;
 global using Volo.Abp.SettingManagement;
+global using Volo.Abp.Specifications;
 global using Volo.Abp.TenantManagement;
+global using IdentityRole = Volo.Abp.Identity.IdentityRole;
+global using IdentityUser = Volo.Abp.Identity.IdentityUser;
