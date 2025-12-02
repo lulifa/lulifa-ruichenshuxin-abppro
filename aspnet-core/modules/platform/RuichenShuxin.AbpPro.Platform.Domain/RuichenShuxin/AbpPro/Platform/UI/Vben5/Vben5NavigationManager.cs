@@ -31,63 +31,6 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
 
     private static NavigationDefinition[] GetVbenDemos()
     {
-        var project = new ApplicationMenu(
-            name: "VbenProject",
-            displayName: "项目",
-            url: "/vben-admin",
-            component: "",
-            description: "项目",
-            order: 9998,
-            icon: "https://unpkg.com/@vbenjs/static-source@0.1.7/source/logo-v1.webp")
-            .SetProperty("badgeType", "dot")
-            .SetProperty("title", "demos.vben.title");
-        project.AddItem(
-            new ApplicationMenu(
-                name: "VbenDocument",
-                displayName: "文档",
-                url: "/vben-admin/document",
-                component: "",
-                icon: "lucide:book-open-text",
-                description: "文档")
-            .SetProperty("link", "https://doc.vben.pro")
-            .SetProperty("title", "demos.vben.document")
-         );
-        project.AddItem(
-            new ApplicationMenu(
-                name: "VbenGithub",
-                displayName: "Github",
-                url: "/vben-admin/github",
-                component: "",
-                icon: "mdi:github",
-                description: "Github")
-            .SetProperty("link", "https://github.com/vbenjs/vue-vben-admin")
-            .SetProperty("title", "Github")
-         );
-        project.AddItem(
-            new ApplicationMenu(
-                name: "VbenNaive",
-                displayName: "Naive UI 版本",
-                url: "/vben-admin/naive",
-                component: "",
-                icon: "logos:naiveui",
-                description: "Naive UI 版本")
-            .SetProperty("badgeType", "dot")
-            .SetProperty("link", "https://naive.vben.pro")
-            .SetProperty("title", "demos.vben.naive-ui")
-         );
-        project.AddItem(
-            new ApplicationMenu(
-                name: "VbenElementPlus",
-                displayName: "Element Plus 版本",
-                url: "/vben-admin/ele",
-                component: "",
-                icon: "logos:element",
-                description: "Element Plus 版本")
-            .SetProperty("badgeType", "dot")
-            .SetProperty("link", "https://ele.vben.pro")
-            .SetProperty("title", "demos.vben.element-plus")
-         );
-
         var about = new ApplicationMenu(
             name: "VbenAbout",
             displayName: "关于",
@@ -100,12 +43,11 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
 
         return
         [
-            new NavigationDefinition(project),
             new NavigationDefinition(about),
         ];
     }
 
-    private static NavigationDefinition GetDashboard()
+    private static NavigationDefinition[] GetDashboard()
     {
         var dashboard = new ApplicationMenu(
             name: "Vben5Dashboard",
@@ -116,6 +58,17 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
             icon: "lucide:layout-dashboard",
             order: -1)
             .SetProperty("title", "page.dashboard.title");
+
+        dashboard.AddItem(
+           new ApplicationMenu(
+               name: "Vben5Workbench",
+               displayName: "工作台",
+               url: "/workspace",
+               component: "/dashboard/workspace/index",
+               icon: "carbon:workspace",
+               description: "工作台")
+           .SetProperty("title", "page.dashboard.workspace")
+        );
 
         dashboard.AddItem(
             new ApplicationMenu(
@@ -129,21 +82,13 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
             .SetProperty("title", "page.dashboard.analytics")
          );
 
-        dashboard.AddItem(
-           new ApplicationMenu(
-               name: "Vben5Workbench",
-               displayName: "工作台",
-               url: "/workspace",
-               component: "/dashboard/workspace/index",
-               icon: "carbon:workspace",
-               description: "工作台")
-           .SetProperty("title", "page.dashboard.workspace")
-        );
-
-        return new NavigationDefinition(dashboard);
+        return
+        [
+            new NavigationDefinition(dashboard),
+        ];
     }
 
-    private static NavigationDefinition GetSaas()
+    private static NavigationDefinition[] GetSaas()
     {
         var saas = new ApplicationMenu(
             name: "Vben5System",
@@ -165,10 +110,13 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
               multiTenancySides: MultiTenancySides.Host)
             .SetProperty("title", "abp.system.tenants"));
 
-        return new NavigationDefinition(saas);
+        return
+        [
+            new NavigationDefinition(saas),
+        ];
     }
 
-    private static NavigationDefinition GetPlatform()
+    private static NavigationDefinition[] GetPlatform()
     {
         var platform = new ApplicationMenu(
             name: "Vben5Platform",
@@ -205,7 +153,11 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
               icon: "material-symbols:dictionary-outline",
               description: "数据字典")
             .SetProperty("title", "abp.platform.dataDictionaries"));
-        return new NavigationDefinition(platform);
+
+        return
+        [
+            new NavigationDefinition(platform),
+        ];
     }
 
 }
