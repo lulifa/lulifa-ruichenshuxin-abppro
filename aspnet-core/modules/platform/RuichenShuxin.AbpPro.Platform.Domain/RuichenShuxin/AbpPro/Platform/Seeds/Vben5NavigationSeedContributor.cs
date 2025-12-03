@@ -63,10 +63,10 @@ public class Vben5NavigationSeedContributor : IDataSeedContributor, ITransientDe
     {
         var data = await DataDictionaryDataSeeder
             .SeedAsync(
-                "Vben5 Admin Layout",
-                CodeNumberGenerator.CreateCode(10),
-                "Vben5 Admin 布局约束",
-                "Vben5 Admin模板布局约束",
+                "UI Framework",
+                CodeNumberGenerator.CreateCode(30),
+                "UI框架",
+                "UI Framework",
                 null,
                 tenantId,
                 true);
@@ -103,10 +103,10 @@ public class Vben5NavigationSeedContributor : IDataSeedContributor, ITransientDe
     {
         var data = await DataDictionaryDataSeeder
             .SeedAsync(
-                Options.LayoutName,
+                Options.UI,
                 CodeNumberGenerator.CreateCode(40),
-                "Vben5 Admin 布局约束",
-                "Vben5 Admin模板布局约束",
+                $"{Options.UI} 布局约束",
+                $"{Options.UI} 模板布局约束",
                 null,
                 tenantId,
                 true);
@@ -298,7 +298,6 @@ public class Vben5NavigationSeedContributor : IDataSeedContributor, ITransientDe
 
         return data;
     }
-
 
     private async Task SeedDefinitionMenusAsync(Layout layout, Data data, IReadOnlyCollection<ApplicationMenu> menus, MultiTenancySides multiTenancySides)
     {
