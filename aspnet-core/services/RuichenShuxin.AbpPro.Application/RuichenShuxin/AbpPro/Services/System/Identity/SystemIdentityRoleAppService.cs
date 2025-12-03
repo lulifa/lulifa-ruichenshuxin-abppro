@@ -72,20 +72,21 @@ public class SystemIdentityRoleAppService : AbpProAppService, ISystemIdentityRol
 
 
 
-    public virtual async Task<IdentityRoleDto> GetAsync(Guid id)
-    {
-        return await IdentityRoleAppService.GetAsync(id);
-    }
-
-    public virtual async Task<PagedResultDto<IdentityRoleDto>> GetListAsync(GetIdentityRolesInput input)
-    {
-        return await IdentityRoleAppService.GetListAsync(input);
-    }
-
     [Authorize(IdentityPermissions.Roles.Create)]
     public virtual async Task<IdentityRoleDto> CreateAsync(IdentityRoleCreateDto input)
     {
         return await IdentityRoleAppService.CreateAsync(input);
+    }
+
+    [Authorize(IdentityPermissions.Roles.Delete)]
+    public virtual async Task DeleteAsync(Guid id)
+    {
+        await IdentityRoleAppService.DeleteAsync(id);
+    }
+
+    public virtual async Task<IdentityRoleDto> GetAsync(Guid id)
+    {
+        return await IdentityRoleAppService.GetAsync(id);
     }
 
     [Authorize(IdentityPermissions.Roles.Update)]
@@ -94,10 +95,9 @@ public class SystemIdentityRoleAppService : AbpProAppService, ISystemIdentityRol
         return await IdentityRoleAppService.UpdateAsync(id, input);
     }
 
-    [Authorize(IdentityPermissions.Roles.Delete)]
-    public virtual async Task DeleteAsync(Guid id)
+    public virtual async Task<PagedResultDto<IdentityRoleDto>> GetListAsync(GetIdentityRolesInput input)
     {
-        await IdentityRoleAppService.DeleteAsync(id);
+        return await IdentityRoleAppService.GetListAsync(input);
     }
 
     #endregion

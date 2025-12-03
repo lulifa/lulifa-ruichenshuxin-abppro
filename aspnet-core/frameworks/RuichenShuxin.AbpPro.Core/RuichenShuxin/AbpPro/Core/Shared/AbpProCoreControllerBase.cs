@@ -39,10 +39,7 @@ public abstract class AbpProCoreCrudControllerBase<
     [HttpPost]
     public virtual Task<TEntityDto> CreateAsync(TCreateInput input)
         => AppService.CreateAsync(input);
-
-    [HttpPut("{id}")]
-    public virtual Task<TEntityDto> UpdateAsync(TKey id, TUpdateInput input)
-        => AppService.UpdateAsync(id, input);
+   
 
     [HttpDelete("{id}")]
     public virtual Task DeleteAsync(TKey id)
@@ -52,9 +49,15 @@ public abstract class AbpProCoreCrudControllerBase<
     public virtual Task<TEntityDto> GetAsync(TKey id)
         => AppService.GetAsync(id);
 
+
+    [HttpPut("{id}")]
+    public virtual Task<TEntityDto> UpdateAsync(TKey id, TUpdateInput input)
+        => AppService.UpdateAsync(id, input);
+
     [HttpGet]
     public virtual Task<PagedResultDto<TEntityDto>> GetListAsync(TGetListInput input)
         => AppService.GetListAsync(input);
+
 }
 
 /// <summary>

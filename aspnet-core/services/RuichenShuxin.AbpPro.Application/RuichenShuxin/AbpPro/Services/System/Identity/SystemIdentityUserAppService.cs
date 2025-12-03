@@ -140,20 +140,21 @@ public class SystemIdentityUserAppService : AbpProAppService, ISystemIdentityUse
 
 
 
-    public virtual async Task<IdentityUserDto> GetAsync(Guid id)
-    {
-        return await IdentityUserAppService.GetAsync(id);
-    }
-
-    public virtual async Task<PagedResultDto<IdentityUserDto>> GetListAsync(GetIdentityUsersInput input)
-    {
-        return await IdentityUserAppService.GetListAsync(input);
-    }
-
     [Authorize(IdentityPermissions.Users.Create)]
     public virtual async Task<IdentityUserDto> CreateAsync(IdentityUserCreateDto input)
     {
         return await IdentityUserAppService.CreateAsync(input);
+    }
+
+    [Authorize(IdentityPermissions.Users.Update)]
+    public virtual async Task DeleteAsync(Guid id)
+    {
+        await IdentityUserAppService.DeleteAsync(id);
+    }
+
+    public virtual async Task<IdentityUserDto> GetAsync(Guid id)
+    {
+        return await IdentityUserAppService.GetAsync(id);
     }
 
     [Authorize(IdentityPermissions.Users.Update)]
@@ -162,10 +163,9 @@ public class SystemIdentityUserAppService : AbpProAppService, ISystemIdentityUse
         return await IdentityUserAppService.UpdateAsync(id, input);
     }
 
-    [Authorize(IdentityPermissions.Users.Update)]
-    public virtual async Task DeleteAsync(Guid id)
+    public virtual async Task<PagedResultDto<IdentityUserDto>> GetListAsync(GetIdentityUsersInput input)
     {
-        await IdentityUserAppService.DeleteAsync(id);
+        return await IdentityUserAppService.GetListAsync(input);
     }
 
     #endregion
