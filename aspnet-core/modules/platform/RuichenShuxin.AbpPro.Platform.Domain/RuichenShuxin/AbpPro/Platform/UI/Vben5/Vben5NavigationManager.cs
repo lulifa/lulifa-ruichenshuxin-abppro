@@ -1,6 +1,4 @@
-﻿using IdentityModel;
-
-namespace RuichenShuxin.AbpPro.Platform;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDependency
 {
@@ -17,8 +15,8 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
 
         navigationDefineitions.AddRange(GetVbenDemos());
         navigationDefineitions.AddRange(GetDashboard());
-        navigationDefineitions.AddRange(GetSystem());
         navigationDefineitions.AddRange(GetModules());
+        navigationDefineitions.AddRange(GetSystem());
 
         foreach (var navigationDefineition in navigationDefineitions)
         {
@@ -29,7 +27,6 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
 
         return Task.FromResult(menus);
     }
-
 
     private static NavigationDefinition[] GetVbenDemos()
     {
@@ -90,6 +87,50 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
         ];
     }
 
+    private static NavigationDefinition[] GetModules()
+    {
+        var modules = new ApplicationMenu(
+            name: "Vben5Modules",
+            displayName: "平台管理",
+            url: "/modules",
+            component: "",
+            description: "平台管理",
+            icon: "ep:platform")
+            .SetProperty("title", "abp.modules.title");
+        modules.AddItem(
+          new ApplicationMenu(
+              name: "Vben5ModulesPlatformMenus",
+              displayName: "菜单管理",
+              url: "/modules/platform/menus",
+              component: "/modules/platform/menus/index",
+              icon: "material-symbols-light:menu",
+              description: "菜单管理")
+            .SetProperty("title", "abp.modules.platform.menus.title"));
+        modules.AddItem(
+          new ApplicationMenu(
+              name: "Vben5ModulesPlatformLayouts",
+              displayName: "布局管理",
+              url: "/modules/platform/layouts",
+              component: "/modules/platform/layouts/index",
+              icon: "material-symbols-light:responsive-layout",
+              description: "布局管理")
+            .SetProperty("title", "abp.modules.platform.layouts.title"));
+        modules.AddItem(
+          new ApplicationMenu(
+              name: "Vben5ModulesPlatformDataDictionaries",
+              displayName: "数据字典",
+              url: "/modules/platform/data-dictionaries",
+              component: "/modules/platform/data-dictionaries/index",
+              icon: "material-symbols:dictionary-outline",
+              description: "数据字典")
+            .SetProperty("title", "abp.modules.platform.dataDictionaries.title"));
+
+        return
+        [
+            new NavigationDefinition(modules),
+        ];
+    }
+
     private static NavigationDefinition[] GetSystem()
     {
         var system = new ApplicationMenu(
@@ -145,48 +186,5 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
         ];
     }
 
-    private static NavigationDefinition[] GetModules()
-    {
-        var modules = new ApplicationMenu(
-            name: "Vben5Modules",
-            displayName: "平台管理",
-            url: "/modules",
-            component: "",
-            description: "平台管理",
-            icon: "ep:platform")
-            .SetProperty("title", "abp.modules.title");
-        modules.AddItem(
-          new ApplicationMenu(
-              name: "Vben5ModulesPlatformMenus",
-              displayName: "菜单管理",
-              url: "/modules/platform/menus",
-              component: "/modules/platform/menus/index",
-              icon: "material-symbols-light:menu",
-              description: "菜单管理")
-            .SetProperty("title", "abp.modules.platform.menus.title"));
-        modules.AddItem(
-          new ApplicationMenu(
-              name: "Vben5ModulesPlatformLayouts",
-              displayName: "布局管理",
-              url: "/modules/platform/layouts",
-              component: "/modules/platform/layouts/index",
-              icon: "material-symbols-light:responsive-layout",
-              description: "布局管理")
-            .SetProperty("title", "abp.modules.platform.layouts.title"));
-        modules.AddItem(
-          new ApplicationMenu(
-              name: "Vben5ModulesPlatformDataDictionaries",
-              displayName: "数据字典",
-              url: "/modules/platform/data-dictionaries",
-              component: "/modules/platform/data-dictionaries/index",
-              icon: "material-symbols:dictionary-outline",
-              description: "数据字典")
-            .SetProperty("title", "abp.modules.platform.dataDictionaries.title"));
-
-        return
-        [
-            new NavigationDefinition(modules),
-        ];
-    }
 
 }

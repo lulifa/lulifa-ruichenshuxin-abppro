@@ -41,7 +41,7 @@ public class SystemDefaultDataSeederContributor : IDataSeedContributor, ITransie
 
         if (defaultRole == null)
         {
-            defaultRole = new IdentityRole(GuidGenerator.Create(), DefaultUserRole)
+            defaultRole = new IdentityRole(GuidGenerator.Create(), DefaultUserRole, tenantId)
             {
                 IsStatic = true,
                 IsPublic = true,
@@ -62,22 +62,6 @@ public class SystemDefaultDataSeederContributor : IDataSeedContributor, ITransie
                 defaultRole.Name,
                 grantedPermissions,
                 tenantId: tenantId);
-        }
-
-        var defaultUser = await IdentityUserManager.FindByNameAsync(DefaultUserRole);
-
-        if (defaultUser == null)
-        {
-            string password = "RuichenShuxin@2025";
-
-            defaultUser = new IdentityUser(GuidGenerator.Create(), DefaultUserRole, $"{DefaultUserRole}@abp.io", tenantId);
-
-            defaultUser.AddRole(defaultRole.Id);
-
-            (await IdentityUserManager.CreateAsync(defaultUser)).CheckErrors();
-
-            (await IdentityUserManager.AddPasswordAsync(defaultUser, password)).CheckErrors();
-
         }
     }
 
