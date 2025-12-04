@@ -1,11 +1,13 @@
 ﻿// Global using directives
 
+global using Microsoft.AspNetCore.Identity;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.DependencyInjection.Extensions;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Logging.Abstractions;
 global using OpenIddict.Abstractions;
+global using RuichenShuxin.AbpPro.Core;
 global using RuichenShuxin.AbpPro.Platform;
 global using System;
 global using System.Collections.Generic;
@@ -27,6 +29,7 @@ global using Volo.Abp.Domain.Entities.Auditing;
 global using Volo.Abp.Domain.Repositories;
 global using Volo.Abp.Emailing;
 global using Volo.Abp.FeatureManagement;
+global using Volo.Abp.Guids;
 global using Volo.Abp.Identity;
 global using Volo.Abp.Modularity;
 global using Volo.Abp.MultiTenancy;
@@ -41,3 +44,5 @@ global using Volo.Abp.Settings;
 global using Volo.Abp.Specifications;
 global using Volo.Abp.TenantManagement;
 global using Volo.Abp.Uow;
+global using IdentityRole = Volo.Abp.Identity.IdentityRole;
+global using IdentityUser = Volo.Abp.Identity.IdentityUser;

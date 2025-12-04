@@ -1,6 +1,6 @@
 ﻿namespace RuichenShuxin.AbpPro;
 
-[Authorize(AbpProPermissions.OrganizationUnits.Default)]
+[Authorize(SystemPermissions.OrganizationUnits.Default)]
 public class SystemOrganizationUnitAppService : AbpProAppService, ISystemOrganizationUnitAppService
 {
     protected OrganizationUnitManager OrganizationUnitManager { get; }
@@ -42,7 +42,7 @@ public class SystemOrganizationUnitAppService : AbpProAppService, ISystemOrganiz
         return ObjectMapper.Map<OrganizationUnit, OrganizationUnitDto>(origanizationUnitLastChildren);
     }
 
-    [Authorize(AbpProPermissions.OrganizationUnits.Update)]
+    [Authorize(SystemPermissions.OrganizationUnits.Update)]
     public virtual async Task MoveAsync(Guid id, OrganizationUnitMoveDto input)
     {
         await OrganizationUnitManager.MoveAsync(id, input.ParentId);
@@ -103,7 +103,7 @@ public class SystemOrganizationUnitAppService : AbpProAppService, ISystemOrganiz
             ObjectMapper.Map<List<IdentityRole>, List<IdentityRoleDto>>(origanizationUnitRoles));
     }
 
-    [Authorize(AbpProPermissions.OrganizationUnits.ManageRoles)]
+    [Authorize(SystemPermissions.OrganizationUnits.ManageRoles)]
     public virtual async Task AddRolesAsync(Guid id, OrganizationUnitAddRoleDto input)
     {
         var origanizationUnit = await OrganizationUnitRepository.GetAsync(id);
@@ -148,7 +148,7 @@ public class SystemOrganizationUnitAppService : AbpProAppService, ISystemOrganiz
             ObjectMapper.Map<List<IdentityUser>, List<IdentityUserDto>>(origanizationUnitUsers));
     }
 
-    [Authorize(AbpProPermissions.OrganizationUnits.ManageUsers)]
+    [Authorize(SystemPermissions.OrganizationUnits.ManageUsers)]
     public virtual async Task AddUsersAsync(Guid id, OrganizationUnitAddUserDto input)
     {
         var origanizationUnit = await OrganizationUnitRepository.GetAsync(id);
@@ -188,7 +188,7 @@ public class SystemOrganizationUnitAppService : AbpProAppService, ISystemOrganiz
             ObjectMapper.Map<List<OrganizationUnit>, List<OrganizationUnitDto>>(origanizationUnits));
     }
 
-    [Authorize(AbpProPermissions.OrganizationUnits.Create)]
+    [Authorize(SystemPermissions.OrganizationUnits.Create)]
     public virtual async Task<OrganizationUnitDto> CreateAsync(OrganizationUnitCreateDto input)
     {
         var origanizationUnit = new OrganizationUnit(
@@ -204,7 +204,7 @@ public class SystemOrganizationUnitAppService : AbpProAppService, ISystemOrganiz
         return ObjectMapper.Map<OrganizationUnit, OrganizationUnitDto>(origanizationUnit);
     }
 
-    [Authorize(AbpProPermissions.OrganizationUnits.Update)]
+    [Authorize(SystemPermissions.OrganizationUnits.Update)]
     public virtual async Task<OrganizationUnitDto> UpdateAsync(Guid id, OrganizationUnitUpdateDto input)
     {
         var origanizationUnit = await OrganizationUnitRepository.GetAsync(id);
@@ -217,7 +217,7 @@ public class SystemOrganizationUnitAppService : AbpProAppService, ISystemOrganiz
         return ObjectMapper.Map<OrganizationUnit, OrganizationUnitDto>(origanizationUnit);
     }
 
-    [Authorize(AbpProPermissions.OrganizationUnits.Delete)]
+    [Authorize(SystemPermissions.OrganizationUnits.Delete)]
     public virtual async Task DeleteAsync(Guid id)
     {
         var origanizationUnit = await OrganizationUnitRepository.FindAsync(id);

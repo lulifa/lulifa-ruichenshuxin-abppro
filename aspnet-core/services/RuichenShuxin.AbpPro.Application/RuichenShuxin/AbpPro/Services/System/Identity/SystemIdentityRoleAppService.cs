@@ -22,7 +22,7 @@ public class SystemIdentityRoleAppService : AbpProAppService, ISystemIdentityRol
 
     #region 角色拓展组织单元
 
-    [Authorize(AbpProPermissions.Roles.ManageOrganizationUnits)]
+    [Authorize(SystemPermissions.Roles.ManageOrganizationUnits)]
     public virtual async Task<ListResultDto<OrganizationUnitDto>> GetOrganizationUnitsAsync(Guid id)
     {
         var origanizationUnits = await IdentityRoleRepository.GetOrganizationUnitsAsync(id);
@@ -31,7 +31,7 @@ public class SystemIdentityRoleAppService : AbpProAppService, ISystemIdentityRol
             ObjectMapper.Map<List<OrganizationUnit>, List<OrganizationUnitDto>>(origanizationUnits));
     }
 
-    [Authorize(AbpProPermissions.Roles.ManageOrganizationUnits)]
+    [Authorize(SystemPermissions.Roles.ManageOrganizationUnits)]
     public virtual async Task SetOrganizationUnitsAsync(Guid id, IdentityRoleAddOrRemoveOrganizationUnitDto input)
     {
         var origanizationUnits = await IdentityRoleRepository.GetOrganizationUnitsAsync(id, true);
@@ -52,7 +52,7 @@ public class SystemIdentityRoleAppService : AbpProAppService, ISystemIdentityRol
         await CurrentUnitOfWork.SaveChangesAsync();
     }
 
-    [Authorize(AbpProPermissions.Roles.ManageOrganizationUnits)]
+    [Authorize(SystemPermissions.Roles.ManageOrganizationUnits)]
     public virtual async Task RemoveOrganizationUnitsAsync(Guid id, Guid ouId)
     {
         await OrganizationUnitManager.RemoveRoleFromOrganizationUnitAsync(id, ouId);

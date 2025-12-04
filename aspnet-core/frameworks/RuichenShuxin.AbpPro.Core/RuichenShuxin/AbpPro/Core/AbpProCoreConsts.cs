@@ -7,6 +7,8 @@ public static class AbpProCoreConsts
     /// </summary>
     public const string ApplicationName = "AbpPro";
 
+    public const string ModulePlatform = "Platform";
+
     /// <summary>
     /// Wrap
     /// </summary>

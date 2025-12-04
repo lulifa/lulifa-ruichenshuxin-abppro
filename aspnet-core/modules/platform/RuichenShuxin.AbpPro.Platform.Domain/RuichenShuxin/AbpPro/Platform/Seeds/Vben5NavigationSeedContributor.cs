@@ -313,6 +313,7 @@ public class Vben5NavigationSeedContributor : IDataSeedContributor, ITransientDe
                 { "icon", menu.Icon ?? "" },
                 { "order", menu.Order },
             };
+
             foreach (var prop in menu.ExtraProperties)
             {
                 if (menuMeta.ContainsKey(prop.Key))
@@ -324,6 +325,8 @@ public class Vben5NavigationSeedContributor : IDataSeedContributor, ITransientDe
                     menuMeta.Add(prop.Key, prop.Value);
                 }
             }
+
+            var roles = menu.Url.StartsWith("/system") ? new[] { "admin" } : new[] { "admin", "users" };
 
             var seedMenu = await SeedMenuAsync(
                 layout: layout,
@@ -338,13 +341,13 @@ public class Vben5NavigationSeedContributor : IDataSeedContributor, ITransientDe
                 parentId: null,
                 tenantId: layout.TenantId,
                 meta: menuMeta,
-                roles: ["admin"]);
+                roles: roles);
 
-            await SeedDefinitionMenuItemsAsync(layout, data, seedMenu, menu.Items, multiTenancySides);
+            await SeedDefinitionMenuItemsAsync(layout, data, seedMenu, menu.Items, multiTenancySides, roles);
         }
     }
 
-    private async Task SeedDefinitionMenuItemsAsync(Layout layout, Data data, Menu menu, List<ApplicationMenu> items, MultiTenancySides multiTenancySides)
+    private async Task SeedDefinitionMenuItemsAsync(Layout layout, Data data, Menu menu, List<ApplicationMenu> items, MultiTenancySides multiTenancySides, string[] roles)
     {
         int index = 1;
         foreach (var item in items)
@@ -384,9 +387,9 @@ public class Vben5NavigationSeedContributor : IDataSeedContributor, ITransientDe
                 parentId: menu.Id,
                 tenantId: menu.TenantId,
                 meta: menuMeta,
-                roles: new string[] { "admin" });
+                roles: roles);
 
-            await SeedDefinitionMenuItemsAsync(layout, data, seedMenu, item.Items, multiTenancySides);
+            await SeedDefinitionMenuItemsAsync(layout, data, seedMenu, item.Items, multiTenancySides, roles);
 
             index++;
         }

@@ -20,7 +20,7 @@ public class SystemIdentityUserAppService : AbpProAppService, ISystemIdentityUse
 
     #region 用户拓展高级方法
 
-    [Authorize(AbpProPermissions.Users.ResetPassword)]
+    [Authorize(SystemPermissions.Users.ResetPassword)]
     public async virtual Task ChangePasswordAsync(Guid id, IdentityUserSetPasswordInput input)
     {
         var user = await GetUserAsync(id);
@@ -89,7 +89,7 @@ public class SystemIdentityUserAppService : AbpProAppService, ISystemIdentityUse
             ObjectMapper.Map<List<OrganizationUnit>, List<OrganizationUnitDto>>(origanizationUnits));
     }
 
-    [Authorize(AbpProPermissions.Users.ManageOrganizationUnits)]
+    [Authorize(SystemPermissions.Users.ManageOrganizationUnits)]
     public async virtual Task SetOrganizationUnitsAsync(Guid id, IdentityUserOrganizationUnitUpdateDto input)
     {
         var user = await UserManager.GetByIdAsync(id);
@@ -99,7 +99,7 @@ public class SystemIdentityUserAppService : AbpProAppService, ISystemIdentityUse
         await CurrentUnitOfWork.SaveChangesAsync();
     }
 
-    [Authorize(AbpProPermissions.Users.ManageOrganizationUnits)]
+    [Authorize(SystemPermissions.Users.ManageOrganizationUnits)]
     public async virtual Task RemoveOrganizationUnitsAsync(Guid id, Guid ouId)
     {
         await UserManager.RemoveFromOrganizationUnitAsync(id, ouId);
