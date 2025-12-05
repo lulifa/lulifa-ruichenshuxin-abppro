@@ -82,6 +82,8 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
 
         await TenantRepository.InsertAsync(tenant);
 
+        await CurrentUnitOfWork.SaveChangesAsync();
+
         CurrentUnitOfWork.OnCompleted(async () =>
         {
             var eto = new TenantCreatedEto
@@ -96,9 +98,6 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
             };
             await EventBus.PublishAsync(eto);
         });
-
-
-        await CurrentUnitOfWork.SaveChangesAsync();
 
         using (CurrentTenant.Change(tenant.Id, tenant.Name))
         {
