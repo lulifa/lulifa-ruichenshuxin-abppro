@@ -33,3 +33,4 @@ global using Volo.Abp.Specifications;
 global using Volo.Abp.TenantManagement;
 global using IdentityRole = Volo.Abp.Identity.IdentityRole;
 global using IdentityUser = Volo.Abp.Identity.IdentityUser;
+global using Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations;
