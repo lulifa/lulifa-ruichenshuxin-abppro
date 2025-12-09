@@ -1,6 +1,6 @@
 ﻿namespace RuichenShuxin.AbpPro.UI;
 
-[LocalizationResourceName("CommonUI")]
+[LocalizationResourceName("AppUI")]
 public class AbpProUIResource
 {
 }

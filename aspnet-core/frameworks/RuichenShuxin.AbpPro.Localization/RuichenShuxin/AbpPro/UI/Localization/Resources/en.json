@@ -1,11 +1,11 @@
 ﻿{
   "culture": "en",
   "texts": {
-    "CommonUI:100001": "Insufficient permissions",
-    "CommonUI:100002": "Request parameter validation failed",
-    "CommonUI:100003": "Entity does not exist",
-    "CommonUI:100004": "Function not implemented",
-    "CommonUI:100005": "Data has been modified, please resubmit.",
+    "AppUI:100001": "Insufficient permissions",
+    "AppUI:100002": "Request parameter validation failed",
+    "AppUI:100003": "Entity does not exist",
+    "AppUI:100004": "Function not implemented",
+    "AppUI:100005": "Data has been modified, please resubmit.",
     "Search": "Search",
     "Actions": "Actions",
     "Create": "Create",

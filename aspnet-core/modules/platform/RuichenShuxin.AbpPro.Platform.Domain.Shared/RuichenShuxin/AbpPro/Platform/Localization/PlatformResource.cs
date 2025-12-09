@@ -1,6 +1,6 @@
 ﻿namespace RuichenShuxin.AbpPro.Platform;
 
-[LocalizationResourceName("Platform")]
+[LocalizationResourceName("AppPlatform")]
 public class PlatformResource
 {
 
