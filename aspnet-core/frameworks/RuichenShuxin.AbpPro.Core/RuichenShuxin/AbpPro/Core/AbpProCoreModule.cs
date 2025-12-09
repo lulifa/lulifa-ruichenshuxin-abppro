@@ -1,7 +1,7 @@
 ﻿namespace RuichenShuxin.AbpPro.Core;
 
 [DependsOn(
-    typeof(AbpProLocalizationModule)
+    typeof(AbpProUIModule)
     )]
 public class AbpProCoreModule : AbpModule
 {

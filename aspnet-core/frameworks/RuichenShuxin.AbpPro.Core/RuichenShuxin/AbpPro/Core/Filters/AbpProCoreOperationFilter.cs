@@ -39,7 +39,7 @@ public class AbpProCoreOperationFilter : IOperationFilter
                 Schema = new OpenApiSchema
                 {
                     Type = "string",
-                    Default = new OpenApiString(AbpProLocalizationConsts.DefaultCultureName)
+                    Default = new OpenApiString(AbpProUIConsts.DefaultCultureName)
                 }
             });
         }

@@ -17,7 +17,7 @@ public class PlatformDomainSharedModule : AbpModule
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Resources
-                .Add<PlatformResource>(AbpProLocalizationConsts.DefaultCultureName)
+                .Add<PlatformResource>(AbpProUIConsts.DefaultCultureName)
                 .AddBaseTypes(typeof(AbpValidationResource))
                 .AddVirtualJson("/RuichenShuxin/AbpPro/Platform/Localization/Resources");
         });

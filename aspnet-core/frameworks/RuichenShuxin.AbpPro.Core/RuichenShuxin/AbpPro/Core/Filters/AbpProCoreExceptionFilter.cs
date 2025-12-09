@@ -56,32 +56,32 @@ public class AbpProCoreExceptionFilter : AbpExceptionFilter, ITransientDependenc
     private AbpProCoreWrapResult<object> CreateWrapResult(ExceptionContext context)
     {
         var result = new AbpProCoreWrapResult<object>();
-        var localizer = context.GetRequiredService<IStringLocalizer<AbpProLocalizationResource>>();
+        var localizer = context.GetRequiredService<IStringLocalizer<AbpProUIResource>>();
         // 获取详细信息
         string details = context.Exception.ToString();
 
         switch (context.Exception)
         {
             case AbpAuthorizationException:
-                result.SetFail(localizer[$"{AbpProLocalizationConsts.NameSpace}:PermissionDenied"], $"{(int)HttpStatusCode.Unauthorized}", details);
+                result.SetFail(localizer[$"{AbpProUIConsts.NameSpace}:PermissionDenied"], $"{(int)HttpStatusCode.Unauthorized}", details);
                 break;
             case AbpValidationException validation:
-                var errorMessage = localizer[$"{AbpProLocalizationConsts.NameSpace}:ParameterValidationFailed"] + ";" + validation.ValidationErrors.JoinAsString(";");
+                var errorMessage = localizer[$"{AbpProUIConsts.NameSpace}:ParameterValidationFailed"] + ";" + validation.ValidationErrors.JoinAsString(";");
                 result.SetFail(errorMessage, $"{(int)HttpStatusCode.BadRequest}", details);
                 break;
             case EntityNotFoundException:
-                result.SetFail(localizer[$"{AbpProLocalizationConsts.NameSpace}:EntityNotFound"], $"{(int)HttpStatusCode.NotFound}", details);
+                result.SetFail(localizer[$"{AbpProUIConsts.NameSpace}:EntityNotFound"], $"{(int)HttpStatusCode.NotFound}", details);
                 break;
             case NotImplementedException:
-                result.SetFail(localizer[$"{AbpProLocalizationConsts.NameSpace}:Unimplemented"], $"{(int)HttpStatusCode.NotImplemented}", details);
+                result.SetFail(localizer[$"{AbpProUIConsts.NameSpace}:Unimplemented"], $"{(int)HttpStatusCode.NotImplemented}", details);
                 break;
             case DbUpdateConcurrencyException:
-                result.SetFail(localizer[$"{AbpProLocalizationConsts.NameSpace}:DbUpdateConcurrency"], $"{(int)HttpStatusCode.Conflict}", details);
+                result.SetFail(localizer[$"{AbpProUIConsts.NameSpace}:DbUpdateConcurrency"], $"{(int)HttpStatusCode.Conflict}", details);
                 break;
             default:
                 if (context.Exception is IHasErrorCode codeException)
                 {
-                    var exceptionConverter = context.GetRequiredService<IAbpProExceptionConverter>();
+                    var exceptionConverter = context.GetRequiredService<IAbpProUIExceptionConverter>();
                     var message = exceptionConverter.TryToLocalizeExceptionMessage(context.Exception);
 
                     if (codeException.Code.IsNullOrWhiteSpace())
