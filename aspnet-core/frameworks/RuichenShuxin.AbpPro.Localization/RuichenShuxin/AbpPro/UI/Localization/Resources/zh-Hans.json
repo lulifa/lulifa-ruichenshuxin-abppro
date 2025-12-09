@@ -1,10 +1,30 @@
 {
   "culture": "zh-Hans",
   "texts": {
-    "AbpPro.Localization:PermissionDenied": "权限不足",
-    "AbpPro.Localization:ParameterValidationFailed": "请求参数验证失败",
-    "AbpPro.Localization:EntityNotFound": "实体不存在",
-    "AbpPro.Localization:Unimplemented ": "未实现功能",
-    "AbpPro.Localization:DbUpdateConcurrency ": "数据已被修改,请重新提交."
+    "CommonUI:100001": "权限不足",
+    "CommonUI:100002": "请求参数验证失败",
+    "CommonUI:100003": "实体不存在",
+    "CommonUI:100004": "未实现功能",
+    "CommonUI:100005": "数据已被修改,请重新提交.",
+    "Search": "搜索",
+    "Actions": "操作",
+    "Create": "新增",
+    "Edit": "编辑",
+    "Delete": "删除",
+    "AreYouSure": "你确定吗?",
+    "CreatedSuccessfully": "创建成功",
+    "SavedSuccessfully": "保存成功",
+    "DeletedSuccessfully": "删除成功",
+    "Tenants": "租户",
+    "Tenants:Name": "名称",
+    "Tenants:AdminEmailAddress": "管理员电子邮件地址",
+    "Tenants:AdminPassword": "管理员密码",
+    "Tenants:DefaultConnectionString": "默认连接字符串",
+    "Tenants:UseSharedDatabase": "使用共享数据库",
+    "Tenants:DatabaseProvider": "数据库提供者",
+    "TenantDeletionConfirmationMessage": "租户 '{0}' 将被删除. 你确定吗?",
+    "ConnectionStrings": "连接字符串",
+    "ConnectionStrings:Name": "名称",
+    "ConnectionStrings:Value": "值"
   }
 }

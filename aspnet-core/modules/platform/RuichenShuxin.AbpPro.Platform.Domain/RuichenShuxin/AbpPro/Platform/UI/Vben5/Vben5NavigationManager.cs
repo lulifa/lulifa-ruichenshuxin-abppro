@@ -105,7 +105,7 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
               component: "/modules/platform/menus/index",
               icon: "material-symbols-light:menu",
               description: "菜单管理")
-            .SetProperty("title", "abp.modules.platform.menus.title"));
+            .SetProperty("title", "abp.modules.platform.menus"));
         modules.AddItem(
           new ApplicationMenu(
               name: "Vben5ModulesPlatformLayouts",
@@ -114,7 +114,7 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
               component: "/modules/platform/layouts/index",
               icon: "material-symbols-light:responsive-layout",
               description: "布局管理")
-            .SetProperty("title", "abp.modules.platform.layouts.title"));
+            .SetProperty("title", "abp.modules.platform.layouts"));
         modules.AddItem(
           new ApplicationMenu(
               name: "Vben5ModulesPlatformDataDictionaries",
@@ -123,7 +123,7 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
               component: "/modules/platform/data-dictionaries/index",
               icon: "material-symbols:dictionary-outline",
               description: "数据字典")
-            .SetProperty("title", "abp.modules.platform.dataDictionaries.title"));
+            .SetProperty("title", "abp.modules.platform.dataDictionaries"));
 
         return
         [
@@ -151,7 +151,7 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
               icon: "arcticons:tenantcloud-pro",
               description: "租户管理",
               multiTenancySides: MultiTenancySides.Host)
-            .SetProperty("title", "abp.system.tenants.title"));
+            .SetProperty("title", "abp.system.tenants"));
         system.AddItem(
           new ApplicationMenu(
               name: "Vben5SystemUsers",
@@ -160,7 +160,7 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
               component: "/system/identity/users/index",
               icon: "mdi:user-outline",
               description: "用户管理")
-          .SetProperty("title", "abp.system.identity.users.title"));
+          .SetProperty("title", "abp.system.identity.users"));
         system.AddItem(
           new ApplicationMenu(
               name: "Vben5SystemRoles",
@@ -169,7 +169,7 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
               component: "/system/identity/roles/index",
               icon: "carbon:user-role",
               description: "角色管理")
-          .SetProperty("title", "abp.system.identity.roles.title"));
+          .SetProperty("title", "abp.system.identity.roles"));
         system.AddItem(
           new ApplicationMenu(
               name: "Vben5SystemOrganizationUnits",
@@ -178,7 +178,7 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
               component: "/system/identity/organization-units/index",
               icon: "clarity:organization-line",
               description: "组织机构")
-          .SetProperty("title", "abp.system.identity.organizationUnits.title"));
+          .SetProperty("title", "abp.system.identity.organizationUnits"));
 
         return
         [

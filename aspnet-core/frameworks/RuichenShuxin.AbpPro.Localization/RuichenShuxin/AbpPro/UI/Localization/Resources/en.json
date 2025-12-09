@@ -1,10 +1,30 @@
 ﻿{
   "culture": "en",
   "texts": {
-    "AbpPro.Localization:PermissionDenied": "Permission Denied",
-    "AbpPro.Localization:ParameterValidationFailed": "Parameter Validation Failed",
-    "AbpPro.Localization:EntityNotFound": "Entity Not Found",
-    "AbpPro.Localization:Unimplemented ": "Unimplemented",
-    "AbpPro.Localization:DbUpdateConcurrency ": "The data has been modified, please resubmit"
+    "CommonUI:100001": "Insufficient permissions",
+    "CommonUI:100002": "Request parameter validation failed",
+    "CommonUI:100003": "Entity does not exist",
+    "CommonUI:100004": "Function not implemented",
+    "CommonUI:100005": "Data has been modified, please resubmit.",
+    "Search": "Search",
+    "Actions": "Actions",
+    "Create": "Create",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "AreYouSure": "Are you sure?",
+    "CreatedSuccessfully": "Created successfully",
+    "SavedSuccessfully": "Saved successfully",
+    "DeletedSuccessfully": "Deleted successfully",
+    "Tenants": "Tenants",
+    "Tenants:Name": "Name",
+    "Tenants:AdminEmailAddress": "Admin Email Address",
+    "Tenants:AdminPassword": "Admin Password",
+    "Tenants:DefaultConnectionString": "Default Connection String",
+    "Tenants:UseSharedDatabase": "Use the Shared Database",
+    "Tenants:DatabaseProvider": "Data Base Provider",
+    "TenantDeletionConfirmationMessage": "Tenant '{0}' will be deleted. Do you confirm that?",
+    "ConnectionStrings": "ConnectionStrings",
+    "ConnectionStrings:Name": "Name",
+    "ConnectionStrings:Value": "Value"
   }
 }

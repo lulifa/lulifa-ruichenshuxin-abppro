@@ -63,20 +63,20 @@ public class AbpProCoreExceptionFilter : AbpExceptionFilter, ITransientDependenc
         switch (context.Exception)
         {
             case AbpAuthorizationException:
-                result.SetFail(localizer[$"{AbpProUIConsts.NameSpace}:PermissionDenied"], $"{(int)HttpStatusCode.Unauthorized}", details);
+                result.SetFail(localizer[AbpProUIErrorCodes.ErrorCode100001], $"{(int)HttpStatusCode.Unauthorized}", details);
                 break;
             case AbpValidationException validation:
-                var errorMessage = localizer[$"{AbpProUIConsts.NameSpace}:ParameterValidationFailed"] + ";" + validation.ValidationErrors.JoinAsString(";");
+                var errorMessage = localizer[AbpProUIErrorCodes.ErrorCode100002] + ";" + validation.ValidationErrors.JoinAsString(";");
                 result.SetFail(errorMessage, $"{(int)HttpStatusCode.BadRequest}", details);
                 break;
             case EntityNotFoundException:
-                result.SetFail(localizer[$"{AbpProUIConsts.NameSpace}:EntityNotFound"], $"{(int)HttpStatusCode.NotFound}", details);
+                result.SetFail(localizer[AbpProUIErrorCodes.ErrorCode100003], $"{(int)HttpStatusCode.NotFound}", details);
                 break;
             case NotImplementedException:
-                result.SetFail(localizer[$"{AbpProUIConsts.NameSpace}:Unimplemented"], $"{(int)HttpStatusCode.NotImplemented}", details);
+                result.SetFail(localizer[AbpProUIErrorCodes.ErrorCode100004], $"{(int)HttpStatusCode.NotImplemented}", details);
                 break;
             case DbUpdateConcurrencyException:
-                result.SetFail(localizer[$"{AbpProUIConsts.NameSpace}:DbUpdateConcurrency"], $"{(int)HttpStatusCode.Conflict}", details);
+                result.SetFail(localizer[AbpProUIErrorCodes.ErrorCode100005], $"{(int)HttpStatusCode.Conflict}", details);
                 break;
             default:
                 if (context.Exception is IHasErrorCode codeException)

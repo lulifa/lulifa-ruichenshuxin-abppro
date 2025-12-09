@@ -2,7 +2,7 @@
 
 public class AbpProUIConsts
 {
-    public const string NameSpace = "AbpPro.UI";
+    public const string NameSpace = "CommonUI";
 
     public const string DefaultCultureName = "zh-Hans";
 
