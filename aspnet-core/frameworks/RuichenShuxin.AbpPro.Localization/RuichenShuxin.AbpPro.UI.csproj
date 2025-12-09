@@ -10,10 +10,15 @@
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" />
     <PackageReference Include="Volo.Abp.Autofac" />
     <PackageReference Include="Volo.Abp.Localization" />
+    <PackageReference Include="Volo.Abp.Identity.Domain.Shared" />
+    <PackageReference Include="Volo.Abp.OpenIddict.Domain.Shared" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="RuichenShuxin\AbpPro\UI\Localization\Resources\*.json" />
+    <EmbeddedResource Include="RuichenShuxin\AbpPro\UI\Localization\Identity\*.json" />
+    <EmbeddedResource Include="RuichenShuxin\AbpPro\UI\Localization\Saas\*.json" />
+    <EmbeddedResource Include="RuichenShuxin\AbpPro\UI\Localization\OpenIddict\*.json" />
   </ItemGroup>
 
 </Project>
