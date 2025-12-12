@@ -31,7 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuichenShuxin.AbpPro.Cli.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuichenShuxin.AbpPro.Core", "frameworks\RuichenShuxin.AbpPro.Core\RuichenShuxin.AbpPro.Core.csproj", "{7E4D2CE3-7AD6-46A3-B8A5-35911E04C1E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuichenShuxin.AbpPro.UI", "frameworks\RuichenShuxin.AbpPro.Localization\RuichenShuxin.AbpPro.UI.csproj", "{5F378542-3A21-408E-B5A0-9E715CA86C68}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuichenShuxin.AbpPro.UI", "frameworks\RuichenShuxin.AbpPro.UI\RuichenShuxin.AbpPro.UI.csproj", "{5F378542-3A21-408E-B5A0-9E715CA86C68}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
