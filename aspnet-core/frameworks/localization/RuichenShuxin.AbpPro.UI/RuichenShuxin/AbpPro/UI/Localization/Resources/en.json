@@ -1,10 +1,10 @@
 ﻿{
   "culture": "en",
   "texts": {
-    "AppUI:100001": "Insufficient permissions",
-    "AppUI:100002": "Request parameter validation failed",
-    "AppUI:100003": "Entity does not exist",
-    "AppUI:100004": "Function not implemented",
-    "AppUI:100005": "Data has been modified, please resubmit."
+    "AbpProLocalization:100001": "Insufficient permissions",
+    "AbpProLocalization:100002": "Request parameter validation failed",
+    "AbpProLocalization:100003": "Entity does not exist",
+    "AbpProLocalization:100004": "Function not implemented",
+    "AbpProLocalization:100005": "Data has been modified, please resubmit."
   }
 }

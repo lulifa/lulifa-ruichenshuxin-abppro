@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\localization\RuichenShuxin.AbpPro.UI\RuichenShuxin.AbpPro.UI.csproj" />
+    <ProjectReference Include="..\..\localization\RuichenShuxin.AbpPro.UI\RuichenShuxin.AbpPro.Localization.csproj" />
   </ItemGroup>
 
 </Project>

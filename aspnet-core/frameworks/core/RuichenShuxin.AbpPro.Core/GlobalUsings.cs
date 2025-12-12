@@ -33,7 +33,7 @@ global using Npgsql;
 global using OpenIddict.Server.AspNetCore;
 global using OpenIddict.Validation.AspNetCore;
 global using Oracle.ManagedDataAccess.Client;
-global using RuichenShuxin.AbpPro.UI;
+global using RuichenShuxin.AbpPro.Localization;
 global using StackExchange.Redis;
 global using Swashbuckle.AspNetCore.SwaggerGen;
 global using System;

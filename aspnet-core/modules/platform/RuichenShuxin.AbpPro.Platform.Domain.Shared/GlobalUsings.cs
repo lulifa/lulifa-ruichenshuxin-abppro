@@ -1,7 +1,7 @@
 ﻿// Global using directives
 
 global using RuichenShuxin.AbpPro.Core;
-global using RuichenShuxin.AbpPro.UI;
+global using RuichenShuxin.AbpPro.Localization;
 global using System;
 global using System.Collections.Generic;
 global using System.Linq;

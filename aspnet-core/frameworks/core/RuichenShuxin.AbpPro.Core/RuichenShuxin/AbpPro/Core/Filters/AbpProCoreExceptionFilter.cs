@@ -56,32 +56,32 @@ public class AbpProCoreExceptionFilter : AbpExceptionFilter, ITransientDependenc
     private AbpProCoreWrapResult<object> CreateWrapResult(ExceptionContext context)
     {
         var result = new AbpProCoreWrapResult<object>();
-        var localizer = context.GetRequiredService<IStringLocalizer<AbpProUIResource>>();
+        var localizer = context.GetRequiredService<IStringLocalizer<AbpProLocalizationResource>>();
         // 获取详细信息
         string details = context.Exception.ToString();
 
         switch (context.Exception)
         {
             case AbpAuthorizationException:
-                result.SetFail(localizer[AbpProUIErrorCodes.ErrorCode100001], $"{(int)HttpStatusCode.Unauthorized}", details);
+                result.SetFail(localizer[AbpProLocalizationErrorCodes.ErrorCode100001], $"{(int)HttpStatusCode.Unauthorized}", details);
                 break;
             case AbpValidationException validation:
-                var errorMessage = localizer[AbpProUIErrorCodes.ErrorCode100002] + ";" + validation.ValidationErrors.JoinAsString(";");
+                var errorMessage = localizer[AbpProLocalizationErrorCodes.ErrorCode100002] + ";" + validation.ValidationErrors.JoinAsString(";");
                 result.SetFail(errorMessage, $"{(int)HttpStatusCode.BadRequest}", details);
                 break;
             case EntityNotFoundException:
-                result.SetFail(localizer[AbpProUIErrorCodes.ErrorCode100003], $"{(int)HttpStatusCode.NotFound}", details);
+                result.SetFail(localizer[AbpProLocalizationErrorCodes.ErrorCode100003], $"{(int)HttpStatusCode.NotFound}", details);
                 break;
             case NotImplementedException:
-                result.SetFail(localizer[AbpProUIErrorCodes.ErrorCode100004], $"{(int)HttpStatusCode.NotImplemented}", details);
+                result.SetFail(localizer[AbpProLocalizationErrorCodes.ErrorCode100004], $"{(int)HttpStatusCode.NotImplemented}", details);
                 break;
             case DbUpdateConcurrencyException:
-                result.SetFail(localizer[AbpProUIErrorCodes.ErrorCode100005], $"{(int)HttpStatusCode.Conflict}", details);
+                result.SetFail(localizer[AbpProLocalizationErrorCodes.ErrorCode100005], $"{(int)HttpStatusCode.Conflict}", details);
                 break;
             default:
                 if (context.Exception is IHasErrorCode codeException)
                 {
-                    var exceptionConverter = context.GetRequiredService<IAbpProUIExceptionConverter>();
+                    var exceptionConverter = context.GetRequiredService<IAbpProLocalizationExceptionConverter>();
                     var message = exceptionConverter.TryToLocalizeExceptionMessage(context.Exception);
 
                     if (codeException.Code.IsNullOrWhiteSpace())

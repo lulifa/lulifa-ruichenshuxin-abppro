@@ -1,10 +1,10 @@
 {
   "culture": "zh-Hans",
   "texts": {
-    "AppUI:100001": "权限不足",
-    "AppUI:100002": "请求参数验证失败",
-    "AppUI:100003": "实体不存在",
-    "AppUI:100004": "未实现功能",
-    "AppUI:100005": "数据已被修改,请重新提交."
+    "AbpProLocalization:100001": "权限不足",
+    "AbpProLocalization:100002": "请求参数验证失败",
+    "AbpProLocalization:100003": "实体不存在",
+    "AbpProLocalization:100004": "未实现功能",
+    "AbpProLocalization:100005": "数据已被修改,请重新提交."
   }
 }

@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.OpenIddict.Localization;
 
-namespace RuichenShuxin.AbpPro.UI;
+namespace RuichenShuxin.AbpPro.Localization;
 
 [DependsOn(
     typeof(AbpAutofacModule),
@@ -8,19 +8,19 @@ namespace RuichenShuxin.AbpPro.UI;
     typeof(AbpOpenIddictDomainSharedModule),
     typeof(AbpLocalizationModule)
     )]
-public class AbpProUIModule : AbpModule
+public class AbpProLocalizationModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         Configure<AbpVirtualFileSystemOptions>(options =>
         {
-            options.FileSets.AddEmbedded<AbpProUIModule>();
+            options.FileSets.AddEmbedded<AbpProLocalizationModule>();
         });
 
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Resources
-                   .Add<AbpProUIResource>(AbpProUIConsts.DefaultCultureName)
+                   .Add<AbpProLocalizationResource>(AbpProLocalizationConsts.DefaultCultureName)
                    .AddVirtualJson("/RuichenShuxin/AbpPro/UI/Localization/Resources");
 
             options.Resources
@@ -28,20 +28,20 @@ public class AbpProUIModule : AbpModule
                    .AddVirtualJson("/RuichenShuxin/AbpPro/UI/Localization/Identity");
 
             options.Resources
-                   .Add<AbpSaasResource>(AbpProUIConsts.DefaultCultureName)
+                   .Add<AbpSaasResource>(AbpProLocalizationConsts.DefaultCultureName)
                    .AddVirtualJson("/RuichenShuxin/AbpPro/UI/Localization/Saas");
 
             options.Resources
                    .Get<AbpOpenIddictResource>()
                    .AddVirtualJson("/RuichenShuxin/AbpPro/UI/Localization/OpenIddict");
 
-            options.DefaultResourceType = typeof(AbpProUIResource);
+            options.DefaultResourceType = typeof(AbpProLocalizationResource);
 
         });
 
         Configure<AbpExceptionLocalizationOptions>(options =>
         {
-            options.MapCodeNamespace(AbpProUIConsts.NameSpace, typeof(AbpProUIResource));
+            options.MapCodeNamespace(AbpProLocalizationConsts.NameSpace, typeof(AbpProLocalizationResource));
         });
 
     }

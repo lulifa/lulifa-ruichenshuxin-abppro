@@ -1,9 +1,0 @@
-﻿namespace RuichenShuxin.AbpPro.UI;
-
-public class AbpProUIConsts
-{
-    public const string NameSpace = "AppUI";
-
-    public const string DefaultCultureName = "zh-Hans";
-
-}
