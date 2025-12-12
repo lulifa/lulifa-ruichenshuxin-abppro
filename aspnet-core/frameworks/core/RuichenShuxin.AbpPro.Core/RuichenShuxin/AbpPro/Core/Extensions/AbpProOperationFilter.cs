@@ -1,10 +1,10 @@
 ﻿namespace RuichenShuxin.AbpPro.Core;
 
-public class AbpProCoreOperationFilter : IOperationFilter
+public class AbpProOperationFilter : IOperationFilter
 {
     private readonly AbpMultiTenancyOptions _multiTenancyOptions;
     private readonly AbpAspNetCoreMultiTenancyOptions _aspNetCoreMultiTenancyOptions;
-    public AbpProCoreOperationFilter(IOptions<AbpMultiTenancyOptions> multiTenancyOptions, IOptions<AbpAspNetCoreMultiTenancyOptions> aspNetCoreMultiTenancyOptions)
+    public AbpProOperationFilter(IOptions<AbpMultiTenancyOptions> multiTenancyOptions, IOptions<AbpAspNetCoreMultiTenancyOptions> aspNetCoreMultiTenancyOptions)
     {
         _multiTenancyOptions = multiTenancyOptions.Value;
         _aspNetCoreMultiTenancyOptions = aspNetCoreMultiTenancyOptions.Value;
@@ -39,7 +39,7 @@ public class AbpProCoreOperationFilter : IOperationFilter
                 Schema = new OpenApiSchema
                 {
                     Type = "string",
-                    Default = new OpenApiString(AbpProLocalizationConsts.DefaultCultureName)
+                    Default = new OpenApiString(AbpProCoreConsts.Languages.ZhHans)
                 }
             });
         }

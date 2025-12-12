@@ -1,18 +1,40 @@
-﻿using System.IO;
+﻿using Medallion.Threading;
+using Medallion.Threading.Redis;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
+using Microsoft.Extensions.Configuration;
+using Microsoft.OpenApi.Models;
+using OpenIddict.Server.AspNetCore;
+using OpenIddict.Validation.AspNetCore;
+using RuichenShuxin.AbpPro.Wrapper;
+using StackExchange.Redis;
+using System.IO;
+using System.Linq;
 using Volo.Abp.AspNetCore.Mvc.AntiForgery;
+using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite.Bundling;
+using Volo.Abp.Caching;
+using Volo.Abp.MultiTenancy;
+using Volo.Abp.OpenIddict;
+using Volo.Abp.Security.Claims;
+using Volo.Abp.UI.Navigation.Urls;
 
-namespace RuichenShuxin.AbpPro.Core;
+namespace RuichenShuxin.AbpPro;
 
-public static class AbpProCoreServiceExtensions
+public partial class AbpProHttpApiHostModule
 {
     /// <summary>
     /// 预配置OpenIddict
     /// </summary>
-    public static IServiceCollection PreConfigureAbpProOpenIddict(this IServiceCollection services)
+    private void PreConfigureOpenIddict(IConfiguration configuration, IWebHostEnvironment environment)
     {
-        var authOptions = services.GetConfiguration().GetOptions<AuthServerOptions>();
+        var authOptions = configuration.GetOptions<AuthServerOptions>();
 
-        services.PreConfigure<OpenIddictBuilder>(builder =>
+        PreConfigure<OpenIddictBuilder>(builder =>
         {
             builder.AddValidation(options =>
             {
@@ -22,31 +44,44 @@ public static class AbpProCoreServiceExtensions
             });
         });
 
-        if (!services.GetHostingEnvironment().IsDevelopment())
+        if (!environment.IsDevelopment())
         {
-            services.PreConfigure<AbpOpenIddictAspNetCoreOptions>(options =>
+            PreConfigure<AbpOpenIddictAspNetCoreOptions>(options =>
             {
                 options.AddDevelopmentEncryptionAndSigningCertificate = false;
             });
 
-            services.PreConfigure<OpenIddictServerBuilder>(serverBuilder =>
+            PreConfigure<OpenIddictServerBuilder>(serverBuilder =>
             {
                 serverBuilder.AddProductionEncryptionAndSigningCertificate("openiddict.pfx", authOptions.CertificatePassPhrase);
                 serverBuilder.SetIssuer(new Uri(authOptions.Authority));
             });
         }
-
-        return services;
     }
+
+
+
+
+    /// <summary>
+    /// 配置统一响应包装器
+    /// </summary>
+    private void ConfigureWrapper()
+    {
+        Configure<AbpProWrapperOptions>(options =>
+        {
+            options.IsEnabled = true;
+        });
+    }
+
 
     /// <summary>
     /// 配置安全相关选项
     /// </summary>
-    public static IServiceCollection ConfigureAbpProSecurity(this IServiceCollection services)
+    private void ConfigureSecurity(IConfiguration configuration)
     {
-        var appOptions = services.GetConfiguration().GetOptions<AppOptions>();
+        var appOptions = configuration.GetOptions<AppOptions>();
 
-        var authOptions = services.GetConfiguration().GetOptions<AuthServerOptions>();
+        var authOptions = configuration.GetOptions<AuthServerOptions>();
 
         // PII 配置
         if (!appOptions.DisablePII)
@@ -58,18 +93,16 @@ public static class AbpProCoreServiceExtensions
         // HTTPS 配置
         if (!authOptions.RequireHttpsMetadata)
         {
-            services.Configure<OpenIddictServerAspNetCoreOptions>(options =>
+            Configure<OpenIddictServerAspNetCoreOptions>(options =>
             {
                 options.DisableTransportSecurityRequirement = true;
             });
 
-            services.Configure<ForwardedHeadersOptions>(options =>
+            Configure<ForwardedHeadersOptions>(options =>
             {
                 options.ForwardedHeaders = ForwardedHeaders.XForwardedProto;
             });
         }
-
-        return services;
     }
 
     /// <summary>
@@ -77,7 +110,7 @@ public static class AbpProCoreServiceExtensions
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection ConfigureAbpProAuthentication(this IServiceCollection services)
+    private void ConfigureAuthentication(IServiceCollection services, IConfiguration configuration)
     {
         services.ForwardIdentityAuthenticationForBearer(OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme);
         services.Configure<AbpClaimsPrincipalFactoryOptions>(options =>
@@ -93,7 +126,6 @@ public static class AbpProCoreServiceExtensions
 
         services.AddSameSiteCookiePolicy();
 
-        return services;
     }
 
     /// <summary>
@@ -102,19 +134,17 @@ public static class AbpProCoreServiceExtensions
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    public static IServiceCollection ConfigureAbpProUrls(this IServiceCollection services)
+    private void ConfigureUrls(IConfiguration configuration)
     {
-        var appOptions = services.GetConfiguration().GetOptions<AppOptions>();
+        var appOptions = configuration.GetOptions<AppOptions>();
 
-        services.Configure<AppUrlOptions>(options =>
+        Configure<AppUrlOptions>(options =>
         {
             options.Applications["MVC"].RootUrl = appOptions.SelfUrl;
             options.Applications["Vue"].RootUrl = appOptions.VueUrl;
             options.Applications["Vue"].Urls[AbpProCoreConsts.Urls.PasswordReset] = "account/reset-password";
             options.RedirectAllowedUrls.AddRange(appOptions.RedirectAllowedUrls?.Split(',') ?? Array.Empty<string>());
         });
-
-        return services;
 
     }
 
@@ -123,9 +153,9 @@ public static class AbpProCoreServiceExtensions
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection ConfigureAbpProBundles(this IServiceCollection services)
+    private void ConfigureBundles()
     {
-        services.Configure<AbpBundlingOptions>(options =>
+        Configure<AbpBundlingOptions>(options =>
         {
             options.StyleBundles.Configure(
                 LeptonXLiteThemeBundles.Styles.Global,
@@ -143,8 +173,6 @@ public static class AbpProCoreServiceExtensions
                 }
             );
         });
-
-        return services;
     }
 
     /// <summary>
@@ -153,9 +181,9 @@ public static class AbpProCoreServiceExtensions
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    public static IServiceCollection ConfigureAbpProSwagger(this IServiceCollection services)
+    private void ConfigureSwagger(IServiceCollection services, IConfiguration configuration)
     {
-        var authOptions = services.GetConfiguration().GetOptions<AuthServerOptions>();
+        var authOptions = configuration.GetOptions<AuthServerOptions>();
 
         services.AddAbpSwaggerGenWithOidc(
             authOptions.Authority,
@@ -172,8 +200,8 @@ public static class AbpProCoreServiceExtensions
                 options.DocInclusionPredicate((docName, description) => true);
                 options.CustomSchemaIds(type => type.FullName);
 
-                options.DocumentFilter<AbpProCoreHideDefaultApiFilter>();
-                options.OperationFilter<AbpProCoreOperationFilter>();
+                //options.DocumentFilter<AbpProHideDefaultApiFilter>();
+                options.OperationFilter<AbpProOperationFilter>();
 
                 // 自动扫描所有 XML 注释
                 var xmlFiles = Directory.GetFiles(AppContext.BaseDirectory, "*.xml");
@@ -183,9 +211,6 @@ public static class AbpProCoreServiceExtensions
                 }
 
             });
-
-        return services;
-
     }
 
     /// <summary>
@@ -194,7 +219,7 @@ public static class AbpProCoreServiceExtensions
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    public static IServiceCollection ConfigureAbpProCors(this IServiceCollection services)
+    private void ConfigureCors(IServiceCollection services, IConfiguration configuration)
     {
         var appOptions = services.GetConfiguration().GetOptions<AppOptions>();
 
@@ -209,16 +234,14 @@ public static class AbpProCoreServiceExtensions
                             .Select(o => o.Trim().RemovePostFix("/"))
                             .ToArray() ?? Array.Empty<string>()
                     )
-                    .WithAbpExposedHeaders()
-                    .WithExposedHeaders(AbpProCoreConsts.AbpWrapResult)
+                    .WithExposedHeaders()
+                    .WithAbpProWrapExposedHeaders()
                     .SetIsOriginAllowedToAllowWildcardSubdomains()
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials();
             });
         });
-
-        return services;
     }
 
     /// <summary>
@@ -226,11 +249,10 @@ public static class AbpProCoreServiceExtensions
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection ConfigureAbpProHealthChecks(this IServiceCollection services)
+    private void ConfigureHealthChecks(IServiceCollection services)
     {
-        services.AddAbpProHealthChecks();
 
-        return services;
+        services.AddAbpProHealthChecks();
 
     }
 
@@ -239,35 +261,15 @@ public static class AbpProCoreServiceExtensions
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection ConfigureAbpProMultiTenancy(this IServiceCollection services)
+    private void ConfigureMultiTenancy(IConfiguration configuration)
     {
-        var multiTenancyOptions = services.GetConfiguration().GetOptions<MultiTenancyOptions>();
+        var multiTenancyOptions = configuration.GetOptions<MultiTenancyOptions>();
 
-        services.Configure<AbpMultiTenancyOptions>(options =>
+        Configure<AbpMultiTenancyOptions>(options =>
         {
             options.IsEnabled = multiTenancyOptions.IsEnabled;
         });
 
-        return services;
-
-    }
-
-    /// <summary>
-    /// 异常过滤相关配置
-    /// </summary>
-    /// <param name="services"></param>
-    /// <returns></returns>
-    public static IServiceCollection ConfigureAbpProExceptions(this IServiceCollection services)
-    {
-        services.AddMvc(options =>
-        {
-            options.Filters.Add(typeof(AbpProCoreExceptionFilter));
-
-            options.Filters.Add(typeof(AbpProCoreResultFilter));
-
-        });
-
-        return services;
     }
 
     /// <summary>
@@ -275,11 +277,11 @@ public static class AbpProCoreServiceExtensions
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection ConfigureAbpProDataSeed(this IServiceCollection services)
+    private void ConfigureDataSeed(IServiceCollection services)
     {
-        services.AddHostedService<AbpProCoreDataSeedWorker>();
 
-        return services;
+        services.AddHostedService<AbpProDataSeedWorker>();
+
     }
 
     /// <summary>
@@ -287,34 +289,14 @@ public static class AbpProCoreServiceExtensions
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection ConfigureAbpProLocalization(this IServiceCollection services)
+    private void ConfigureLocalization(IConfiguration configuration)
     {
-        services.Configure<AbpLocalizationOptions>(options =>
+        Configure<AbpLocalizationOptions>(options =>
         {
             options.Languages.Add(new LanguageInfo("en", "en", "English"));
             options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
-            options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
 
-            options.Languages.Add(new LanguageInfo("ar", "ar", "العربية"));
-            options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
-            options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch"));
-            options.Languages.Add(new LanguageInfo("en-GB", "en-GB", "English (UK)"));
-            options.Languages.Add(new LanguageInfo("es", "es", "Español"));
-            options.Languages.Add(new LanguageInfo("fi", "fi", "Finnish"));
-            options.Languages.Add(new LanguageInfo("fr", "fr", "Français"));
-            options.Languages.Add(new LanguageInfo("hi", "hi", "Hindi"));
-            options.Languages.Add(new LanguageInfo("hu", "hu", "Magyar"));
-            options.Languages.Add(new LanguageInfo("is", "is", "Icelandic"));
-            options.Languages.Add(new LanguageInfo("it", "it", "Italiano"));
-            options.Languages.Add(new LanguageInfo("pt-BR", "pt-BR", "Português"));
-            options.Languages.Add(new LanguageInfo("ro-RO", "ro-RO", "Română"));
-            options.Languages.Add(new LanguageInfo("ru", "ru", "Русский"));
-            options.Languages.Add(new LanguageInfo("sk", "sk", "Slovak"));
-            options.Languages.Add(new LanguageInfo("sv", "sv", "Svenska"));
-            options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
         });
-
-        return services;
 
     }
 
@@ -323,11 +305,11 @@ public static class AbpProCoreServiceExtensions
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection ConfigureAbpProCache(this IServiceCollection services)
+    private void ConfigureCache(IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
-        var redisOptions = services.GetConfiguration().GetOptions<RedisOptions>();
+        var redisOptions = configuration.GetOptions<RedisOptions>();
 
-        services.Configure<AbpDistributedCacheOptions>(options =>
+        Configure<AbpDistributedCacheOptions>(options =>
         {
             options.KeyPrefix = $"{AbpProCoreConsts.ApplicationName}:";
         });
@@ -336,7 +318,7 @@ public static class AbpProCoreServiceExtensions
 
         if (redisOptions.IsEnabled)
         {
-            services.Configure<RedisCacheOptions>(options =>
+            Configure<RedisCacheOptions>(options =>
             {
                 options.Configuration = redisOptions.Configuration;
                 options.InstanceName = redisOptions.InstanceName;
@@ -349,14 +331,13 @@ public static class AbpProCoreServiceExtensions
                 return new RedisDistributedSynchronizationProvider(redis.GetDatabase());
             });
 
-            if (!services.GetHostingEnvironment().IsDevelopment())
+            if (!environment.IsDevelopment())
             {
                 dataProtectionBuilder.PersistKeysToStackExchangeRedis(redis, $"{AbpProCoreConsts.ApplicationName}-Protection-Keys");
             }
         }
 
-        return services;
-
     }
+
 
 }

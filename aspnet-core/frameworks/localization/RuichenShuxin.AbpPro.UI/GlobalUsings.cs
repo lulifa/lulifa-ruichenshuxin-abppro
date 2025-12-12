@@ -2,6 +2,7 @@
 
 global using Microsoft.Extensions.Localization;
 global using Microsoft.Extensions.Options;
+global using RuichenShuxin.AbpPro.Core;
 global using System;
 global using System.Collections.Generic;
 global using Volo.Abp.Autofac;
@@ -13,4 +14,5 @@ global using Volo.Abp.Localization;
 global using Volo.Abp.Localization.ExceptionHandling;
 global using Volo.Abp.Modularity;
 global using Volo.Abp.OpenIddict;
+global using Volo.Abp.OpenIddict.Localization;
 global using Volo.Abp.VirtualFileSystem;

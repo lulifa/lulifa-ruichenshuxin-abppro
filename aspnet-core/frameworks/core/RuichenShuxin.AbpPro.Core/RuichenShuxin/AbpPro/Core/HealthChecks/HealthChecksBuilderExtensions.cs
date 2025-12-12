@@ -1,12 +1,12 @@
 ﻿namespace RuichenShuxin.AbpPro.Core;
 
-public static class AbpProCoreHealthChecksBuilderExtensions
+public static class HealthChecksBuilderExtensions
 {
     public static void AddAbpProHealthChecks(this IServiceCollection services)
     {
         // Add your health checks here
         var healthChecksBuilder = services.AddHealthChecks();
-        healthChecksBuilder.AddCheck<AbpProCoreDatabaseCheck>("AbpPro DbContext Check", tags: new string[] { "database" });
+        healthChecksBuilder.AddCheck<DatabaseCheck>("AbpPro DbContext Check", tags: new string[] { "database" });
 
         services.ConfigureHealthCheckEndpoint("/health-status");
 

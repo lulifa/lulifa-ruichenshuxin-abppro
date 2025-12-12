@@ -1,10 +1,10 @@
 ﻿namespace RuichenShuxin.AbpPro.Core;
 
-public abstract class AbpProCoreAppServiceBase<TResource, TModule> : ApplicationService
+public abstract class AbpProAppServiceBase<TResource, TModule> : ApplicationService
     where TResource : class
     where TModule : class
 {
-    protected AbpProCoreAppServiceBase()
+    protected AbpProAppServiceBase()
     {
         LocalizationResource = typeof(TResource);
         ObjectMapperContext = typeof(TModule);

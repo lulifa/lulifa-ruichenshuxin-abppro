@@ -3,7 +3,7 @@
 /// <summary>
 /// 通用 Controller 基类（所有 API 控制器都继承这个）
 /// </summary>
-public abstract class PlatformController : AbpProCoreControllerBase<PlatformResource>
+public abstract class PlatformController : AbpProControllerBase<PlatformResource>
 {
 }
 

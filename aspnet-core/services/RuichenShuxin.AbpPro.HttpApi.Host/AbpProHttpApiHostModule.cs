@@ -1,5 +1,3 @@
-using RuichenShuxin.AbpPro.Platform;
-
 namespace RuichenShuxin.AbpPro;
 
 [DependsOn(
@@ -10,36 +8,44 @@ namespace RuichenShuxin.AbpPro;
     typeof(AbpProApplicationModule),
     typeof(AbpProEntityFrameworkCoreModule),
     typeof(AbpAccountWebOpenIddictModule),
-    typeof(AbpProOAuthModule),
-    typeof(AbpProCAPEventBusModule),
     typeof(AbpSwashbuckleModule),
     typeof(AbpCachingStackExchangeRedisModule),
-    typeof(AbpAspNetCoreSerilogModule)
+    typeof(AbpAspNetCoreSerilogModule),
+
+    typeof(AbpProCAPEventBusModule),
+    typeof(AbpProLocalizationModule),
+    typeof(AbpProOAuthModule),
+    typeof(AbpProAspNetCoreMvcWrapperModule),
+    typeof(AbpProCoreModule)
     )]
-public class AbpProHttpApiHostModule : AbpModule
+public partial class AbpProHttpApiHostModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
-    {
-        context.Services.PreConfigureAbpProOpenIddict();
-    }
-
-    public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
         var hostingEnvironment = context.Services.GetHostingEnvironment();
 
-        context.Services.ConfigureAbpProSecurity()
-                        .ConfigureAbpProAuthentication()
-                        .ConfigureAbpProUrls()
-                        .ConfigureAbpProBundles()
-                        .ConfigureAbpProHealthChecks()
-                        .ConfigureAbpProCors()
-                        .ConfigureAbpProMultiTenancy()
-                        .ConfigureAbpProExceptions()
-                        .ConfigureAbpProDataSeed()
-                        .ConfigureAbpProLocalization()
-                        .ConfigureAbpProCache()
-                        .ConfigureAbpProSwagger();
+        PreConfigureOpenIddict(configuration, hostingEnvironment);
+    }
+
+    public override void ConfigureServices(ServiceConfigurationContext context)
+    {
+        var services = context.Services;
+        var configuration = context.Services.GetConfiguration();
+        var hostingEnvironment = context.Services.GetHostingEnvironment();
+
+        ConfigureWrapper();
+        ConfigureSecurity(configuration);
+        ConfigureAuthentication(services, configuration);
+        ConfigureUrls(configuration);
+        ConfigureBundles();
+        ConfigureHealthChecks(services);
+        ConfigureCors(services, configuration);
+        ConfigureMultiTenancy(configuration);
+        ConfigureDataSeed(services);
+        ConfigureLocalization(configuration);
+        ConfigureCache(services, configuration, hostingEnvironment);
+        ConfigureSwagger(services, configuration);
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)

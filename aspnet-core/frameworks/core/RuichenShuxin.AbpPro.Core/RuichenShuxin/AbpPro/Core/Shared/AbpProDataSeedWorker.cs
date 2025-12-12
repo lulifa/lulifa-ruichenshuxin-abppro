@@ -1,9 +1,9 @@
 ﻿namespace RuichenShuxin.AbpPro.Core;
 
-public class AbpProCoreDataSeedWorker : BackgroundService
+public class AbpProDataSeedWorker : BackgroundService
 {
     protected IDataSeeder DataSeeder { get; }
-    public AbpProCoreDataSeedWorker(IDataSeeder dataSeeder)
+    public AbpProDataSeedWorker(IDataSeeder dataSeeder)
     {
         DataSeeder = dataSeeder;
     }

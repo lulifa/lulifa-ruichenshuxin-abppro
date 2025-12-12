@@ -1,6 +1,6 @@
-﻿namespace RuichenShuxin.AbpPro.Core;
+﻿namespace Microsoft.Extensions.DependencyInjection;
 
-public static class AbpProCoreSameSiteCookiesExtensions
+public static class SameSiteCookiesServiceCollectionExtensions
 {
     public static IServiceCollection AddSameSiteCookiePolicy(this IServiceCollection services)
     {

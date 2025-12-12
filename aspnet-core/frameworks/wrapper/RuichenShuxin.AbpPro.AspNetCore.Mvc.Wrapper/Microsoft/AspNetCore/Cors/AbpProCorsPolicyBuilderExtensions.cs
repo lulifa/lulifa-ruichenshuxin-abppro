@@ -2,7 +2,7 @@
 
 public static class AbpProCorsPolicyBuilderExtensions
 {
-    public static CorsPolicyBuilder WithAbpWrapExposedHeaders(this CorsPolicyBuilder corsPolicyBuilder)
+    public static CorsPolicyBuilder WithAbpProWrapExposedHeaders(this CorsPolicyBuilder corsPolicyBuilder)
     {
         return corsPolicyBuilder
             .WithExposedHeaders(

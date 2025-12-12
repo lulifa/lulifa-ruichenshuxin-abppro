@@ -1,12 +1,11 @@
-﻿using Volo.Abp.OpenIddict.Localization;
-
-namespace RuichenShuxin.AbpPro.Localization;
+﻿namespace RuichenShuxin.AbpPro.Localization;
 
 [DependsOn(
     typeof(AbpAutofacModule),
     typeof(AbpIdentityDomainSharedModule),
     typeof(AbpOpenIddictDomainSharedModule),
-    typeof(AbpLocalizationModule)
+    typeof(AbpLocalizationModule),
+    typeof(AbpProCoreModule)
     )]
 public class AbpProLocalizationModule : AbpModule
 {
@@ -20,20 +19,20 @@ public class AbpProLocalizationModule : AbpModule
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Resources
-                   .Add<AbpProLocalizationResource>(AbpProLocalizationConsts.DefaultCultureName)
-                   .AddVirtualJson("/RuichenShuxin/AbpPro/UI/Localization/Resources");
+                   .Add<AbpProLocalizationResource>(AbpProCoreConsts.Languages.ZhHans)
+                   .AddVirtualJson("/RuichenShuxin/AbpPro/Localization/Resources");
 
             options.Resources
                    .Get<IdentityResource>()
-                   .AddVirtualJson("/RuichenShuxin/AbpPro/UI/Localization/Identity");
+                   .AddVirtualJson("/RuichenShuxin/AbpPro/Localization/Identity");
 
             options.Resources
-                   .Add<AbpSaasResource>(AbpProLocalizationConsts.DefaultCultureName)
-                   .AddVirtualJson("/RuichenShuxin/AbpPro/UI/Localization/Saas");
+                   .Add<AbpSaasResource>(AbpProCoreConsts.Languages.ZhHans)
+                   .AddVirtualJson("/RuichenShuxin/AbpPro/Localization/Saas");
 
             options.Resources
                    .Get<AbpOpenIddictResource>()
-                   .AddVirtualJson("/RuichenShuxin/AbpPro/UI/Localization/OpenIddict");
+                   .AddVirtualJson("/RuichenShuxin/AbpPro/Localization/OpenIddict");
 
             options.DefaultResourceType = typeof(AbpProLocalizationResource);
 

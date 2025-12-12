@@ -1,6 +1,6 @@
 ﻿namespace RuichenShuxin.AbpPro.Platform.Settings;
 
-public class PlatformSettingDefinitionProvider : SettingDefinitionProvider
+public class PlatformSettingDefinitionProvider : Volo.Abp.Settings.SettingDefinitionProvider
 {
     public override void Define(ISettingDefinitionContext context)
     {

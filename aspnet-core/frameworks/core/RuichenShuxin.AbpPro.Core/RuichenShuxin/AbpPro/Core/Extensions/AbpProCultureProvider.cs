@@ -1,6 +1,6 @@
 ﻿namespace RuichenShuxin.AbpPro.Core;
 
-public class AbpProCoreCultureProvider : AcceptLanguageHeaderRequestCultureProvider
+public class AbpProCultureProvider : AcceptLanguageHeaderRequestCultureProvider
 {
     public override async Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)
     {

@@ -9,11 +9,6 @@ public static class AbpProCoreConsts
 
     public const string ModulePlatform = "Platform";
 
-    /// <summary>
-    /// Wrap
-    /// </summary>
-    public const string AbpWrapResult = "_AbpWrapResult";
-
 
     public const int MaxLength64 = 64;
 
@@ -63,14 +58,6 @@ public static class AbpProCoreConsts
         public const string ApiTitle = $"{ApplicationName} API";
         public const string Version = "v1";
         public const string JsonEndpoint = $"/swagger/{Version}/swagger.json";
-    }
-
-    /// <summary>
-    /// 缓存相关常量
-    /// </summary>
-    public static class Cache
-    {
-        public const string KeyPrefix = $"{ApplicationName}:";
     }
 
 }

@@ -1,6 +1,6 @@
 ﻿namespace RuichenShuxin.AbpPro.OAuth;
 
-public class AbpProOAuthSettingDefinitionProvider : SettingDefinitionProvider
+public class AbpProOAuthSettingDefinitionProvider : Volo.Abp.Settings.SettingDefinitionProvider
 {
     public override void Define(ISettingDefinitionContext context)
     {

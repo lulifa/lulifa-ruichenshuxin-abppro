@@ -8,7 +8,7 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
     protected ITenantRepository TenantRepository { get; }
     protected ITenantManager TenantManager { get; }
     protected IDataSeeder DataSeeder { get; }
-    protected AbpTenantConnectionStringCheckOptions ConnectionStringCheckOptions { get; }
+    protected TenantConnectionStringCheckOptions ConnectionStringCheckOptions { get; }
 
     public SystemTenantAppService(
         IAbpTenantAppService abpTenantAppService,
@@ -16,7 +16,7 @@ public class SystemTenantAppService : AbpProAppService, ISystemTenantAppService
         ITenantManager tenantManager,
         IDistributedEventBus eventBus,
         IDataSeeder dataSeeder,
-        IOptions<AbpTenantConnectionStringCheckOptions> connectionStringCheckOptions)
+        IOptions<TenantConnectionStringCheckOptions> connectionStringCheckOptions)
     {
         AbpTenantAppService = abpTenantAppService;
         EventBus = eventBus;

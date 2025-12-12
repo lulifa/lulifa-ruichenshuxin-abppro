@@ -1,10 +1,10 @@
 ﻿namespace RuichenShuxin.AbpPro.Core;
 
-public class AbpProCoreDatabaseCheck : IHealthCheck, ITransientDependency
+public class DatabaseCheck : IHealthCheck, ITransientDependency
 {
     protected readonly IIdentityRoleRepository IdentityRoleRepository;
 
-    public AbpProCoreDatabaseCheck(IIdentityRoleRepository identityRoleRepository)
+    public DatabaseCheck(IIdentityRoleRepository identityRoleRepository)
     {
         IdentityRoleRepository = identityRoleRepository;
     }

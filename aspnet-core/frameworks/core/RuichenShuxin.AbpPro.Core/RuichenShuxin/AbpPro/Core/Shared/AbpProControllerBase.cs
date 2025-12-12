@@ -3,12 +3,11 @@
 /// <summary>
 /// Controller 基类（最顶层，定义资源类型）
 /// </summary>
-[AbpProCoreWrapResult]
 [RemoteService]
-public abstract class AbpProCoreControllerBase<TResource> : AbpControllerBase
+public abstract class AbpProControllerBase<TResource> : AbpControllerBase
     where TResource : class
 {
-    protected AbpProCoreControllerBase()
+    protected AbpProControllerBase()
     {
         LocalizationResource = typeof(TResource);
     }
@@ -25,7 +24,7 @@ public abstract class AbpProCoreCrudControllerBase<
     TCreateInput,
     TUpdateInput,
     TResource>
-    : AbpProCoreControllerBase<TResource>
+    : AbpProControllerBase<TResource>
     where TAppService : ICrudAppService<TEntityDto, TKey, TGetListInput, TCreateInput, TUpdateInput>
     where TResource : class
 {

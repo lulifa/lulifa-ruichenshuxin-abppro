@@ -1,8 +1,5 @@
 ﻿namespace RuichenShuxin.AbpPro.Core;
 
-[DependsOn(
-    typeof(AbpProLocalizationModule)
-    )]
 public class AbpProCoreModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
@@ -19,7 +16,7 @@ public class AbpProCoreModule : AbpModule
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        Configure<AbpTenantConnectionStringCheckOptions>(options =>
+        Configure<TenantConnectionStringCheckOptions>(options =>
         {
             options.ConnectionStringCheckers[AbpProCoreConsts.DatabaseProviderNames.MySql] = new MySqlConnectionStringChecker();
             options.ConnectionStringCheckers[AbpProCoreConsts.DatabaseProviderNames.Oracle] = new OracleConnectionStringChecker();

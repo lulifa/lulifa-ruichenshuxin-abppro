@@ -15,10 +15,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="RuichenShuxin\AbpPro\UI\Localization\Resources\*.json" />
-    <EmbeddedResource Include="RuichenShuxin\AbpPro\UI\Localization\Identity\*.json" />
-    <EmbeddedResource Include="RuichenShuxin\AbpPro\UI\Localization\Saas\*.json" />
-    <EmbeddedResource Include="RuichenShuxin\AbpPro\UI\Localization\OpenIddict\*.json" />
+    <EmbeddedResource Include="RuichenShuxin\AbpPro\Localization\Resources\*.json" />
+    <EmbeddedResource Include="RuichenShuxin\AbpPro\Localization\Identity\*.json" />
+    <EmbeddedResource Include="RuichenShuxin\AbpPro\Localization\Saas\*.json" />
+    <EmbeddedResource Include="RuichenShuxin\AbpPro\Localization\OpenIddict\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\RuichenShuxin.AbpPro.Core\RuichenShuxin.AbpPro.Core.csproj" />
   </ItemGroup>
 
 </Project>

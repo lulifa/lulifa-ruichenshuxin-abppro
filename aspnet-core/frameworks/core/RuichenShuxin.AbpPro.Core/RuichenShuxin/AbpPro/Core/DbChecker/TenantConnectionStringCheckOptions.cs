@@ -1,10 +1,10 @@
 ﻿namespace RuichenShuxin.AbpPro.Core;
 
-public class AbpTenantConnectionStringCheckOptions
+public class TenantConnectionStringCheckOptions
 {
     public IDictionary<string, IDataBaseConnectionStringChecker> ConnectionStringCheckers { get; }
 
-    public AbpTenantConnectionStringCheckOptions()
+    public TenantConnectionStringCheckOptions()
     {
         ConnectionStringCheckers = new Dictionary<string, IDataBaseConnectionStringChecker>(StringComparer.InvariantCultureIgnoreCase);
     }
