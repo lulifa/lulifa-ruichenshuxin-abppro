@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RuichenShuxin.AbpPro.Core\RuichenShuxin.AbpPro.Core.csproj" />
+    <ProjectReference Include="..\..\core\RuichenShuxin.AbpPro.Core\RuichenShuxin.AbpPro.Core.csproj" />
   </ItemGroup>
 
 </Project>

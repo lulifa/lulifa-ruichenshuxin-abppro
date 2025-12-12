@@ -8,11 +8,11 @@
 
   <ItemGroup>
 
-    <PackageReference Include="Volo.Abp"  />
-    <PackageReference Include="Volo.Abp.Features"  />
-    <PackageReference Include="Volo.Abp.Settings"  />
-    <PackageReference Include="Volo.Abp.SettingManagement.Domain"  />
-    <PackageReference Include="Volo.Abp.Account.Web"  />
+    <PackageReference Include="Volo.Abp" />
+    <PackageReference Include="Volo.Abp.Features" />
+    <PackageReference Include="Volo.Abp.Settings" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Domain" />
+    <PackageReference Include="Volo.Abp.Account.Web" />
     <PackageReference Include="AspNet.Security.OAuth.GitHub" />
     <PackageReference Include="AspNet.Security.OAuth.Gitee" />
     <PackageReference Include="AspNet.Security.OAuth.QQ" />
@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RuichenShuxin.AbpPro.Core\RuichenShuxin.AbpPro.Core.csproj" />
+    <ProjectReference Include="..\..\core\RuichenShuxin.AbpPro.Core\RuichenShuxin.AbpPro.Core.csproj" />
   </ItemGroup>
 
 </Project>
