@@ -1,0 +1,76 @@
+﻿namespace RuichenShuxin.AbpPro.AspNetCore.Mvc.Wrapper;
+
+[Dependency(ReplaceServices = true)]
+[ExposeServices(typeof(AbpExceptionFilter))]
+public class AbpProExceptionWrapResultFilter : AbpExceptionFilter, ITransientDependency
+{
+    protected async override Task HandleAndWrapException(ExceptionContext context)
+    {
+        var wrapResultChecker = context.GetRequiredService<IWrapResultChecker>();
+
+        if (!wrapResultChecker.WrapOnException(context))
+        {
+            await base.HandleAndWrapException(context);
+            return;
+        }
+
+        LogException(context, out var remoteServiceErrorInfo);
+
+        await context.GetRequiredService<IExceptionNotifier>().NotifyAsync(new ExceptionNotificationContext(context.Exception));
+
+        var isAuthenticated = context.HttpContext.User?.Identity?.IsAuthenticated ?? false;
+        var wrapOptions = context.GetRequiredService<IOptions<AbpProWrapperOptions>>().Value;
+
+        if (context.Exception is AbpAuthorizationException)
+        {
+            if (!wrapOptions.IsWrapUnauthorizedEnabled)
+            {
+                await context.HttpContext.RequestServices.GetRequiredService<IAbpAuthorizationExceptionHandler>()
+                        .HandleAsync(context.Exception.As<AbpAuthorizationException>(), context.HttpContext);
+
+                context.Exception = null;
+
+                return;
+            }
+
+            if (isAuthenticated)
+            {
+                await context.HttpContext.RequestServices.GetRequiredService<IAbpAuthorizationExceptionHandler>()
+                        .HandleAsync(context.Exception.As<AbpAuthorizationException>(), context.HttpContext);
+
+                context.Exception = null;
+
+                return;
+            }
+        }
+
+        var httpResponseWrapper = context.GetRequiredService<IHttpResponseWrapper>();
+        var statusCodFinder = context.GetRequiredService<IHttpExceptionStatusCodeFinder>();
+        var exceptionWrapHandler = context.GetRequiredService<IExceptionWrapHandlerFactory>();
+
+        var exceptionWrapContext = new ExceptionWrapContext(
+            context.Exception,
+            remoteServiceErrorInfo,
+            context.HttpContext.RequestServices,
+            statusCodFinder.GetStatusCode(context.HttpContext, context.Exception));
+        exceptionWrapHandler.CreateFor(exceptionWrapContext).Wrap(exceptionWrapContext);
+
+        var wrapperHeaders = new Dictionary<string, string>()
+            {
+                { AbpProHttpWrapConsts.AbpWrapResult, "true" }
+            };
+        var responseWrapperContext = new HttpResponseWrapperContext(
+            context.HttpContext,
+            (int)wrapOptions.HttpStatusCode,
+            wrapperHeaders);
+
+        httpResponseWrapper.Wrap(responseWrapperContext);
+
+        context.Result = new ObjectResult(new WrapResult(
+            exceptionWrapContext.ErrorInfo.Code,
+            exceptionWrapContext.ErrorInfo.Message,
+            exceptionWrapContext.ErrorInfo.Details));
+
+        context.Exception = null; //Handled!
+    }
+}

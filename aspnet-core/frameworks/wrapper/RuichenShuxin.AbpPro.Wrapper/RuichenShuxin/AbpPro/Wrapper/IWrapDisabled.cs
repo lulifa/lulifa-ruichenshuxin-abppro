@@ -1,6 +1,5 @@
 ﻿namespace RuichenShuxin.AbpPro.Wrapper;
 
-public class Class1
+public interface IWrapDisabled
 {
-
 }

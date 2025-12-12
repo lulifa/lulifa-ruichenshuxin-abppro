@@ -2,8 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <AssemblyName>RuichenShuxin.AbpPro.AspNetCore.Wrapper</AssemblyName>
+    <RootNamespace />
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AspNetCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RuichenShuxin.AbpPro.Wrapper\RuichenShuxin.AbpPro.Wrapper.csproj" />
+  </ItemGroup>
 
 </Project>
