@@ -235,7 +235,7 @@ public partial class AbpProHttpApiHostModule
                             .Select(o => o.Trim().RemovePostFix("/"))
                             .ToArray() ?? Array.Empty<string>()
                     )
-                    .WithExposedHeaders()
+                    .WithAbpExposedHeaders()
                     .WithAbpProWrapExposedHeaders()
                     .SetIsOriginAllowedToAllowWildcardSubdomains()
                     .AllowAnyHeader()
