@@ -170,6 +170,7 @@ public partial class AbpProHttpApiHostModule
                 bundle =>
                 {
                     bundle.AddFiles("/global-scripts.js");
+                    bundle.AddContributors(typeof(AbpProGlobalScriptContributor));
                 }
             );
         });
