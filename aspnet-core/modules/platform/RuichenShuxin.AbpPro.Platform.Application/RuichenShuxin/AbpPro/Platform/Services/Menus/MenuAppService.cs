@@ -1,9 +1,11 @@
-﻿namespace RuichenShuxin.AbpPro.Platform;
+﻿using Volo.Abp.Identity;
+
+namespace RuichenShuxin.AbpPro.Platform;
 
 [Authorize]
 public class MenuAppService : PlatformAppService, IMenuAppService
 {
-
+    protected IUserRoleFinder UserRoleFinder { get; }
     protected DataItemMappingOptions DataItemMapping { get; }
     protected MenuManager MenuManager { get; }
     protected IMenuRepository MenuRepository { get; }
@@ -13,6 +15,7 @@ public class MenuAppService : PlatformAppService, IMenuAppService
     protected ILayoutRepository LayoutRepository { get; }
 
     public MenuAppService(
+        IUserRoleFinder userRoleFinder,
         MenuManager menuManager,
         IMenuRepository menuRepository,
         IDataRepository dataRepository,
@@ -21,6 +24,7 @@ public class MenuAppService : PlatformAppService, IMenuAppService
         IRoleMenuRepository roleMenuRepository,
         IOptions<DataItemMappingOptions> options)
     {
+        UserRoleFinder = userRoleFinder;
         MenuManager = menuManager;
         MenuRepository = menuRepository;
         DataRepository = dataRepository;
@@ -223,7 +227,9 @@ public class MenuAppService : PlatformAppService, IMenuAppService
     [Authorize(PlatformPermissions.Menu.ManageUsers)]
     public async virtual Task<ListResultDto<MenuDto>> GetUserMenuListAsync(MenuGetByUserInput input)
     {
-        var menus = await MenuRepository.GetUserMenusAsync(input.UserId, input.Roles, input.Framework);
+        var userRoles = await UserRoleFinder.GetRoleNamesAsync(input.UserId);
+
+        var menus = await MenuRepository.GetUserMenusAsync(input.UserId, userRoles, input.Framework);
 
         var menuDtos = ObjectMapper.Map<List<Menu>, List<MenuDto>>(menus);
 
@@ -231,7 +237,7 @@ public class MenuAppService : PlatformAppService, IMenuAppService
 
         if (startupMenu == null)
         {
-            startupMenu = await RoleMenuRepository.FindStartupMenuAsync(input.Roles, input.Framework);
+            startupMenu = await RoleMenuRepository.FindStartupMenuAsync(userRoles, input.Framework);
         }
 
         if (startupMenu != null)

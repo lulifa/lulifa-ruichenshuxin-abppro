@@ -38,28 +38,6 @@ public class MenuController : PlatformController<
         return await AppService.GetUserMenuListAsync(input);
     }
 
-    [HttpGet]
-    [Route("by-user/{userId}/{framework}")]
-    public async virtual Task<ListResultDto<MenuDto>> GetUserMenuListAsync(Guid userId, string framework)
-    {
-        var userRoles = await UserRoleFinder.GetRoleNamesAsync(userId);
-
-        var getMenuByUser = new MenuGetByUserInput
-        {
-            UserId = userId,
-            Roles = userRoles,
-            Framework = framework
-        };
-        return await AppService.GetUserMenuListAsync(getMenuByUser);
-    }
-
-    [HttpGet]
-    [Route("by-role")]
-    public async virtual Task<ListResultDto<MenuDto>> GetRoleMenuListAsync(MenuGetByRoleInput input)
-    {
-        return await AppService.GetRoleMenuListAsync(input);
-    }
-
     [HttpPut]
     [Route("by-user")]
     public async virtual Task SetUserMenusAsync(UserMenuInput input)
@@ -86,6 +64,13 @@ public class MenuController : PlatformController<
     public async virtual Task SetRoleStartupAsync(Guid id, RoleMenuStartupInput input)
     {
         await AppService.SetRoleStartupAsync(id, input);
+    }
+
+    [HttpGet]
+    [Route("by-role")]
+    public async virtual Task<ListResultDto<MenuDto>> GetRoleMenuListAsync(MenuGetByRoleInput input)
+    {
+        return await AppService.GetRoleMenuListAsync(input);
     }
 
 }
