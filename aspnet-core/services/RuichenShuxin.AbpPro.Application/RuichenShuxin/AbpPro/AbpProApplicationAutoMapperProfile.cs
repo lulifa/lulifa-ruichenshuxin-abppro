@@ -11,5 +11,7 @@ public class AbpProApplicationAutoMapperProfile : Profile
         CreateMap<Tenant, TenantDto>().MapExtraProperties();
 
         CreateMap<TenantConnectionString, TenantConnectionStringDto>();
+
+        CreateMap<OrganizationUnit, OrganizationUnitDto>().MapExtraProperties();
     }
 }
