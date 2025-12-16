@@ -4,11 +4,11 @@
 /// 系统应用多语言
 /// </summary>
 [Route("api/system/application-localization")]
-public class SystemApplicationLocalizationController : AbpProController, ISystemApplicationLocalizationAppService
+public class SystemApplicationLocalizationController : AbpProController, IAbpApplicationLocalizationAppService
 {
-    protected readonly ISystemApplicationLocalizationAppService SystemApplicationLocalizationAppService;
+    protected readonly IAbpApplicationLocalizationAppService SystemApplicationLocalizationAppService;
 
-    public SystemApplicationLocalizationController(ISystemApplicationLocalizationAppService systemApplicationLocalizationAppService)
+    public SystemApplicationLocalizationController(IAbpApplicationLocalizationAppService systemApplicationLocalizationAppService)
     {
         SystemApplicationLocalizationAppService = systemApplicationLocalizationAppService;
     }

@@ -1,10 +1,14 @@
-﻿namespace RuichenShuxin.AbpPro;
+﻿using Volo.Abp.DependencyInjection;
 
-public class SystemApplicationLocalizationAppService : AbpProAppService, ISystemApplicationLocalizationAppService
+namespace RuichenShuxin.AbpPro;
+
+[Dependency(ReplaceServices = true)]
+[ExposeServices(typeof(IAbpApplicationLocalizationAppService))]
+public class SystemApplicationLocalizationAppService : AbpProAppService, IAbpApplicationLocalizationAppService
 {
-    protected readonly IAbpApplicationLocalizationAppService AbpApplicationLocalizationAppService;
+    protected readonly AbpApplicationLocalizationAppService AbpApplicationLocalizationAppService;
 
-    public SystemApplicationLocalizationAppService(IAbpApplicationLocalizationAppService abpApplicationLocalizationAppService)
+    public SystemApplicationLocalizationAppService(AbpApplicationLocalizationAppService abpApplicationLocalizationAppService)
     {
         AbpApplicationLocalizationAppService = abpApplicationLocalizationAppService;
     }

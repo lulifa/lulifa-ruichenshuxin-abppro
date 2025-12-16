@@ -4,13 +4,13 @@
 /// 系统应用配置
 /// </summary>
 [Route("api/system/application-configuration")]
-public class SystemApplicationConfigurationController : AbpProController, ISystemApplicationConfigurationAppService
+public class SystemApplicationConfigurationController : AbpProController, IAbpApplicationConfigurationAppService
 {
-    protected readonly ISystemApplicationConfigurationAppService SystemApplicationConfigurationAppService;
+    protected readonly IAbpApplicationConfigurationAppService SystemApplicationConfigurationAppService;
     protected readonly IAbpAntiForgeryManager AntiForgeryManager;
 
     public SystemApplicationConfigurationController(
-        ISystemApplicationConfigurationAppService systemApplicationConfigurationAppService,
+        IAbpApplicationConfigurationAppService systemApplicationConfigurationAppService,
         IAbpAntiForgeryManager antiForgeryManager)
     {
         SystemApplicationConfigurationAppService = systemApplicationConfigurationAppService;
