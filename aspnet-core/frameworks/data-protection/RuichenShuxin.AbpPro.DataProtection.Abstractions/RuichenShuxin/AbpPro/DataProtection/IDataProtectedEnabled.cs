@@ -1,4 +1,4 @@
-﻿namespace RuichenShuxin.AbpPro.DataProtection.Abstractions;
+﻿namespace RuichenShuxin.AbpPro.DataProtection;
 
 public interface IDataProtectedEnabled
 {

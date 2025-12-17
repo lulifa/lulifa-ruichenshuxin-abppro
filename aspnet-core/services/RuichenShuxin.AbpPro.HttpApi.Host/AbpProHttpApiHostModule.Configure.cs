@@ -201,7 +201,7 @@ public partial class AbpProHttpApiHostModule
                 options.DocInclusionPredicate((docName, description) => true);
                 options.CustomSchemaIds(type => type.FullName);
 
-                //options.DocumentFilter<AbpProHideDefaultApiFilter>();
+                options.DocumentFilter<AbpProHideDefaultApiFilter>();
                 options.OperationFilter<AbpProOperationFilter>();
 
                 // 自动扫描所有 XML 注释

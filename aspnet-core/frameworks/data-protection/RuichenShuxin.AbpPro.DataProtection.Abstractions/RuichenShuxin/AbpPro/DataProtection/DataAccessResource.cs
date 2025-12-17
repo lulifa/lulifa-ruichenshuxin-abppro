@@ -1,4 +1,4 @@
-﻿namespace RuichenShuxin.AbpPro.DataProtection.Abstractions;
+﻿namespace RuichenShuxin.AbpPro.DataProtection;
 
 [Serializable]
 public class DataAccessResource

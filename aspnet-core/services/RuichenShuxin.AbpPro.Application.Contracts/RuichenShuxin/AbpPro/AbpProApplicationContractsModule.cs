@@ -3,6 +3,7 @@
 [DependsOn(
     typeof(AbpProDomainSharedModule),
 
+    typeof(DataProtectionManagementApplicationContractsModule),
     typeof(PlatformApplicationContractsModule),
 
     typeof(AbpFeatureManagementApplicationContractsModule),

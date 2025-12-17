@@ -8,7 +8,6 @@ public class AbpProDbContext :
     ITenantManagementDbContext,
     IIdentityDbContext
 {
-    /* Add DbSet properties for your Aggregate Roots / Entities here. */
 
     public DbSet<Book> Books { get; set; }
 
@@ -51,7 +50,7 @@ public class AbpProDbContext :
     {
         base.OnModelCreating(builder);
 
-        /* Include modules to your migration db context */
+        builder.ConfigureDataProtectionManagement();
         builder.ConfigurePlatform();
 
         builder.ConfigurePermissionManagement();

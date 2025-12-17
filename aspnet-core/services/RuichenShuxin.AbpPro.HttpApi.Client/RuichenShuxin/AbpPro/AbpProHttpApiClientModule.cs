@@ -3,6 +3,7 @@
 [DependsOn(
     typeof(AbpProApplicationContractsModule),
 
+    typeof(DataProtectionManagementHttpApiClientModule),
     typeof(PlatformHttpApiClientModule),
 
     typeof(AbpPermissionManagementHttpApiClientModule),

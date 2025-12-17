@@ -3,6 +3,7 @@
 global using Localization.Resources.AbpUi;
 global using Microsoft.AspNetCore.Mvc;
 global using RuichenShuxin.AbpPro.Core;
+global using RuichenShuxin.AbpPro.DataProtectionManagement;
 global using RuichenShuxin.AbpPro.Platform;
 global using System;
 global using System.Threading.Tasks;

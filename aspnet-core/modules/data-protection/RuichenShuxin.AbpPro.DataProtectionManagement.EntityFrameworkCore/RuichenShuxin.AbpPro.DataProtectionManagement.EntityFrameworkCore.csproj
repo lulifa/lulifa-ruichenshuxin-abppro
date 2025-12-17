@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\frameworks\data-protection\RuichenShuxin.AbpPro.DataProtection.EntityFrameworkCore\RuichenShuxin.AbpPro.DataProtection.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\RuichenShuxin.AbpPro.DataProtectionManagement.Domain\RuichenShuxin.AbpPro.DataProtectionManagement.Domain.csproj" />
   </ItemGroup>
 

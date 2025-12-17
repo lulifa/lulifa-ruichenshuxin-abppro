@@ -3,6 +3,7 @@
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Localization;
 global using RuichenShuxin.AbpPro.Core;
+global using RuichenShuxin.AbpPro.DataProtectionManagement;
 global using RuichenShuxin.AbpPro.Platform;
 global using System;
 global using System.Collections.Generic;

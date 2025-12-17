@@ -6,10 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="RuichenShuxin\AbpPro\DataProtectionManagement\IEntityTypeInfoRepository.cs~RFbccca24.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AutoMapper" />
     <PackageReference Include="Volo.Abp.Ddd.Domain" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\frameworks\data-protection\RuichenShuxin.AbpPro.DataProtection\RuichenShuxin.AbpPro.DataProtection.csproj" />
     <ProjectReference Include="..\RuichenShuxin.AbpPro.DataProtectionManagement.Domain.Shared\RuichenShuxin.AbpPro.DataProtectionManagement.Domain.Shared.csproj" />
   </ItemGroup>
 

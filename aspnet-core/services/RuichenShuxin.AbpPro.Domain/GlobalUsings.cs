@@ -9,6 +9,7 @@ global using Microsoft.Extensions.Logging.Abstractions;
 global using OpenIddict.Abstractions;
 global using RuichenShuxin.AbpPro.Authorization.OrganizationUnits;
 global using RuichenShuxin.AbpPro.Core;
+global using RuichenShuxin.AbpPro.DataProtectionManagement;
 global using RuichenShuxin.AbpPro.Platform;
 global using System;
 global using System.Collections.Generic;

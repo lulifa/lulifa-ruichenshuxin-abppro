@@ -1,17 +1,18 @@
 ﻿namespace RuichenShuxin.AbpPro;
 
- [DependsOn(
-    typeof(AbpProApplicationContractsModule),
+[DependsOn(
+   typeof(AbpProApplicationContractsModule),
 
-    typeof(PlatformHttpApiModule),
+   typeof(DataProtectionManagementHttpApiModule),
+   typeof(PlatformHttpApiModule),
 
-    typeof(AbpPermissionManagementHttpApiModule),
-    typeof(AbpSettingManagementHttpApiModule),
-    typeof(AbpAccountHttpApiModule),
-    typeof(AbpIdentityHttpApiModule),
-    typeof(AbpTenantManagementHttpApiModule),
-    typeof(AbpFeatureManagementHttpApiModule)
-    )]
+   typeof(AbpPermissionManagementHttpApiModule),
+   typeof(AbpSettingManagementHttpApiModule),
+   typeof(AbpAccountHttpApiModule),
+   typeof(AbpIdentityHttpApiModule),
+   typeof(AbpTenantManagementHttpApiModule),
+   typeof(AbpFeatureManagementHttpApiModule)
+   )]
 public class AbpProHttpApiModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

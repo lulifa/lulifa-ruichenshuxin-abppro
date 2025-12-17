@@ -4,6 +4,7 @@ namespace RuichenShuxin.AbpPro;
     typeof(AbpProDomainSharedModule),
 
     typeof(AbpProAuthorizationOrganizationUnitsModule),
+    typeof(DataProtectionManagementDomainModule),
     typeof(PlatformDomainModule),
 
     typeof(AbpAuditLoggingDomainModule),

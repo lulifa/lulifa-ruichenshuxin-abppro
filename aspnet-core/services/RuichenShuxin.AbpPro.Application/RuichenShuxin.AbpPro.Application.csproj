@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\modules\data-protection\RuichenShuxin.AbpPro.DataProtectionManagement.Application\RuichenShuxin.AbpPro.DataProtectionManagement.Application.csproj" />
     <ProjectReference Include="..\..\modules\platform\RuichenShuxin.AbpPro.Platform.Application\RuichenShuxin.AbpPro.Platform.Application.csproj" />
     <ProjectReference Include="..\RuichenShuxin.AbpPro.Application.Contracts\RuichenShuxin.AbpPro.Application.Contracts.csproj" />
     <ProjectReference Include="..\RuichenShuxin.AbpPro.Domain\RuichenShuxin.AbpPro.Domain.csproj" />

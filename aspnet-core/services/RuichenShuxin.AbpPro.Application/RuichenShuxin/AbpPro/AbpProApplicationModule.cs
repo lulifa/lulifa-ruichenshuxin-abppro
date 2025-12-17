@@ -4,6 +4,7 @@
     typeof(AbpProDomainModule),
     typeof(AbpProApplicationContractsModule),
 
+    typeof(DataProtectionManagementApplicationModule),
     typeof(PlatformApplicationModule),
 
     typeof(AbpPermissionManagementApplicationModule),

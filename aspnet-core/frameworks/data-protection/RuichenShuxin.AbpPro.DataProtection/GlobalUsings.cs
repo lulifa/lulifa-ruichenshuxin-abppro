@@ -6,7 +6,6 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Localization;
 global using Microsoft.Extensions.Options;
 global using RuichenShuxin.AbpPro.Authorization.OrganizationUnits;
-global using RuichenShuxin.AbpPro.DataProtection.Abstractions;
 global using System;
 global using System.Collections;
 global using System.Collections.Generic;

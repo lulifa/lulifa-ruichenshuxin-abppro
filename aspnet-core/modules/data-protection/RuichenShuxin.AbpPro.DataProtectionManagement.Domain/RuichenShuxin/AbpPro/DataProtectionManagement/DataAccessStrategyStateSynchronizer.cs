@@ -1,0 +1,28 @@
+﻿namespace RuichenShuxin.AbpPro.DataProtectionManagement;
+
+public class DataAccessStrategyStateSynchronizer : IDistributedEventHandler<DataAccessResourceChangeEvent>, ITransientDependency
+{
+    private readonly ISubjectStrategyRepository _strategyRepository;
+
+    public DataAccessStrategyStateSynchronizer(ISubjectStrategyRepository strategyRepository)
+    {
+        _strategyRepository = strategyRepository;
+    }
+
+    [UnitOfWork]
+    public async virtual Task HandleEventAsync(DataAccessResourceChangeEvent eventData)
+    {
+        if (eventData.IsEnabled)
+        {
+            var subjectStrategy = await _strategyRepository.FindBySubjectAsync(
+               eventData.Resource.SubjectName,
+               eventData.Resource.SubjectId);
+            if (subjectStrategy != null)
+            {
+                subjectStrategy.Strategy = DataAccessStrategy.Custom;
+
+                await _strategyRepository.UpdateAsync(subjectStrategy);
+            }
+        }
+    }
+}

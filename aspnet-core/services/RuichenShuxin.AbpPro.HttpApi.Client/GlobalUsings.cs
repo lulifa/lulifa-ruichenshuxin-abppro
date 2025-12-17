@@ -1,6 +1,7 @@
 ﻿// Global using directives
 
 global using Microsoft.Extensions.DependencyInjection;
+global using RuichenShuxin.AbpPro.DataProtectionManagement;
 global using RuichenShuxin.AbpPro.Platform;
 global using Volo.Abp.Account;
 global using Volo.Abp.FeatureManagement;

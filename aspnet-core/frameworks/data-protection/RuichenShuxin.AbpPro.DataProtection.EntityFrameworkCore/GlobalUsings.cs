@@ -7,7 +7,7 @@ global using Microsoft.EntityFrameworkCore.Diagnostics;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.DependencyInjection.Extensions;
 global using Microsoft.Extensions.Options;
-global using RuichenShuxin.AbpPro.DataProtection.Abstractions;
+global using RuichenShuxin.AbpPro.DataProtection;
 global using System;
 global using System.Collections.Generic;
 global using System.Data;
