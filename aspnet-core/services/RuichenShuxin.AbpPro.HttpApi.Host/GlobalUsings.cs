@@ -5,6 +5,7 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
 global using Microsoft.Extensions.Localization;
 global using RuichenShuxin.AbpPro.AspNetCore.Mvc.Wrapper;
+global using RuichenShuxin.AbpPro.Authorization.OrganizationUnits;
 global using RuichenShuxin.AbpPro.CAP;
 global using RuichenShuxin.AbpPro.Core;
 global using RuichenShuxin.AbpPro.EntityFrameworkCore;

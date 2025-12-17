@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\frameworks\authorization\RuichenShuxin.AbpPro.Authorization.OrganizationUnits\RuichenShuxin.AbpPro.Authorization.OrganizationUnits.csproj" />
     <ProjectReference Include="..\..\modules\platform\RuichenShuxin.AbpPro.Platform.Domain\RuichenShuxin.AbpPro.Platform.Domain.csproj" />
     <ProjectReference Include="..\RuichenShuxin.AbpPro.Domain.Shared\RuichenShuxin.AbpPro.Domain.Shared.csproj" />
   </ItemGroup>
