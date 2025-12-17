@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>RuichenShuxin.AbpPro.DataProtectionManagement</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AutoMapper" />
+    <PackageReference Include="Volo.Abp.Ddd.Application" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RuichenShuxin.AbpPro.DataProtectionManagement.Application.Contracts\RuichenShuxin.AbpPro.DataProtectionManagement.Application.Contracts.csproj" />
+    <ProjectReference Include="..\RuichenShuxin.AbpPro.DataProtectionManagement.Domain\RuichenShuxin.AbpPro.DataProtectionManagement.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

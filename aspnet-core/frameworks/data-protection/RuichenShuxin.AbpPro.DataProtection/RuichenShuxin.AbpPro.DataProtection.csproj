@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <AssemblyName>RuiChen.Abp.DataProtection</AssemblyName>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Domain" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\authorization\RuichenShuxin.AbpPro.Authorization.OrganizationUnits\RuichenShuxin.AbpPro.Authorization.OrganizationUnits.csproj" />
+    <ProjectReference Include="..\RuichenShuxin.AbpPro.DataProtection.Abstractions\RuichenShuxin.AbpPro.DataProtection.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
