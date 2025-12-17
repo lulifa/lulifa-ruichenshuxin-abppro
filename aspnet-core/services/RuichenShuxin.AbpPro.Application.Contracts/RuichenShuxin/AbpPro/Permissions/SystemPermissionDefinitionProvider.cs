@@ -33,6 +33,6 @@ public class SystemPermissionDefinitionProvider : PermissionDefinitionProvider
 
     private static LocalizableString L(string name)
     {
-        return LocalizableString.Create<AbpProResource>(name);
+        return LocalizableString.Create<IdentityResource>(name);
     }
 }
