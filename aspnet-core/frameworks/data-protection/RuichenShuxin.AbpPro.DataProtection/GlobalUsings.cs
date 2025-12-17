@@ -1,0 +1,34 @@
+﻿// Global using directives
+
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.Extensions.Caching.Distributed;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Localization;
+global using Microsoft.Extensions.Options;
+global using RuichenShuxin.AbpPro.Authorization.OrganizationUnits;
+global using RuichenShuxin.AbpPro.DataProtection.Abstractions;
+global using System;
+global using System.Collections;
+global using System.Collections.Generic;
+global using System.ComponentModel;
+global using System.Globalization;
+global using System.Linq;
+global using System.Linq.Expressions;
+global using System.Reflection;
+global using System.Text.Json;
+global using System.Threading.Tasks;
+global using Volo.Abp;
+global using Volo.Abp.Auditing;
+global using Volo.Abp.Authorization.Permissions;
+global using Volo.Abp.Caching;
+global using Volo.Abp.Clients;
+global using Volo.Abp.Data;
+global using Volo.Abp.DependencyInjection;
+global using Volo.Abp.Domain;
+global using Volo.Abp.Domain.Entities;
+global using Volo.Abp.DynamicProxy;
+global using Volo.Abp.EventBus.Distributed;
+global using Volo.Abp.Localization.ExceptionHandling;
+global using Volo.Abp.Modularity;
+global using Volo.Abp.MultiTenancy;
+global using Volo.Abp.Users;

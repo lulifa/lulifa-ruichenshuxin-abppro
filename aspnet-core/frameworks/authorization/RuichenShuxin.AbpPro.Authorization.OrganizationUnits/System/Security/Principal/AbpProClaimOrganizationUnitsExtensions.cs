@@ -1,0 +1,17 @@
+﻿namespace System.Security.Principal;
+
+public static class AbpProClaimOrganizationUnitsExtensions
+{
+    public static string[] FindOrganizationUnits([NotNull] this ClaimsPrincipal principal)
+    {
+        Check.NotNull(principal, nameof(principal));
+
+        var userOusOrNull = principal.Claims?.Where(c => c.Type == AbpProOrganizationUnitClaimTypes.OrganizationUnit);
+        if (userOusOrNull == null || !userOusOrNull.Any())
+        {
+            return new string[0];
+        }
+
+        return userOusOrNull.Select(x => x.Value).ToArray();
+    }
+}

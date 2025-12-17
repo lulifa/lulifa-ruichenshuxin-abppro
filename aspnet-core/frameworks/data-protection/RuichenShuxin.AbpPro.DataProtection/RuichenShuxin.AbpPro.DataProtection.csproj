@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <AssemblyName>RuiChen.Abp.DataProtection</AssemblyName>
+    <AssemblyName>RuichenShuxin.AbpPro.DataProtection</AssemblyName>
     <RootNamespace />
   </PropertyGroup>
 

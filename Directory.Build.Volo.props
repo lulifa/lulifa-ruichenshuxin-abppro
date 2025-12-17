@@ -22,6 +22,8 @@
     <PackageReference Update="Volo.Abp.Features" Version="$(VoloAbpPackageVersion)" />
     <PackageReference Update="Volo.Abp.GlobalFeatures" Version="$(VoloAbpPackageVersion)"/>
     <PackageReference Update="Volo.Abp.Http.Client" Version="$(VoloAbpPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.MultiTenancy" Version="$(VoloAbpPackageVersion)"/>
+    <PackageReference Update="Volo.Abp.ObjectExtending" Version="$(VoloAbpPackageVersion)"/>
     <PackageReference Update="Volo.Abp.Json" Version="$(VoloAbpPackageVersion)"/>
     <PackageReference Update="Volo.Abp.Localization" Version="$(VoloAbpPackageVersion)"/>
     <PackageReference Update="Volo.Abp.Settings" Version="$(VoloAbpPackageVersion)" />

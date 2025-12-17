@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <AssemblyName>RuiChen.Abp.DataProtection.Abstractions</AssemblyName>
+    <AssemblyName>RuichenShuxin.AbpPro.DataProtection.Abstractions</AssemblyName>
     <RootNamespace />
   </PropertyGroup>
 
@@ -10,6 +10,10 @@
     <PackageReference Include="Volo.Abp.ObjectExtending" />
     <PackageReference Include="Volo.Abp.Localization" />
     <PackageReference Include="Volo.Abp.MultiTenancy" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="RuichenShuxin\AbpPro\DataProtection\Localization\Resources\*.json" />
   </ItemGroup>
 
 </Project>

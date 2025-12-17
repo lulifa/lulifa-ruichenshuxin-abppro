@@ -1,0 +1,29 @@
+﻿// Global using directives
+
+global using JetBrains.Annotations;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.ChangeTracking;
+global using Microsoft.EntityFrameworkCore.Diagnostics;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.DependencyInjection.Extensions;
+global using Microsoft.Extensions.Options;
+global using RuichenShuxin.AbpPro.DataProtection.Abstractions;
+global using System;
+global using System.Collections.Generic;
+global using System.Data;
+global using System.Linq;
+global using System.Linq.Dynamic.Core;
+global using System.Linq.Expressions;
+global using System.Reflection;
+global using System.Threading;
+global using System.Threading.Tasks;
+global using Volo.Abp;
+global using Volo.Abp.Data;
+global using Volo.Abp.DependencyInjection;
+global using Volo.Abp.Domain.Entities;
+global using Volo.Abp.Domain.Repositories;
+global using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
+global using Volo.Abp.EntityFrameworkCore;
+global using Volo.Abp.EntityFrameworkCore.Modeling;
+global using Volo.Abp.Modularity;
+global using Volo.Abp.Users;
