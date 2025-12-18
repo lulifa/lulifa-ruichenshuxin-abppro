@@ -10,6 +10,7 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using System.Linq.Dynamic.Core;
 global using System.Threading.Tasks;
+global using Volo.Abp.Application;
 global using Volo.Abp.Application.Dtos;
 global using Volo.Abp.AutoMapper;
 global using Volo.Abp.Domain.Entities;

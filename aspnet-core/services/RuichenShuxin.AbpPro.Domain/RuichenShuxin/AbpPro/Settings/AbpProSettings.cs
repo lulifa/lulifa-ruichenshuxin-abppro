@@ -2,7 +2,7 @@
 
 public static class AbpProSettings
 {
-    private const string Prefix = "AbpPro";
+    private const string Prefix = AbpProCoreConsts.ApplicationName;
 
     //Add your own setting names here. Example:
     public const string MySetting1 = Prefix + ".MySetting1";

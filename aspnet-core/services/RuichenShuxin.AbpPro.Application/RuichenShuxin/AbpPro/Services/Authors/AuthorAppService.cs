@@ -1,6 +1,4 @@
-﻿using static RuichenShuxin.AbpPro.AbpProPermissions;
-
-namespace RuichenShuxin.AbpPro;
+﻿namespace RuichenShuxin.AbpPro;
 
 [Authorize(AbpProPermissions.Authors.Default)]
 public class AuthorAppService : AbpProAppService, IAuthorAppService

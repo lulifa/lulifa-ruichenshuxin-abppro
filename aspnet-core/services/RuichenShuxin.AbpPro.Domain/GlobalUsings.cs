@@ -4,6 +4,7 @@ global using JetBrains.Annotations;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Logging.Abstractions;
+global using RuichenShuxin.AbpPro.Core;
 global using RuichenShuxin.AbpPro.DataProtection;
 global using System;
 global using System.Collections.Generic;

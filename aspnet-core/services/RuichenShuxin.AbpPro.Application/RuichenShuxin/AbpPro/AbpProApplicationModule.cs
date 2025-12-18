@@ -1,7 +1,4 @@
-﻿using RuichenShuxin.AbpPro.DataProtection;
-using Volo.Abp.Application;
-
-namespace RuichenShuxin.AbpPro;
+﻿namespace RuichenShuxin.AbpPro;
 
 [DependsOn(
     typeof(AbpDddApplicationModule),
