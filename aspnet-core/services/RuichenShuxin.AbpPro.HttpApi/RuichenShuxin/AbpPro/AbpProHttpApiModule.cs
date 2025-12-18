@@ -1,27 +1,17 @@
 ﻿namespace RuichenShuxin.AbpPro;
 
 [DependsOn(
-   typeof(AbpProApplicationContractsModule),
-
-   typeof(DataProtectionManagementHttpApiModule),
-   typeof(PlatformHttpApiModule),
-
-   typeof(AbpPermissionManagementHttpApiModule),
-   typeof(AbpSettingManagementHttpApiModule),
-   typeof(AbpAccountHttpApiModule),
-   typeof(AbpIdentityHttpApiModule),
-   typeof(AbpTenantManagementHttpApiModule),
-   typeof(AbpFeatureManagementHttpApiModule)
-   )]
+   typeof(AbpAspNetCoreMvcModule),
+   typeof(AbpProApplicationContractsModule))]
 public class AbpProHttpApiModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        ConfigureLocalization();
-    }
+        Configure<IMvcBuilder>(mvcBuilder =>
+        {
+            mvcBuilder.AddApplicationPartIfNotExists(typeof(AbpProHttpApiModule).Assembly);
+        });
 
-    private void ConfigureLocalization()
-    {
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Resources

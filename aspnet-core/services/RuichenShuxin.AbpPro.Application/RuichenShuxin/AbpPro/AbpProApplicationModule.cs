@@ -1,18 +1,13 @@
-﻿namespace RuichenShuxin.AbpPro;
+﻿using RuichenShuxin.AbpPro.DataProtection;
+using Volo.Abp.Application;
+
+namespace RuichenShuxin.AbpPro;
 
 [DependsOn(
+    typeof(AbpDddApplicationModule),
+    typeof(AbpProDataProtectionModule),
     typeof(AbpProDomainModule),
-    typeof(AbpProApplicationContractsModule),
-
-    typeof(DataProtectionManagementApplicationModule),
-    typeof(PlatformApplicationModule),
-
-    typeof(AbpPermissionManagementApplicationModule),
-    typeof(AbpFeatureManagementApplicationModule),
-    typeof(AbpIdentityApplicationModule),
-    typeof(AbpAccountApplicationModule),
-    typeof(AbpTenantManagementApplicationModule),
-    typeof(AbpSettingManagementApplicationModule)
+    typeof(AbpProApplicationContractsModule)
     )]
 public class AbpProApplicationModule : AbpModule
 {

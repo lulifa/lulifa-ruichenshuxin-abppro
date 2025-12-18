@@ -8,9 +8,20 @@
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Ddd.Domain" />
     <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Volo.Abp.AuditLogging.Domain" />
+    <PackageReference Include="Volo.Abp.BackgroundJobs.Domain" />
+    <PackageReference Include="Volo.Abp.Caching" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Domain" />
+    <PackageReference Include="Volo.Abp.Identity.Domain" />
+    <PackageReference Include="Volo.Abp.OpenIddict.Domain" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.Identity" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.OpenIddict" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Domain" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Domain" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\frameworks\authorization\RuichenShuxin.AbpPro.Authorization.OrganizationUnits\RuichenShuxin.AbpPro.Authorization.OrganizationUnits.csproj" />
     <ProjectReference Include="..\RuichenShuxin.AbpPro.Platform.Domain.Shared\RuichenShuxin.AbpPro.Platform.Domain.Shared.csproj" />
   </ItemGroup>
 

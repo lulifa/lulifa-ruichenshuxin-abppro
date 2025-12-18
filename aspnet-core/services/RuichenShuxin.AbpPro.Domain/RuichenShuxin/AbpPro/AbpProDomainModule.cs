@@ -1,40 +1,9 @@
 namespace RuichenShuxin.AbpPro;
 
 [DependsOn(
-    typeof(AbpProDomainSharedModule),
-
-    typeof(AbpProAuthorizationOrganizationUnitsModule),
-    typeof(DataProtectionManagementDomainModule),
-    typeof(PlatformDomainModule),
-
-    typeof(AbpAuditLoggingDomainModule),
-    typeof(AbpCachingModule),
-    typeof(AbpBackgroundJobsDomainModule),
-    typeof(AbpFeatureManagementDomainModule),
-    typeof(AbpPermissionManagementDomainIdentityModule),
-    typeof(AbpPermissionManagementDomainOpenIddictModule),
-    typeof(AbpSettingManagementDomainModule),
-    typeof(AbpEmailingModule),
-    typeof(AbpIdentityDomainModule),
-    typeof(AbpOpenIddictDomainModule),
-    typeof(AbpTenantManagementDomainModule),
-    typeof(BlobStoringDatabaseDomainModule)
-    )]
+     typeof(AbpAutoMapperModule),
+     typeof(AbpDddDomainModule),
+     typeof(AbpProDomainSharedModule))]
 public class AbpProDomainModule : AbpModule
 {
-    public override void ConfigureServices(ServiceConfigurationContext context)
-    {
-
-        Configure<PermissionManagementOptions>(options =>
-        {
-            options.ManagementProviders.Add<OrganizationUnitPermissionManagementProvider>();
-
-            options.ProviderPolicies[OrganizationUnitPermissionValueProvider.ProviderName] = "AbpIdentity.OrganizationUnits.ManagePermissions";
-        });
-
-
-#if DEBUG
-        context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());
-#endif
-    }
 }

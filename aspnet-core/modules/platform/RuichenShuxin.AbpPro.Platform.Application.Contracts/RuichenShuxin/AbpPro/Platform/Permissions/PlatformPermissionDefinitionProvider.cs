@@ -26,6 +26,34 @@ public class PlatformPermissionDefinitionProvider : PermissionDefinitionProvider
         menu.AddChild(PlatformPermissions.Menu.ManageUsers, L("Permission:ManageUserMenus"));
         menu.AddChild(PlatformPermissions.Menu.ManageUserFavorites, L("Permission:ManageUserFavoriteMenus"));
 
+
+
+        var identityGroup = context.GetGroupOrNull(IdentityPermissions.GroupName);
+        if (identityGroup != null)
+        {
+            var userPermission = identityGroup.GetPermissionOrNull(IdentityPermissions.Users.Default);
+            if (userPermission != null)
+            {
+                userPermission.AddChild(PlatformPermissions.Users.ResetPassword, L("Permission:ResetPassword"));
+                userPermission.AddChild(PlatformPermissions.Users.ManageOrganizationUnits, L("Permission:ManageOrganizationUnits"));
+            }
+
+            var rolePermission = identityGroup.GetPermissionOrNull(IdentityPermissions.Roles.Default);
+            if (rolePermission != null)
+            {
+                rolePermission.AddChild(PlatformPermissions.Roles.ManageOrganizationUnits, L("Permission:ManageOrganizationUnits"));
+            }
+
+            var origanizationUnitPermission = identityGroup.AddPermission(PlatformPermissions.OrganizationUnits.Default, L("Permission:OrganizationUnitManagement"));
+            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.Create, L("Permission:Create"));
+            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.Update, L("Permission:Edit"));
+            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.Delete, L("Permission:Delete"));
+            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.ManageRoles, L("Permission:ManageRoles"));
+            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.ManageUsers, L("Permission:ManageUsers"));
+            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.ManagePermissions, L("Permission:ChangePermissions"));
+
+        }
+
     }
 
     private static LocalizableString L(string name)

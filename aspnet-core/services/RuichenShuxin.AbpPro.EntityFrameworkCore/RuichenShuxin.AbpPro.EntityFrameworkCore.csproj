@@ -5,21 +5,12 @@
     <RootNamespace>RuichenShuxin.AbpPro</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" />
-    <PackageReference Include="Volo.Abp.BackgroundJobs.EntityFrameworkCore" />
-    <PackageReference Include="Volo.Abp.BlobStoring.Database.EntityFrameworkCore" />
-    <PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" />
-    <PackageReference Include="Volo.Abp.FeatureManagement.EntityFrameworkCore" />
-    <PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" />
-    <PackageReference Include="Volo.Abp.OpenIddict.EntityFrameworkCore" />
-    <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" />
-    <PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" />
-    <PackageReference Include="Volo.Abp.TenantManagement.EntityFrameworkCore" />
+  <ItemGroup>   
+    <PackageReference Include="Volo.Abp.EntityFrameWorkCore.MySQL" />    
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\modules\data-protection\RuichenShuxin.AbpPro.DataProtectionManagement.EntityFrameworkCore\RuichenShuxin.AbpPro.DataProtectionManagement.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\frameworks\data-protection\RuichenShuxin.AbpPro.DataProtection.EntityFrameworkCore\RuichenShuxin.AbpPro.DataProtection.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\..\modules\platform\RuichenShuxin.AbpPro.Platform.EntityFrameworkCore\RuichenShuxin.AbpPro.Platform.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\RuichenShuxin.AbpPro.Domain\RuichenShuxin.AbpPro.Domain.csproj" />
   </ItemGroup>

@@ -2,7 +2,14 @@
 
 [DependsOn(
     typeof(PlatformApplicationContractsModule),
-    typeof(AbpAspNetCoreMvcModule))]
+    typeof(AbpAspNetCoreMvcModule),
+    typeof(AbpPermissionManagementHttpApiModule),
+    typeof(AbpSettingManagementHttpApiModule),
+    typeof(AbpAccountHttpApiModule),
+    typeof(AbpIdentityHttpApiModule),
+    typeof(AbpTenantManagementHttpApiModule),
+    typeof(AbpFeatureManagementHttpApiModule)
+    )]
 public class PlatformHttpApiModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)

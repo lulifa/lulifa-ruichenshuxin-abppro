@@ -71,350 +71,45 @@ namespace RuichenShuxin.AbpPro.Migrations
                     b.ToTable("AppBooks", (string)null);
                 });
 
-            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.EntityEnumInfo", b =>
+            modelBuilder.Entity("RuichenShuxin.AbpPro.BookAuth", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("bigint");
 
-                    b.Property<string>("DisplayName")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)")
-                        .HasColumnName("DisplayName");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<Guid>("EntityId")
                         .HasMaxLength(64)
-                        .HasColumnType("varchar(64)")
-                        .HasColumnName("Name");
+                        .HasColumnType("char(64)")
+                        .HasColumnName("EntityId");
 
-                    b.Property<Guid>("PropertyInfoId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)")
-                        .HasColumnName("Value");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PropertyInfoId", "Name");
-
-                    b.ToTable("AbpAuthEntityEnums", (string)null);
-                });
-
-            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.EntityPropertyInfo", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("DisplayName")
+                    b.Property<string>("EntityType")
                         .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("varchar(128)")
-                        .HasColumnName("DisplayName");
+                        .HasColumnName("EntityType");
 
-                    b.Property<string>("JavaScriptType")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
-                        .HasColumnName("JavaScriptType");
+                    b.Property<string>("OrganizationUnit")
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)")
+                        .HasColumnName("OrganizationUnit");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("varchar(64)")
-                        .HasColumnName("Name");
-
-                    b.Property<string>("TypeFullName")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
-                        .HasColumnName("TypeFullName");
-
-                    b.Property<Guid>("TypeInfoId")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TypeInfoId", "TypeFullName");
-
-                    b.ToTable("AbpAuthEntityProperties", (string)null);
-                });
-
-            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.EntityTypeInfo", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<string>("DisplayName")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)")
-                        .HasColumnName("DisplayName");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<bool>("IsAuditEnabled")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("LastModificationTime");
-
-                    b.Property<Guid?>("LastModifierId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("LastModifierId");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("varchar(64)")
-                        .HasColumnName("Name");
-
-                    b.Property<string>("TypeFullName")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
-                        .HasColumnName("TypeFullName");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TypeFullName");
-
-                    b.ToTable("AbpAuthEntitites", (string)null);
-                });
-
-            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.OrganizationUnitEntityRule", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("AccessedProperties")
-                        .HasMaxLength(512)
-                        .HasColumnType("varchar(512)")
-                        .HasColumnName("AccessedProperties");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<string>("EntityTypeFullName")
-                        .HasColumnType("longtext");
-
-                    b.Property<Guid>("EntityTypeId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<string>("FilterGroup")
-                        .HasColumnType("longtext")
-                        .HasColumnName("FilterGroup");
-
-                    b.Property<bool>("IsEnabled")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("LastModificationTime");
-
-                    b.Property<Guid?>("LastModifierId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("LastModifierId");
-
-                    b.Property<int>("Operation")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OrgCode")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)")
-                        .HasColumnName("OrgCode");
-
-                    b.Property<Guid>("OrgId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("Role")
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)")
+                        .HasColumnName("Role");
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("TenantId");
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EntityTypeId");
+                    b.HasIndex("EntityId");
 
-                    b.ToTable("AbpAuthOrganizationUnitEntityRules", (string)null);
-                });
+                    b.HasIndex("OrganizationUnit");
 
-            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.RoleEntityRule", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                    b.HasIndex("Role");
 
-                    b.Property<string>("AccessedProperties")
-                        .HasMaxLength(512)
-                        .HasColumnType("varchar(512)")
-                        .HasColumnName("AccessedProperties");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<string>("EntityTypeFullName")
-                        .HasColumnType("longtext");
-
-                    b.Property<Guid>("EntityTypeId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<string>("FilterGroup")
-                        .HasColumnType("longtext")
-                        .HasColumnName("FilterGroup");
-
-                    b.Property<bool>("IsEnabled")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("LastModificationTime");
-
-                    b.Property<Guid?>("LastModifierId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("LastModifierId");
-
-                    b.Property<int>("Operation")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("RoleName")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
-                        .HasColumnName("RoleName");
-
-                    b.Property<Guid?>("TenantId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("TenantId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EntityTypeId");
-
-                    b.ToTable("AbpAuthRoleEntityRules", (string)null);
-                });
-
-            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.SubjectStrategy", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<bool>("IsEnabled")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("LastModificationTime");
-
-                    b.Property<Guid?>("LastModifierId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("LastModifierId");
-
-                    b.Property<int>("Strategy")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SubjectId")
-                        .HasMaxLength(64)
-                        .HasColumnType("varchar(64)")
-                        .HasColumnName("SubjectId");
-
-                    b.Property<string>("SubjectName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)")
-                        .HasColumnName("SubjectName");
-
-                    b.Property<Guid?>("TenantId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("TenantId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AbpAuthSubjectStrategys", (string)null);
+                    b.ToTable("AppBooksAuths", (string)null);
                 });
 
             modelBuilder.Entity("RuichenShuxin.AbpPro.Platform.Data", b =>
@@ -1325,83 +1020,6 @@ namespace RuichenShuxin.AbpPro.Migrations
                     b.ToTable("AbpBackgroundJobs", (string)null);
                 });
 
-            modelBuilder.Entity("Volo.Abp.BlobStoring.Database.DatabaseBlob", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<Guid>("ContainerId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<byte[]>("Content")
-                        .HasMaxLength(2147483647)
-                        .HasColumnType("longblob");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
-
-                    b.Property<Guid?>("TenantId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("TenantId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ContainerId");
-
-                    b.HasIndex("TenantId", "ContainerId", "Name");
-
-                    b.ToTable("AbpBlobs", (string)null);
-                });
-
-            modelBuilder.Entity("Volo.Abp.BlobStoring.Database.DatabaseBlobContainer", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
-
-                    b.Property<Guid?>("TenantId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("TenantId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TenantId", "Name");
-
-                    b.ToTable("AbpBlobContainers", (string)null);
-                });
-
             modelBuilder.Entity("Volo.Abp.FeatureManagement.FeatureDefinitionRecord", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1526,6 +1144,7 @@ namespace RuichenShuxin.AbpPro.Migrations
             modelBuilder.Entity("Volo.Abp.Identity.IdentityClaimType", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -1578,6 +1197,7 @@ namespace RuichenShuxin.AbpPro.Migrations
             modelBuilder.Entity("Volo.Abp.Identity.IdentityLinkUser", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("SourceTenantId")
@@ -1603,6 +1223,7 @@ namespace RuichenShuxin.AbpPro.Migrations
             modelBuilder.Entity("Volo.Abp.Identity.IdentityRole", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -1688,6 +1309,7 @@ namespace RuichenShuxin.AbpPro.Migrations
             modelBuilder.Entity("Volo.Abp.Identity.IdentitySecurityLog", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Action")
@@ -1764,6 +1386,7 @@ namespace RuichenShuxin.AbpPro.Migrations
             modelBuilder.Entity("Volo.Abp.Identity.IdentitySession", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ClientId")
@@ -1819,6 +1442,7 @@ namespace RuichenShuxin.AbpPro.Migrations
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUser", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<int>("AccessFailedCount")
@@ -2013,6 +1637,7 @@ namespace RuichenShuxin.AbpPro.Migrations
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserDelegation", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("EndTime")
@@ -2139,6 +1764,7 @@ namespace RuichenShuxin.AbpPro.Migrations
             modelBuilder.Entity("Volo.Abp.Identity.OrganizationUnit", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Code")
@@ -2738,6 +2364,7 @@ namespace RuichenShuxin.AbpPro.Migrations
             modelBuilder.Entity("Volo.Abp.TenantManagement.Tenant", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -2823,48 +2450,15 @@ namespace RuichenShuxin.AbpPro.Migrations
                     b.ToTable("AbpTenantConnectionStrings", (string)null);
                 });
 
-            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.EntityEnumInfo", b =>
+            modelBuilder.Entity("RuichenShuxin.AbpPro.BookAuth", b =>
                 {
-                    b.HasOne("RuichenShuxin.AbpPro.DataProtectionManagement.EntityPropertyInfo", "PropertyInfo")
-                        .WithMany("Enums")
-                        .HasForeignKey("PropertyInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PropertyInfo");
-                });
-
-            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.EntityPropertyInfo", b =>
-                {
-                    b.HasOne("RuichenShuxin.AbpPro.DataProtectionManagement.EntityTypeInfo", "TypeInfo")
-                        .WithMany("Properties")
-                        .HasForeignKey("TypeInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TypeInfo");
-                });
-
-            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.OrganizationUnitEntityRule", b =>
-                {
-                    b.HasOne("RuichenShuxin.AbpPro.DataProtectionManagement.EntityTypeInfo", "EntityTypeInfo")
+                    b.HasOne("RuichenShuxin.AbpPro.Book", "Entity")
                         .WithMany()
-                        .HasForeignKey("EntityTypeId")
+                        .HasForeignKey("EntityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("EntityTypeInfo");
-                });
-
-            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.RoleEntityRule", b =>
-                {
-                    b.HasOne("RuichenShuxin.AbpPro.DataProtectionManagement.EntityTypeInfo", "EntityTypeInfo")
-                        .WithMany()
-                        .HasForeignKey("EntityTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EntityTypeInfo");
+                    b.Navigation("Entity");
                 });
 
             modelBuilder.Entity("RuichenShuxin.AbpPro.Platform.DataItem", b =>
@@ -2899,15 +2493,6 @@ namespace RuichenShuxin.AbpPro.Migrations
                     b.HasOne("Volo.Abp.AuditLogging.EntityChange", null)
                         .WithMany("PropertyChanges")
                         .HasForeignKey("EntityChangeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Volo.Abp.BlobStoring.Database.DatabaseBlob", b =>
-                {
-                    b.HasOne("Volo.Abp.BlobStoring.Database.DatabaseBlobContainer", null)
-                        .WithMany()
-                        .HasForeignKey("ContainerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -3025,16 +2610,6 @@ namespace RuichenShuxin.AbpPro.Migrations
                         .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.EntityPropertyInfo", b =>
-                {
-                    b.Navigation("Enums");
-                });
-
-            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.EntityTypeInfo", b =>
-                {
-                    b.Navigation("Properties");
                 });
 
             modelBuilder.Entity("RuichenShuxin.AbpPro.Platform.Data", b =>

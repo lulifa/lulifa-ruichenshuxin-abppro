@@ -1,7 +1,7 @@
 ﻿namespace RuichenShuxin.AbpPro.Platform;
 
 [ConnectionStringName(PlatformDbProperties.ConnectionStringName)]
-public interface IPlatformDbContext : IEfCoreDbContext
+public interface IPlatformDbContext :IEfCoreDbContext
 {
     DbSet<Menu> Menus { get; }
     DbSet<Layout> Layouts { get; }

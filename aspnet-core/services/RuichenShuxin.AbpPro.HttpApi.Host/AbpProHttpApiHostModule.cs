@@ -1,3 +1,5 @@
+using RuichenShuxin.AbpPro.Platform;
+
 namespace RuichenShuxin.AbpPro;
 
 [DependsOn(
@@ -11,6 +13,10 @@ namespace RuichenShuxin.AbpPro;
     typeof(AbpSwashbuckleModule),
     typeof(AbpCachingStackExchangeRedisModule),
     typeof(AbpAspNetCoreSerilogModule),
+
+    typeof(PlatformHttpApiModule),
+    typeof(PlatformApplicationModule),
+    typeof(PlatformEntityFrameworkCoreModule),
 
     typeof(AbpProAuthorizationOrganizationUnitsModule),
     typeof(AbpProCAPEventBusModule),

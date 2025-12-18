@@ -3,8 +3,15 @@
 [DependsOn(
     typeof(PlatformDomainModule),
     typeof(PlatformApplicationContractsModule),
+
     typeof(AbpDddApplicationModule),
-    typeof(AbpAutoMapperModule)
+    typeof(AbpAutoMapperModule),
+    typeof(AbpAccountApplicationModule),
+    typeof(AbpFeatureManagementApplicationModule),
+    typeof(AbpIdentityApplicationModule),
+    typeof(AbpPermissionManagementApplicationModule),
+    typeof(AbpSettingManagementApplicationModule),
+    typeof(AbpTenantManagementApplicationModule)
     )]
 public class PlatformApplicationModule : AbpModule
 {

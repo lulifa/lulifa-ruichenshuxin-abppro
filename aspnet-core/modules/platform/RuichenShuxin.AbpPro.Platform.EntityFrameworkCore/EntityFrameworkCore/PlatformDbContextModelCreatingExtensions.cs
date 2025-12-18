@@ -1,4 +1,12 @@
-﻿namespace RuichenShuxin.AbpPro.Platform;
+﻿using Volo.Abp.AuditLogging.EntityFrameworkCore;
+using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
+using Volo.Abp.FeatureManagement.EntityFrameworkCore;
+using Volo.Abp.OpenIddict.EntityFrameworkCore;
+using Volo.Abp.PermissionManagement.EntityFrameworkCore;
+using Volo.Abp.SettingManagement.EntityFrameworkCore;
+using Volo.Abp.TenantManagement.EntityFrameworkCore;
+
+namespace RuichenShuxin.AbpPro.Platform;
 
 public static class PlatformDbContextModelCreatingExtensions
 {
@@ -154,6 +162,17 @@ public static class PlatformDbContextModelCreatingExtensions
 
             x.HasIndex(i => new { i.Name });
         });
+
+
+        builder.ConfigurePermissionManagement();
+        builder.ConfigureSettingManagement();
+        builder.ConfigureBackgroundJobs();
+        builder.ConfigureAuditLogging();
+        builder.ConfigureFeatureManagement();
+        builder.ConfigureIdentity();
+        builder.ConfigureOpenIddict();
+        builder.ConfigureTenantManagement();
+
 
     }
 

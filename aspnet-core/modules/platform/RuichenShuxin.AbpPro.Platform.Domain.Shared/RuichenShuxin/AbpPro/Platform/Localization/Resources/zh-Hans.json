@@ -159,8 +159,15 @@
     "Permission:SmsMessage": "短信消息",
     "Permission:EmailMessage": "邮件消息",
     "Permission:SendMessage": "发送消息",
-    "Permission:Enterprise": "企业关联"
+    "Permission:Enterprise": "企业关联",
 
+    "Tenant:020001": "已经存在名为 {Name} 的租户!",
+    "Tenant:020002": "租户: {Tenant} 不存在!",
+    "Tenant:020101": "无法打开默认连接字符串指向的数据库连接!",
+    "Tenant:020102": "默认连接字符串指向的数据库已经存在!",
+    "Tenant:020103": "无法打开 {Name} 指向的数据库连接!",
+    "Tenant:020104": "不支持 {Name} 类型的数据库连接检查!",
+    "IfUseCustomDataBaseDefaultConnectionStringIsRequiredMessage": "如果使用自定义数据库,默认连接字符串必须输入!"
 
   }
 }

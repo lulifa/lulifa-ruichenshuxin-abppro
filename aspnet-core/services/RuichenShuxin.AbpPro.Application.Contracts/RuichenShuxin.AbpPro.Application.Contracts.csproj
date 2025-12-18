@@ -7,17 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Account.Application.Contracts" />
-    <PackageReference Include="Volo.Abp.FeatureManagement.Application.Contracts" />
-    <PackageReference Include="Volo.Abp.Identity.Application.Contracts" />
-    <PackageReference Include="Volo.Abp.PermissionManagement.Application.Contracts" />
-    <PackageReference Include="Volo.Abp.SettingManagement.Application.Contracts" />
-    <PackageReference Include="Volo.Abp.TenantManagement.Application.Contracts" />
+    <PackageReference Include="Volo.Abp.Authorization" />
+    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\modules\data-protection\RuichenShuxin.AbpPro.DataProtectionManagement.Application.Contracts\RuichenShuxin.AbpPro.DataProtectionManagement.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\modules\platform\RuichenShuxin.AbpPro.Platform.Application.Contracts\RuichenShuxin.AbpPro.Platform.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\frameworks\data-protection\RuichenShuxin.AbpPro.DataProtection.Abstractions\RuichenShuxin.AbpPro.DataProtection.Abstractions.csproj" />
     <ProjectReference Include="..\RuichenShuxin.AbpPro.Domain.Shared\RuichenShuxin.AbpPro.Domain.Shared.csproj" />
   </ItemGroup>
 

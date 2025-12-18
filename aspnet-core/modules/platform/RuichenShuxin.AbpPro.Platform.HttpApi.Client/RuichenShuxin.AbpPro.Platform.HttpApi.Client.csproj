@@ -7,6 +7,12 @@
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Http.Client" />
+    <PackageReference Include="Volo.Abp.Account.HttpApi.Client" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi.Client" />
+    <PackageReference Include="Volo.Abp.Identity.HttpApi.Client" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi.Client" />
+    <PackageReference Include="Volo.Abp.SettingManagement.HttpApi.Client" />
+    <PackageReference Include="Volo.Abp.TenantManagement.HttpApi.Client" />
   </ItemGroup>
 
   <ItemGroup>

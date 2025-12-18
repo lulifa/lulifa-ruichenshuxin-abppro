@@ -8,18 +8,11 @@ public static class AbpProDbContextModelCreatingExtensions
         builder.Entity<Book>(b =>
         {
             b.ToTable(AbpProDbProperties.DbTablePrefix + "Books", AbpProDbProperties.DbSchema);
-            b.ConfigureByConvention(); //auto configure for the base class props
+            b.ConfigureByConvention();
             b.Property(x => x.Name).IsRequired().HasMaxLength(AbpProCoreConsts.MaxLength128);
         });
 
-        /* Configure your own tables/entities inside here */
-
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(AbpProConsts.DbTablePrefix + "YourEntities", AbpProConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
+        builder.ConfigureEntityAuth<Book, Guid, BookAuth>();
     }
 
 }

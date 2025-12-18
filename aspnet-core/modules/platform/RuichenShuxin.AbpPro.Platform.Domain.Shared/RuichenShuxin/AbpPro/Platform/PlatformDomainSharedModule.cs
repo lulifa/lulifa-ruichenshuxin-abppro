@@ -1,8 +1,27 @@
-﻿namespace RuichenShuxin.AbpPro.Platform;
+﻿using Volo.Abp.AuditLogging;
+using Volo.Abp.BackgroundJobs;
+using Volo.Abp.FeatureManagement;
+using Volo.Abp.Identity;
+using Volo.Abp.OpenIddict;
+using Volo.Abp.PermissionManagement;
+using Volo.Abp.SettingManagement;
+using Volo.Abp.TenantManagement;
+
+namespace RuichenShuxin.AbpPro.Platform;
 
 [DependsOn(
     typeof(AbpValidationModule),
     typeof(AbpDddDomainSharedModule),
+
+
+    typeof(AbpAuditLoggingDomainSharedModule),
+    typeof(AbpBackgroundJobsDomainSharedModule),
+    typeof(AbpFeatureManagementDomainSharedModule),
+    typeof(AbpPermissionManagementDomainSharedModule),
+    typeof(AbpSettingManagementDomainSharedModule),
+    typeof(AbpIdentityDomainSharedModule),
+    typeof(AbpOpenIddictDomainSharedModule),
+    typeof(AbpTenantManagementDomainSharedModule),
     typeof(AbpProCoreModule)
 )]
 public class PlatformDomainSharedModule : AbpModule

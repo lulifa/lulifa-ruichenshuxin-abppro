@@ -7,17 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Account.HttpApi" />
-    <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi" />
-    <PackageReference Include="Volo.Abp.Identity.HttpApi" />
-    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" />
-    <PackageReference Include="Volo.Abp.SettingManagement.HttpApi" />
-    <PackageReference Include="Volo.Abp.TenantManagement.HttpApi" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\modules\data-protection\RuichenShuxin.AbpPro.DataProtectionManagement.HttpApi\RuichenShuxin.AbpPro.DataProtectionManagement.HttpApi.csproj" />
-    <ProjectReference Include="..\..\modules\platform\RuichenShuxin.AbpPro.Platform.HttpApi\RuichenShuxin.AbpPro.Platform.HttpApi.csproj" />
     <ProjectReference Include="..\RuichenShuxin.AbpPro.Application.Contracts\RuichenShuxin.AbpPro.Application.Contracts.csproj" />
   </ItemGroup>
 
