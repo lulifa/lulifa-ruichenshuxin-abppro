@@ -1,4 +1,3 @@
-
 namespace RuichenShuxin.AbpPro.EntityFrameworkCore;
 
 public class AbpProDbContext : AbpProDataProtectionDbContext<AbpProDbContext>, IAbpProDbContext
@@ -9,6 +8,14 @@ public class AbpProDbContext : AbpProDataProtectionDbContext<AbpProDbContext>, I
     public AbpProDbContext(DbContextOptions<AbpProDbContext> options)
         : base(options)
     {
+
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+
+        optionsBuilder.EnableSensitiveDataLogging();
 
     }
 

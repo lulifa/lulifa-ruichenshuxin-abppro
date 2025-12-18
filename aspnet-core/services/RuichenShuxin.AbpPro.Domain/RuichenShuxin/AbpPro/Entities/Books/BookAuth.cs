@@ -1,6 +1,4 @@
-﻿using RuichenShuxin.AbpPro.DataProtection;
-
-namespace RuichenShuxin.AbpPro;
+﻿namespace RuichenShuxin.AbpPro;
 
 public class BookAuth : DataAuthBase<Book, Guid>
 {

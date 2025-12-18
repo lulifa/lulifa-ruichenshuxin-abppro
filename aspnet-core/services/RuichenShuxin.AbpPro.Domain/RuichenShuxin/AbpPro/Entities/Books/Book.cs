@@ -1,6 +1,4 @@
-﻿using RuichenShuxin.AbpPro.DataProtection;
-
-namespace RuichenShuxin.AbpPro;
+﻿namespace RuichenShuxin.AbpPro;
 
 public class Book : AuditedAggregateRoot<Guid>, IDataProtected
 {
@@ -11,4 +9,29 @@ public class Book : AuditedAggregateRoot<Guid>, IDataProtected
     public DateTime PublishDate { get; set; }
 
     public float Price { get; set; }
+
+    public Guid AuthorId { get; set; }
+
+    protected Book()
+    {
+        ExtraProperties = new ExtraPropertyDictionary();
+    }
+
+    public Book(
+        Guid id,
+        string name,
+        BookType type,
+        DateTime publishDate,
+        float price,
+        Guid authorId)
+        : base(id)
+    {
+        Name = name;
+        Type = type;
+        PublishDate = publishDate;
+        Price = price;
+        AuthorId = authorId;
+
+        ExtraProperties = new ExtraPropertyDictionary();
+    }
 }

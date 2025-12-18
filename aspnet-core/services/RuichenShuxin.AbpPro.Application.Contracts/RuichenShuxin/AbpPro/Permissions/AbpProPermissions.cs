@@ -11,6 +11,17 @@ public static class AbpProPermissions
         public const string Create = Default + ".Create";
         public const string Edit = Default + ".Edit";
         public const string Delete = Default + ".Delete";
+
+        public const string Export = Default + ".Export";
+        public const string Import = Default + ".Import";
+    }
+
+    public static class Authors
+    {
+        public const string Default = GroupName + ".Authors";
+        public const string Create = Default + ".Create";
+        public const string Edit = Default + ".Edit";
+        public const string Delete = Default + ".Delete";
     }
 
     public static string[] GetAll()

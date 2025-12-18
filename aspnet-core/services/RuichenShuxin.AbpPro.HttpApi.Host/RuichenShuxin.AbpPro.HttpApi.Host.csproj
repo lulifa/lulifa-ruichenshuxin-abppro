@@ -25,7 +25,6 @@
     
     <ProjectReference Include="..\..\modules\platform\RuichenShuxin.AbpPro.Platform.HttpApi\RuichenShuxin.AbpPro.Platform.HttpApi.csproj" />
     <ProjectReference Include="..\..\modules\platform\RuichenShuxin.AbpPro.Platform.Application\RuichenShuxin.AbpPro.Platform.Application.csproj" />
-    <ProjectReference Include="..\..\modules\platform\RuichenShuxin.AbpPro.Platform.EntityFrameworkCore\RuichenShuxin.AbpPro.Platform.EntityFrameworkCore.csproj" />
     
     
     <ProjectReference Include="..\RuichenShuxin.AbpPro.Application\RuichenShuxin.AbpPro.Application.csproj" />

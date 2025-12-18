@@ -11,6 +11,16 @@ public class AbpProPermissionDefinitionProvider : PermissionDefinitionProvider
         booksPermission.AddChild(AbpProPermissions.Books.Edit, L("Permission:Books.Edit"));
         booksPermission.AddChild(AbpProPermissions.Books.Delete, L("Permission:Books.Delete"));
 
+
+        var authorsPermission = myGroup.AddPermission(
+            AbpProPermissions.Authors.Default, L("Permission:Authors"));
+        authorsPermission.AddChild(
+            AbpProPermissions.Authors.Create, L("Permission:Authors.Create"));
+        authorsPermission.AddChild(
+            AbpProPermissions.Authors.Edit, L("Permission:Authors.Edit"));
+        authorsPermission.AddChild(
+            AbpProPermissions.Authors.Delete, L("Permission:Authors.Delete"));
+
     }
 
     private static LocalizableString L(string name)

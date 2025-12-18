@@ -1,5 +1,3 @@
-using RuichenShuxin.AbpPro.Platform;
-
 namespace RuichenShuxin.AbpPro;
 
 [DependsOn(
@@ -16,7 +14,6 @@ namespace RuichenShuxin.AbpPro;
 
     typeof(PlatformHttpApiModule),
     typeof(PlatformApplicationModule),
-    typeof(PlatformEntityFrameworkCoreModule),
 
     typeof(AbpProAuthorizationOrganizationUnitsModule),
     typeof(AbpProCAPEventBusModule),
