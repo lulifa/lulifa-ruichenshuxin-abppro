@@ -17,7 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\frameworks\authorization\RuichenShuxin.AbpPro.Authorization.OrganizationUnits\RuichenShuxin.AbpPro.Authorization.OrganizationUnits.csproj" />
     <ProjectReference Include="..\..\frameworks\cap\RuichenShuxin.AbpPro.CAP\RuichenShuxin.AbpPro.CAP.csproj" />
-    <ProjectReference Include="..\..\frameworks\localization\RuichenShuxin.AbpPro.UI\RuichenShuxin.AbpPro.Localization.csproj" />
     <ProjectReference Include="..\..\frameworks\oauth\RuichenShuxin.AbpPro.OAuth\RuichenShuxin.AbpPro.OAuth.csproj" />
     <ProjectReference Include="..\..\frameworks\wrapper\RuichenShuxin.AbpPro.AspNetCore.Mvc.Wrapper\RuichenShuxin.AbpPro.AspNetCore.Mvc.Wrapper.csproj" />
     

@@ -14,8 +14,7 @@ public class AbpProDomainSharedModule : AbpModule
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Resources
-                .Add<AbpProResource>("en")
-                .AddBaseTypes(typeof(AbpValidationResource))
+                .Add<AbpProResource>(AbpProCoreConsts.Languages.ZhHans)
                 .AddVirtualJson("/RuichenShuxin/AbpPro/Localization/Resources");
 
             options.DefaultResourceType = typeof(AbpProResource);

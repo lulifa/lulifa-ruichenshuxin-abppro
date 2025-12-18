@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\frameworks\core\RuichenShuxin.AbpPro.Core\RuichenShuxin.AbpPro.Core.csproj" />
     <ProjectReference Include="..\..\..\frameworks\data-protection\RuichenShuxin.AbpPro.DataProtection.Abstractions\RuichenShuxin.AbpPro.DataProtection.Abstractions.csproj" />
   </ItemGroup>
 

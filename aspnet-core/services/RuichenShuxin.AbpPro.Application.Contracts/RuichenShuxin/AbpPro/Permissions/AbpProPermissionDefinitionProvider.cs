@@ -4,7 +4,7 @@ public class AbpProPermissionDefinitionProvider : PermissionDefinitionProvider
 {
     public override void Define(IPermissionDefinitionContext context)
     {
-        var myGroup = context.AddGroup(AbpProPermissions.GroupName);
+        var myGroup = context.AddGroup(AbpProPermissions.GroupName, L("Permission:AbpPro"));
 
         var booksPermission = myGroup.AddPermission(AbpProPermissions.Books.Default, L("Permission:Books"));
         booksPermission.AddChild(AbpProPermissions.Books.Create, L("Permission:Books.Create"));

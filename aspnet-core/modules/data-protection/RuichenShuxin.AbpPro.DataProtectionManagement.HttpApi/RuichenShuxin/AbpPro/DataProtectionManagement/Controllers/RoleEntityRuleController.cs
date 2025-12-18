@@ -1,11 +1,7 @@
 ﻿namespace RuichenShuxin.AbpPro.DataProtectionManagement;
 
-[Controller]
-[Authorize(DataProtectionManagementPermissionNames.RoleEntityRule.Default)]
-[RemoteService(Name = DataProtectionManagementRemoteServiceConsts.RemoteServiceName)]
-[Area(DataProtectionManagementRemoteServiceConsts.ModuleName)]
 [Route($"api/{DataProtectionManagementRemoteServiceConsts.ModuleName}/entity-rule/roles")]
-public class RoleEntityRuleController : AbpControllerBase, IRoleEntityRuleAppService
+public class RoleEntityRuleController : DataProtectionManagementController, IRoleEntityRuleAppService
 {
     private readonly IRoleEntityRuleAppService _service;
 

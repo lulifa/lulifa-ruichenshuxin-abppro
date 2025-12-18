@@ -22,8 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="RuichenShuxin\AbpPro\Platform\Localization\Identity\*.json" />
+    <EmbeddedResource Include="RuichenShuxin\AbpPro\Platform\Localization\OpenIddict\*.json" />
     <EmbeddedResource Include="RuichenShuxin\AbpPro\Platform\Localization\Resources\*.json" />
-    <Content Remove="RuichenShuxin\AbpPro\Platform\Localization\Resources\*.json" />
+    <EmbeddedResource Include="RuichenShuxin\AbpPro\Platform\Localization\Saas\*.json" />
   </ItemGroup>
 
   <ItemGroup>

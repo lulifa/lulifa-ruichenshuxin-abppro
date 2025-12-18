@@ -1,11 +1,7 @@
 ﻿namespace RuichenShuxin.AbpPro.DataProtectionManagement;
 
-[Controller]
-[Authorize(DataProtectionManagementPermissionNames.EntityTypeInfo.Default)]
-[RemoteService(Name = DataProtectionManagementRemoteServiceConsts.RemoteServiceName)]
-[Area(DataProtectionManagementRemoteServiceConsts.ModuleName)]
 [Route($"api/{DataProtectionManagementRemoteServiceConsts.ModuleName}/entity-type-infos")]
-public class EntityTypeInfoController : AbpControllerBase, IEntityTypeInfoAppService
+public class EntityTypeInfoController : DataProtectionManagementController, IEntityTypeInfoAppService
 {
     private readonly IEntityTypeInfoAppService _service;
 

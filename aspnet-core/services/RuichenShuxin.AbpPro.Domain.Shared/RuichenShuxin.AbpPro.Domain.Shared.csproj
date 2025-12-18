@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <EmbeddedResource Include="RuichenShuxin\AbpPro\Localization\Resources\*.json" />
-    <Content Remove="RuichenShuxin\AbpPro\Localization\Resources\*.json" />
   </ItemGroup>
 
   <ItemGroup>

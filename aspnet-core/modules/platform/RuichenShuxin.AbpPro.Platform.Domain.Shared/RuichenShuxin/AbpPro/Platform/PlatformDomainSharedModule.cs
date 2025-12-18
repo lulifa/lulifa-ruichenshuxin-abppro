@@ -1,19 +1,8 @@
-﻿using Volo.Abp.AuditLogging;
-using Volo.Abp.BackgroundJobs;
-using Volo.Abp.FeatureManagement;
-using Volo.Abp.Identity;
-using Volo.Abp.OpenIddict;
-using Volo.Abp.PermissionManagement;
-using Volo.Abp.SettingManagement;
-using Volo.Abp.TenantManagement;
-
-namespace RuichenShuxin.AbpPro.Platform;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 [DependsOn(
     typeof(AbpValidationModule),
     typeof(AbpDddDomainSharedModule),
-
-
     typeof(AbpAuditLoggingDomainSharedModule),
     typeof(AbpBackgroundJobsDomainSharedModule),
     typeof(AbpFeatureManagementDomainSharedModule),
@@ -39,6 +28,18 @@ public class PlatformDomainSharedModule : AbpModule
                 .Add<PlatformResource>(AbpProCoreConsts.Languages.ZhHans)
                 .AddBaseTypes(typeof(AbpValidationResource))
                 .AddVirtualJson("/RuichenShuxin/AbpPro/Platform/Localization/Resources");
+
+            options.Resources
+                   .Get<IdentityResource>()
+                   .AddVirtualJson("/RuichenShuxin/AbpPro/Platform/Localization/Identity");
+
+            options.Resources
+                   .Add<AbpSaasResource>(AbpProCoreConsts.Languages.ZhHans)
+                   .AddVirtualJson("/RuichenShuxin/AbpPro/Platform/Localization/Saas");
+
+            options.Resources
+                   .Get<AbpOpenIddictResource>()
+                   .AddVirtualJson("/RuichenShuxin/AbpPro/Platform/Localization/OpenIddict");
         });
 
         Configure<AbpExceptionLocalizationOptions>(options =>

@@ -17,7 +17,6 @@ namespace RuichenShuxin.AbpPro;
 
     typeof(AbpProAuthorizationOrganizationUnitsModule),
     typeof(AbpProCAPEventBusModule),
-    typeof(AbpProLocalizationModule),
     typeof(AbpProOAuthModule),
     typeof(AbpProAspNetCoreMvcWrapperModule),
     typeof(AbpProCoreModule)

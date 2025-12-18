@@ -34,23 +34,23 @@ public class PlatformPermissionDefinitionProvider : PermissionDefinitionProvider
             var userPermission = identityGroup.GetPermissionOrNull(IdentityPermissions.Users.Default);
             if (userPermission != null)
             {
-                userPermission.AddChild(PlatformPermissions.Users.ResetPassword, L("Permission:ResetPassword"));
-                userPermission.AddChild(PlatformPermissions.Users.ManageOrganizationUnits, L("Permission:ManageOrganizationUnits"));
+                userPermission.AddChild(PlatformPermissions.Users.ResetPassword, IdentityL("Permission:ResetPassword"));
+                userPermission.AddChild(PlatformPermissions.Users.ManageOrganizationUnits, IdentityL("Permission:ManageOrganizationUnits"));
             }
 
             var rolePermission = identityGroup.GetPermissionOrNull(IdentityPermissions.Roles.Default);
             if (rolePermission != null)
             {
-                rolePermission.AddChild(PlatformPermissions.Roles.ManageOrganizationUnits, L("Permission:ManageOrganizationUnits"));
+                rolePermission.AddChild(PlatformPermissions.Roles.ManageOrganizationUnits, IdentityL("Permission:ManageOrganizationUnits"));
             }
 
-            var origanizationUnitPermission = identityGroup.AddPermission(PlatformPermissions.OrganizationUnits.Default, L("Permission:OrganizationUnitManagement"));
-            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.Create, L("Permission:Create"));
-            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.Update, L("Permission:Edit"));
-            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.Delete, L("Permission:Delete"));
-            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.ManageRoles, L("Permission:ManageRoles"));
-            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.ManageUsers, L("Permission:ManageUsers"));
-            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.ManagePermissions, L("Permission:ChangePermissions"));
+            var origanizationUnitPermission = identityGroup.AddPermission(PlatformPermissions.OrganizationUnits.Default, IdentityL("Permission:OrganizationUnitManagement"));
+            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.Create, IdentityL("Permission:Create"));
+            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.Update, IdentityL("Permission:Edit"));
+            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.Delete, IdentityL("Permission:Delete"));
+            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.ManageRoles, IdentityL("Permission:ManageRoles"));
+            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.ManageUsers, IdentityL("Permission:ManageUsers"));
+            origanizationUnitPermission.AddChild(PlatformPermissions.OrganizationUnits.ManagePermissions, IdentityL("Permission:ChangePermissions"));
 
         }
 
@@ -59,5 +59,10 @@ public class PlatformPermissionDefinitionProvider : PermissionDefinitionProvider
     private static LocalizableString L(string name)
     {
         return LocalizableString.Create<PlatformResource>(name);
+    }
+
+    private static LocalizableString IdentityL(string name)
+    {
+        return LocalizableString.Create<IdentityResource>(name);
     }
 }

@@ -1,7 +1,7 @@
 {
   "Culture": "en",
   "Texts": {
-    "Permission:Demo": "Demo",
+    "Permission:AbpPro": "AbpPro",
     "Permission:Books": "Books",
     "Permission:Books.Create": "Create Books",
     "Permission:Books.Edit": "Edit Books",
