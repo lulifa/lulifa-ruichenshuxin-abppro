@@ -8,6 +8,7 @@ global using Microsoft.Extensions.DependencyInjection;
 global using RuichenShuxin.AbpPro.Core;
 global using RuichenShuxin.AbpPro.DataProtection;
 global using RuichenShuxin.AbpPro.DataProtection.EntityFrameworkCore;
+global using RuichenShuxin.AbpPro.DataProtectionManagement.EntityFrameworkCore;
 global using RuichenShuxin.AbpPro.Platform;
 global using System;
 global using System.Collections.Generic;

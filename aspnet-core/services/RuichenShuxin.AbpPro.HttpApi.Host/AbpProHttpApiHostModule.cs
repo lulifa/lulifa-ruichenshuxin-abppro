@@ -12,6 +12,9 @@ namespace RuichenShuxin.AbpPro;
     typeof(AbpCachingStackExchangeRedisModule),
     typeof(AbpAspNetCoreSerilogModule),
 
+    typeof(DataProtectionManagementHttpApiModule),
+    typeof(DataProtectionManagementApplicationModule),
+
     typeof(PlatformHttpApiModule),
     typeof(PlatformApplicationModule),
 

@@ -23,6 +23,8 @@ public class AbpProDbContext : AbpProDataProtectionDbContext<AbpProDbContext>, I
     {
         base.OnModelCreating(builder);
 
+        builder.ConfigureDataProtectionManagement();
+
         builder.ConfigurePlatform();
 
         builder.ConfigureAbpPro();

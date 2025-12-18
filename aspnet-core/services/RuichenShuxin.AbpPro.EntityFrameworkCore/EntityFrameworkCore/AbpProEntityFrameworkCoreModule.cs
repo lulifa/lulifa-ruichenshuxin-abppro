@@ -2,6 +2,7 @@ namespace RuichenShuxin.AbpPro.EntityFrameworkCore;
 
 [DependsOn(
     typeof(AbpProDomainModule),
+    typeof(DataProtectionManagementEntityFrameworkCoreModule),
     typeof(PlatformEntityFrameworkCoreModule),
     typeof(AbpProDataProtectionEntityFrameworkCoreModule))]
 public class AbpProEntityFrameworkCoreModule : AbpModule

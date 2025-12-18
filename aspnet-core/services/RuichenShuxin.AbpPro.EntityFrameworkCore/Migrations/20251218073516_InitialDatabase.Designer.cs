@@ -11,7 +11,7 @@ using RuichenShuxin.AbpPro.EntityFrameworkCore;
 namespace RuichenShuxin.AbpPro.Migrations
 {
     [DbContext(typeof(AbpProDbContext))]
-    [Migration("20251218062033_InitialDatabase")]
+    [Migration("20251218073516_InitialDatabase")]
     partial class InitialDatabase
     {
         /// <inheritdoc />
@@ -184,6 +184,352 @@ namespace RuichenShuxin.AbpPro.Migrations
                     b.HasIndex("Role");
 
                     b.ToTable("AppBooksAuths", (string)null);
+                });
+
+            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.EntityEnumInfo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)")
+                        .HasColumnName("DisplayName");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)")
+                        .HasColumnName("Name");
+
+                    b.Property<Guid>("PropertyInfoId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("Value");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PropertyInfoId", "Name");
+
+                    b.ToTable("AbpAuthEntityEnums", (string)null);
+                });
+
+            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.EntityPropertyInfo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)")
+                        .HasColumnName("DisplayName");
+
+                    b.Property<string>("JavaScriptType")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)")
+                        .HasColumnName("JavaScriptType");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)")
+                        .HasColumnName("Name");
+
+                    b.Property<string>("TypeFullName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)")
+                        .HasColumnName("TypeFullName");
+
+                    b.Property<Guid>("TypeInfoId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TypeInfoId", "TypeFullName");
+
+                    b.ToTable("AbpAuthEntityProperties", (string)null);
+                });
+
+            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.EntityTypeInfo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)")
+                        .HasColumnName("DisplayName");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsAuditEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)")
+                        .HasColumnName("Name");
+
+                    b.Property<string>("TypeFullName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)")
+                        .HasColumnName("TypeFullName");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TypeFullName");
+
+                    b.ToTable("AbpAuthEntitites", (string)null);
+                });
+
+            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.OrganizationUnitEntityRule", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("AccessedProperties")
+                        .HasMaxLength(512)
+                        .HasColumnType("varchar(512)")
+                        .HasColumnName("AccessedProperties");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<string>("EntityTypeFullName")
+                        .HasColumnType("longtext");
+
+                    b.Property<Guid>("EntityTypeId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<string>("FilterGroup")
+                        .HasColumnType("longtext")
+                        .HasColumnName("FilterGroup");
+
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<int>("Operation")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OrgCode")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)")
+                        .HasColumnName("OrgCode");
+
+                    b.Property<Guid>("OrgId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("TenantId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("TenantId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EntityTypeId");
+
+                    b.ToTable("AbpAuthOrganizationUnitEntityRules", (string)null);
+                });
+
+            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.RoleEntityRule", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("AccessedProperties")
+                        .HasMaxLength(512)
+                        .HasColumnType("varchar(512)")
+                        .HasColumnName("AccessedProperties");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<string>("EntityTypeFullName")
+                        .HasColumnType("longtext");
+
+                    b.Property<Guid>("EntityTypeId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<string>("FilterGroup")
+                        .HasColumnType("longtext")
+                        .HasColumnName("FilterGroup");
+
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<int>("Operation")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)")
+                        .HasColumnName("RoleName");
+
+                    b.Property<Guid?>("TenantId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("TenantId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EntityTypeId");
+
+                    b.ToTable("AbpAuthRoleEntityRules", (string)null);
+                });
+
+            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.SubjectStrategy", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<int>("Strategy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SubjectId")
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)")
+                        .HasColumnName("SubjectId");
+
+                    b.Property<string>("SubjectName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("SubjectName");
+
+                    b.Property<Guid?>("TenantId")
+                        .HasColumnType("char(36)")
+                        .HasColumnName("TenantId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AbpAuthSubjectStrategys", (string)null);
                 });
 
             modelBuilder.Entity("RuichenShuxin.AbpPro.Platform.Data", b =>
@@ -2544,6 +2890,50 @@ namespace RuichenShuxin.AbpPro.Migrations
                     b.Navigation("Entity");
                 });
 
+            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.EntityEnumInfo", b =>
+                {
+                    b.HasOne("RuichenShuxin.AbpPro.DataProtectionManagement.EntityPropertyInfo", "PropertyInfo")
+                        .WithMany("Enums")
+                        .HasForeignKey("PropertyInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PropertyInfo");
+                });
+
+            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.EntityPropertyInfo", b =>
+                {
+                    b.HasOne("RuichenShuxin.AbpPro.DataProtectionManagement.EntityTypeInfo", "TypeInfo")
+                        .WithMany("Properties")
+                        .HasForeignKey("TypeInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TypeInfo");
+                });
+
+            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.OrganizationUnitEntityRule", b =>
+                {
+                    b.HasOne("RuichenShuxin.AbpPro.DataProtectionManagement.EntityTypeInfo", "EntityTypeInfo")
+                        .WithMany()
+                        .HasForeignKey("EntityTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EntityTypeInfo");
+                });
+
+            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.RoleEntityRule", b =>
+                {
+                    b.HasOne("RuichenShuxin.AbpPro.DataProtectionManagement.EntityTypeInfo", "EntityTypeInfo")
+                        .WithMany()
+                        .HasForeignKey("EntityTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EntityTypeInfo");
+                });
+
             modelBuilder.Entity("RuichenShuxin.AbpPro.Platform.DataItem", b =>
                 {
                     b.HasOne("RuichenShuxin.AbpPro.Platform.Data", null)
@@ -2693,6 +3083,16 @@ namespace RuichenShuxin.AbpPro.Migrations
                         .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.EntityPropertyInfo", b =>
+                {
+                    b.Navigation("Enums");
+                });
+
+            modelBuilder.Entity("RuichenShuxin.AbpPro.DataProtectionManagement.EntityTypeInfo", b =>
+                {
+                    b.Navigation("Properties");
                 });
 
             modelBuilder.Entity("RuichenShuxin.AbpPro.Platform.Data", b =>

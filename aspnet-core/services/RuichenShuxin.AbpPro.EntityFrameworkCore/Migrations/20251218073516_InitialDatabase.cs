@@ -67,6 +67,51 @@ namespace RuichenShuxin.AbpPro.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "AbpAuthEntitites",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    Name = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false),
+                    DisplayName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
+                    TypeFullName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
+                    IsAuditEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "longtext", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "char(36)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpAuthEntitites", x => x.Id);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "AbpAuthSubjectStrategys",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    IsEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    TenantId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    SubjectName = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
+                    SubjectId = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: true),
+                    Strategy = table.Column<int>(type: "int", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "longtext", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "char(36)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpAuthSubjectStrategys", x => x.Id);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "AbpBackgroundJobs",
                 columns: table => new
                 {
@@ -752,6 +797,95 @@ namespace RuichenShuxin.AbpPro.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "AbpAuthEntityProperties",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    Name = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false),
+                    DisplayName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
+                    TypeFullName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
+                    JavaScriptType = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
+                    TypeInfoId = table.Column<Guid>(type: "char(36)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpAuthEntityProperties", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AbpAuthEntityProperties_AbpAuthEntitites_TypeInfoId",
+                        column: x => x.TypeInfoId,
+                        principalTable: "AbpAuthEntitites",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "AbpAuthOrganizationUnitEntityRules",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    OrgId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    OrgCode = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
+                    ExtraProperties = table.Column<string>(type: "longtext", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    TenantId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    IsEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Operation = table.Column<int>(type: "int", nullable: false),
+                    FilterGroup = table.Column<string>(type: "longtext", nullable: true),
+                    EntityTypeId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    EntityTypeFullName = table.Column<string>(type: "longtext", nullable: true),
+                    AccessedProperties = table.Column<string>(type: "varchar(512)", maxLength: 512, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpAuthOrganizationUnitEntityRules", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AbpAuthOrganizationUnitEntityRules_AbpAuthEntitites_EntityTy~",
+                        column: x => x.EntityTypeId,
+                        principalTable: "AbpAuthEntitites",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "AbpAuthRoleEntityRules",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    RoleId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    RoleName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
+                    ExtraProperties = table.Column<string>(type: "longtext", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    TenantId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    IsEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Operation = table.Column<int>(type: "int", nullable: false),
+                    FilterGroup = table.Column<string>(type: "longtext", nullable: true),
+                    EntityTypeId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    EntityTypeFullName = table.Column<string>(type: "longtext", nullable: true),
+                    AccessedProperties = table.Column<string>(type: "varchar(512)", maxLength: 512, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpAuthRoleEntityRules", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AbpAuthRoleEntityRules_AbpAuthEntitites_EntityTypeId",
+                        column: x => x.EntityTypeId,
+                        principalTable: "AbpAuthEntitites",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "AbpOrganizationUnitRoles",
                 columns: table => new
                 {
@@ -1058,6 +1192,28 @@ namespace RuichenShuxin.AbpPro.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "AbpAuthEntityEnums",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    Name = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false),
+                    DisplayName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
+                    Value = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false),
+                    PropertyInfoId = table.Column<Guid>(type: "char(36)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpAuthEntityEnums", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AbpAuthEntityEnums_AbpAuthEntityProperties_PropertyInfoId",
+                        column: x => x.PropertyInfoId,
+                        principalTable: "AbpAuthEntityProperties",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "AppBooksAuths",
                 columns: table => new
                 {
@@ -1135,6 +1291,31 @@ namespace RuichenShuxin.AbpPro.Migrations
                 name: "IX_AbpAuditLogs_TenantId_UserId_ExecutionTime",
                 table: "AbpAuditLogs",
                 columns: new[] { "TenantId", "UserId", "ExecutionTime" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AbpAuthEntitites_TypeFullName",
+                table: "AbpAuthEntitites",
+                column: "TypeFullName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AbpAuthEntityEnums_PropertyInfoId_Name",
+                table: "AbpAuthEntityEnums",
+                columns: new[] { "PropertyInfoId", "Name" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AbpAuthEntityProperties_TypeInfoId_TypeFullName",
+                table: "AbpAuthEntityProperties",
+                columns: new[] { "TypeInfoId", "TypeFullName" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AbpAuthOrganizationUnitEntityRules_EntityTypeId",
+                table: "AbpAuthOrganizationUnitEntityRules",
+                column: "EntityTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AbpAuthRoleEntityRules_EntityTypeId",
+                table: "AbpAuthRoleEntityRules",
+                column: "EntityTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpBackgroundJobs_IsAbandoned_NextTryTime",
@@ -1426,6 +1607,18 @@ namespace RuichenShuxin.AbpPro.Migrations
                 name: "AbpAuditLogExcelFiles");
 
             migrationBuilder.DropTable(
+                name: "AbpAuthEntityEnums");
+
+            migrationBuilder.DropTable(
+                name: "AbpAuthOrganizationUnitEntityRules");
+
+            migrationBuilder.DropTable(
+                name: "AbpAuthRoleEntityRules");
+
+            migrationBuilder.DropTable(
+                name: "AbpAuthSubjectStrategys");
+
+            migrationBuilder.DropTable(
                 name: "AbpBackgroundJobs");
 
             migrationBuilder.DropTable(
@@ -1522,6 +1715,9 @@ namespace RuichenShuxin.AbpPro.Migrations
                 name: "PlatformUserMenus");
 
             migrationBuilder.DropTable(
+                name: "AbpAuthEntityProperties");
+
+            migrationBuilder.DropTable(
                 name: "AbpEntityChanges");
 
             migrationBuilder.DropTable(
@@ -1544,6 +1740,9 @@ namespace RuichenShuxin.AbpPro.Migrations
 
             migrationBuilder.DropTable(
                 name: "PlatformDatas");
+
+            migrationBuilder.DropTable(
+                name: "AbpAuthEntitites");
 
             migrationBuilder.DropTable(
                 name: "AbpAuditLogs");

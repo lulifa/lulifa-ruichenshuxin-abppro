@@ -21,6 +21,9 @@
     <ProjectReference Include="..\..\frameworks\wrapper\RuichenShuxin.AbpPro.AspNetCore.Mvc.Wrapper\RuichenShuxin.AbpPro.AspNetCore.Mvc.Wrapper.csproj" />
     
     
+    <ProjectReference Include="..\..\modules\data-protection\RuichenShuxin.AbpPro.DataProtectionManagement.HttpApi\RuichenShuxin.AbpPro.DataProtectionManagement.HttpApi.csproj" />
+    <ProjectReference Include="..\..\modules\data-protection\RuichenShuxin.AbpPro.DataProtectionManagement.Application\RuichenShuxin.AbpPro.DataProtectionManagement.Application.csproj" />
+    
     
     <ProjectReference Include="..\..\modules\platform\RuichenShuxin.AbpPro.Platform.HttpApi\RuichenShuxin.AbpPro.Platform.HttpApi.csproj" />
     <ProjectReference Include="..\..\modules\platform\RuichenShuxin.AbpPro.Platform.Application\RuichenShuxin.AbpPro.Platform.Application.csproj" />

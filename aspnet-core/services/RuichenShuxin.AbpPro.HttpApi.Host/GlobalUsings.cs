@@ -21,6 +21,7 @@ global using RuichenShuxin.AbpPro.AspNetCore.Mvc.Wrapper;
 global using RuichenShuxin.AbpPro.Authorization.OrganizationUnits;
 global using RuichenShuxin.AbpPro.CAP;
 global using RuichenShuxin.AbpPro.Core;
+global using RuichenShuxin.AbpPro.DataProtectionManagement;
 global using RuichenShuxin.AbpPro.EntityFrameworkCore;
 global using RuichenShuxin.AbpPro.OAuth;
 global using RuichenShuxin.AbpPro.Platform;
