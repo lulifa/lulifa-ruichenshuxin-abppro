@@ -9,7 +9,7 @@ using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace RuiChen.Abp.EventBus.CAP.Internal;
+namespace RuichenShuxin.AbpPro.CAP;
 
 internal class ObjectMethodExecutor
 {

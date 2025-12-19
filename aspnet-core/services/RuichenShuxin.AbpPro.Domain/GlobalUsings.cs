@@ -22,6 +22,7 @@ global using Volo.Abp.Domain.Entities.Auditing;
 global using Volo.Abp.Domain.Repositories;
 global using Volo.Abp.Domain.Services;
 global using Volo.Abp.Identity;
+global using Volo.Abp.Localization;
 global using Volo.Abp.Modularity;
 global using Volo.Abp.MultiTenancy;
 global using Volo.Abp.Settings;

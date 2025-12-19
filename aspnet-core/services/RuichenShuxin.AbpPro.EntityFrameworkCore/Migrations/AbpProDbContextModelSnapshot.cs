@@ -22,7 +22,6 @@ namespace RuichenShuxin.AbpPro.Migrations
             modelBuilder.Entity("RuichenShuxin.AbpPro.Author", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("BirthDate")

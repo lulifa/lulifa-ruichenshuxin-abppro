@@ -1,6 +1,11 @@
 ﻿{
   "culture": "en",
   "texts": {
+    "EntityTypeInfos": "Entity Type Infos",
+    "DisplayName:Name": "Name",
+    "DisplayName:DisplayName": "Display Name",
+    "DisplayName:TypeFullName": "Type Full Name",
+    "DisplayName:IsAuditEnabled": "Audit Enabled",
     "Permission:DataProtectionManagement": "Data Protection",
     "Permission:EntityTypeInfo": "Entity Type Info",
     "Permission:RoleEntityRule": "Role Entity Rule",

@@ -10,7 +10,6 @@ global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Options;
-global using RuiChen.Abp.EventBus.CAP.Internal;
 global using RuichenShuxin.AbpPro.Core;
 global using System;
 global using System.Buffers;

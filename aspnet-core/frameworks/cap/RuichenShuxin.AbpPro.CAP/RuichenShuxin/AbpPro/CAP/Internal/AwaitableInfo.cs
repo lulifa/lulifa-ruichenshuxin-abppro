@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace RuiChen.Abp.EventBus.CAP.Internal;
+namespace RuichenShuxin.AbpPro.CAP;
 
 internal readonly struct AwaitableInfo
 {

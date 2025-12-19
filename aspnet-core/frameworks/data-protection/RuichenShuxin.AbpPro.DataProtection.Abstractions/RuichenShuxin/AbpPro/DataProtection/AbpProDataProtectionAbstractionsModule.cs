@@ -18,7 +18,7 @@ public class AbpProDataProtectionAbstractionsModule : AbpModule
         {
             options.Resources
                 .Add<DataProtectionResource>()
-                .AddVirtualJson("/RuiChen/Abp/DataProtection/Localization/Resources");
+                .AddVirtualJson("/RuichenShuxin/AbpPro/DataProtection/Localization/Resources");
         });
     }
 }

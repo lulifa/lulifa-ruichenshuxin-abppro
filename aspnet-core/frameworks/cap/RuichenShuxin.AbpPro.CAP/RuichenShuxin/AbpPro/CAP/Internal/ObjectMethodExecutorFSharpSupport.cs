@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace RuiChen.Abp.EventBus.CAP.Internal;
+namespace RuichenShuxin.AbpPro.CAP;
 
 /// <summary>
 /// Helper for detecting whether a given type is FSharpAsync`1, and if so, supplying

@@ -11,7 +11,10 @@ public class AbpProEntityFrameworkCoreModule : AbpModule
     {
         context.Services.AddAbpDbContext<AbpProDbContext>(options =>
         {
-            options.AddDefaultRepositories(includeAllEntities: true);
+            options.AddRepository<Author, EfCoreAuthorRepository>();
+            options.AddRepository<Book, EfCoreBookRepository>();
+
+            options.AddDefaultRepositories();
 
         });
 
@@ -23,6 +26,15 @@ public class AbpProEntityFrameworkCoreModule : AbpModule
                        .UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
             });
 
+        });
+
+
+        Configure<DataProtectionManagementOptions>(options =>
+        {
+            options.AddEntities(typeof(AbpProResource),
+            [
+                typeof(Book),
+            ]);
         });
 
     }

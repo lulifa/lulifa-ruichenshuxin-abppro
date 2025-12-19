@@ -8,7 +8,7 @@ public class AbpProDomainSharedModule : AbpModule
     {
         Configure<AbpVirtualFileSystemOptions>(options =>
         {
-            options.FileSets.AddEmbedded<AbpProDomainSharedModule>();
+            options.FileSets.AddEmbedded<AbpProDomainSharedModule>("RuichenShuxin.AbpPro");
         });
 
         Configure<AbpLocalizationOptions>(options =>
@@ -16,9 +16,6 @@ public class AbpProDomainSharedModule : AbpModule
             options.Resources
                 .Add<AbpProResource>(AbpProCoreConsts.Languages.ZhHans)
                 .AddVirtualJson("/RuichenShuxin/AbpPro/Localization/Resources");
-
-            options.DefaultResourceType = typeof(AbpProResource);
-
         });
 
         Configure<AbpExceptionLocalizationOptions>(options =>

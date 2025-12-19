@@ -4,7 +4,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace RuiChen.Abp.EventBus.CAP.Internal;
+namespace RuichenShuxin.AbpPro.CAP;
 
 internal readonly struct CoercedAwaitableInfo
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace RuiChen.Abp.EventBus.CAP.Internal;
+namespace RuichenShuxin.AbpPro.CAP;
 
 /// <summary>
 /// Provides a common awaitable structure that <see cref="ObjectMethodExecutor.ExecuteAsync" /> can

@@ -5,15 +5,6 @@ public static class AbpProDbContextModelCreatingExtensions
 
     public static void ConfigureAbpPro(this ModelBuilder builder)
     {
-        builder.Entity<Book>(b =>
-        {
-            b.ToTable(AbpProDbProperties.DbTablePrefix + "Books", AbpProDbProperties.DbSchema);
-            b.ConfigureByConvention();
-            b.Property(x => x.Name).IsRequired().HasMaxLength(AbpProCoreConsts.MaxLength128);
-        });
-
-        builder.ConfigureEntityAuth<Book, Guid, BookAuth>();
-
 
         builder.Entity<Book>(b =>
         {
@@ -29,17 +20,13 @@ public static class AbpProDbContextModelCreatingExtensions
         builder.Entity<Author>(b =>
         {
             b.ToTable(AbpProDbProperties.DbTablePrefix + "Authors", AbpProDbProperties.DbSchema);
-
             b.ConfigureByConvention();
-
             b.Property(x => x.Name)
                 .IsRequired()
                 .HasMaxLength(AuthorConsts.MaxNameLength);
 
             b.HasIndex(x => x.Name);
         });
-
-       
 
     }
 

@@ -1,6 +1,11 @@
 ﻿{
   "culture": "zh-Hans",
   "texts": {
+    "EntityTypeInfos": "实体列表",
+    "DisplayName:Name": "名称",
+    "DisplayName:DisplayName": "显示名称",
+    "DisplayName:TypeFullName": "完整类型名称",
+    "DisplayName:IsAuditEnabled": "是否启用审计",
     "Permission:DataProtectionManagement": "数据保护",
     "Permission:EntityTypeInfo": "实体类型",
     "Permission:RoleEntityRule": "角色规则",

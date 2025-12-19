@@ -11,14 +11,5 @@ public class AbpProHttpApiModule : AbpModule
         {
             mvcBuilder.AddApplicationPartIfNotExists(typeof(AbpProHttpApiModule).Assembly);
         });
-
-        Configure<AbpLocalizationOptions>(options =>
-        {
-            options.Resources
-                .Get<AbpProResource>()
-                .AddBaseTypes(
-                    typeof(AbpUiResource)
-                );
-        });
     }
 }

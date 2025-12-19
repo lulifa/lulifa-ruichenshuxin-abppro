@@ -11,7 +11,7 @@ using RuichenShuxin.AbpPro.EntityFrameworkCore;
 namespace RuichenShuxin.AbpPro.Migrations
 {
     [DbContext(typeof(AbpProDbContext))]
-    [Migration("20251218073516_InitialDatabase")]
+    [Migration("20251218094833_InitialDatabase")]
     partial class InitialDatabase
     {
         /// <inheritdoc />
@@ -25,7 +25,6 @@ namespace RuichenShuxin.AbpPro.Migrations
             modelBuilder.Entity("RuichenShuxin.AbpPro.Author", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("BirthDate")
