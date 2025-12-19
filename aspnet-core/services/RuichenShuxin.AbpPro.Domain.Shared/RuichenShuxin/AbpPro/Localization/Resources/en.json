@@ -21,6 +21,10 @@
     "DisplayName:Price": "Price",
     "DisplayName:AuthorId": "Author Id",
     "DisplayName:BirthDate": "Birth Date",
-    "DisplayName:ShortBio": "Short Bio"
+    "DisplayName:ShortBio": "Short Bio",
+    "DisplayName:LastModifierId": "Last Modifier Id",
+    "DisplayName:LastModificationTime": "Last Modification Time",
+    "DisplayName:CreatorId": "Creator Id",
+    "DisplayName:CreationTime": "Creation Time"
   }
 }

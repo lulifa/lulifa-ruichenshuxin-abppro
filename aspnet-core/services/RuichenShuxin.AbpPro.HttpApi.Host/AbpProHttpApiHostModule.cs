@@ -62,25 +62,40 @@ public partial class AbpProHttpApiHostModule : AbpModule
         var configuration = context.GetConfiguration();
 
         app.UseForwardedHeaders();
-        app.UseAbpProRequestLocalization();
+
+        app.UseAbpSecurityHeaders();
+
         app.UseCookiePolicy();
 
-        app.UseRouting();
+        app.UseAbpProRequestLocalization();
+
+        app.UseCorrelationId();
+
         app.MapAbpStaticAssets();
-        app.UseAbpSecurityHeaders();
+
+        app.UseRouting();
+
         app.UseCors();
+
         app.UseAuthentication();
+
         app.UseAbpOpenIddictValidation();
+
+        app.UseDynamicClaims();
+
+        app.UseUnitOfWork();
 
         app.UseAbpProMultiTenancy(configuration);
 
-        app.UseUnitOfWork();
-        app.UseDynamicClaims();
         app.UseAuthorization();
 
         app.UseAbpProSwagger(configuration);
+
         app.UseAuditing();
+
         app.UseAbpSerilogEnrichers();
+
         app.UseConfiguredEndpoints();
+
     }
 }

@@ -21,6 +21,10 @@
     "DisplayName:Price": "单价",
     "DisplayName:AuthorId": "作者",
     "DisplayName:BirthDate": "生日",
-    "DisplayName:ShortBio": "简介"
+    "DisplayName:ShortBio": "简介",
+    "DisplayName:LastModifierId": "上次修改人",
+    "DisplayName:LastModificationTime": "上次修改时间",
+    "DisplayName:CreatorId": "创建人",
+    "DisplayName:CreationTime": "创建时间"
   }
 }
