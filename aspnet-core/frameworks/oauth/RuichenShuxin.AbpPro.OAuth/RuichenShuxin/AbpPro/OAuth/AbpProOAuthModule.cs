@@ -17,7 +17,7 @@ public class AbpProOAuthModule : AbpModule
         {
             options.Resources
                 .Add<AbpProOAuthResource>()
-                .AddVirtualJson("/Localization/Resources");
+                .AddVirtualJson("/RuichenShuxin/AbpPro/OAuth/Localization/Resources");
         });
 
         context.Services.AddOAuthProviders();

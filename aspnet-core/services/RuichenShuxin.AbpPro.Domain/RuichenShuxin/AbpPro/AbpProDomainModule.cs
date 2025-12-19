@@ -9,11 +9,11 @@ public class AbpProDomainModule : AbpModule
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
 
-        //Configure<AbpLocalizationOptions>(options =>
-        //{
-        //    options.Resources.Get<AbpProResource>()
-        //        .AddBaseTypes(typeof(DataProtectionResource));
-        //});
+        Configure<AbpLocalizationOptions>(options =>
+        {
+            options.Resources.Get<AbpProResource>()
+                .AddBaseTypes(typeof(DataProtectionResource));
+        });
 
         Configure<AbpProDataProtectionOptions>(options =>
         {
