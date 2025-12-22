@@ -1,5 +1,6 @@
 ﻿// Global using directives
 
+global using RuichenShuxin.AbpPro.Core;
 global using RuichenShuxin.AbpPro.DataProtection;
 global using System;
 global using System.Collections.Generic;

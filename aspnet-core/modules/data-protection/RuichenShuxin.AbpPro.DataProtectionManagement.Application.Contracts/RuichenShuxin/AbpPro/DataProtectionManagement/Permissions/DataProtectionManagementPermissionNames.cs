@@ -2,7 +2,7 @@
 
 public static class DataProtectionManagementPermissionNames
 {
-    public const string GroupName = "AbpDataProtectionManagement";
+    public const string GroupName = AbpProCoreConsts.ModuleDataProtection;
 
     public static class EntityTypeInfo
     {
