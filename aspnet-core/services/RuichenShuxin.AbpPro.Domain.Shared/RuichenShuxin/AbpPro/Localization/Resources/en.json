@@ -12,9 +12,10 @@
     "Permission:Authors.Create": "Create Authors",
     "Permission:Authors.Edit": "Edit Authors",
     "Permission:Authors.Delete": "Delete Authors",
-    "Demo:00001": "Author {Name} already exists!",
+    "AbpPro:00001": "Author {Name} already exists!",
     "Author": "Authors",
     "Book": "Books",
+    "NewBook": "Create",
     "DisplayName:Name": "Name",
     "DisplayName:Type": "Type",
     "DisplayName:PublishDate": "Publish Date",
@@ -25,6 +26,15 @@
     "DisplayName:LastModifierId": "Last Modifier Id",
     "DisplayName:LastModificationTime": "Last Modification Time",
     "DisplayName:CreatorId": "Creator Id",
-    "DisplayName:CreationTime": "Creation Time"
+    "DisplayName:CreationTime": "Creation Time",
+    "BookType:Undefined": "Undefined",
+    "BookType:Adventure": "Adventure",
+    "BookType:Biography": "Biography",
+    "BookType:Dystopia": "Dystopia",
+    "BookType:Fantastic": "Fantastic",
+    "BookType:Horror": "Horror",
+    "BookType:Science": "Science",
+    "BookType:ScienceFiction": "Science Fiction",
+    "BookType:Poetry": "Poetry"
   }
 }

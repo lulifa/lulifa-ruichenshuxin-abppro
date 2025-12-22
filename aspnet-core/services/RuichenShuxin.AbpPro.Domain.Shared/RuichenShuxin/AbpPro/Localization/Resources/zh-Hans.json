@@ -12,9 +12,10 @@
     "Permission:Authors.Create": "新增作者",
     "Permission:Authors.Edit": "编辑作者",
     "Permission:Authors.Delete": "删除作者",
-    "Demo:00001": "作者 {Name} 已经存在!",
+    "AbpPro:00001": "作者 {Name} 已经存在!",
     "Author": "作者",
     "Book": "书籍",
+    "NewBook": "新增书籍",
     "DisplayName:Name": "名称",
     "DisplayName:Type": "类型",
     "DisplayName:PublishDate": "出版日期",
@@ -25,6 +26,15 @@
     "DisplayName:LastModifierId": "上次修改人",
     "DisplayName:LastModificationTime": "上次修改时间",
     "DisplayName:CreatorId": "创建人",
-    "DisplayName:CreationTime": "创建时间"
+    "DisplayName:CreationTime": "创建时间",
+    "BookType:Undefined": "未分类",
+    "BookType:Adventure": "冒险",
+    "BookType:Biography": "传记",
+    "BookType:Dystopia": "反乌托邦",
+    "BookType:Fantastic": "奇幻",
+    "BookType:Horror": "恐怖",
+    "BookType:Science": "科学",
+    "BookType:ScienceFiction": "科幻小说",
+    "BookType:Poetry": "诗歌"
   }
 }

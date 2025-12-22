@@ -3,7 +3,7 @@
 /// <summary>
 /// 作者管理
 /// </summary>
-[Route($"api/authors")]
+[Route($"api/business/authors")]
 public class AuthorController : AbpProController<
     IAuthorAppService,
     AuthorDto,

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RuichenShuxin.AbpPro.Platform;
+﻿namespace RuichenShuxin.AbpPro.Platform;
 
 public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDependency
 {
@@ -15,7 +13,7 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
 
         var navigationDefineitions = new List<NavigationDefinition>();
 
-        navigationDefineitions.AddRange(GetVbenDemos());
+        navigationDefineitions.AddRange(GetVbenBusiness());
         navigationDefineitions.AddRange(GetDashboard());
         navigationDefineitions.AddRange(GetModules());
         navigationDefineitions.AddRange(GetSystem());
@@ -30,21 +28,29 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
         return Task.FromResult(menus);
     }
 
-    private static NavigationDefinition[] GetVbenDemos()
+    private static NavigationDefinition[] GetVbenBusiness()
     {
-        var about = new ApplicationMenu(
-            name: "VbenAbout",
-            displayName: "关于",
-            url: "/vben-admin/about",
-            component: "/_core/about/index",
-            description: "关于",
-            order: 9999,
-            icon: "lucide:copyright")
-            .SetProperty("title", "demos.vben.about");
+        var business = new ApplicationMenu(
+            name: "Vben5Business",
+            displayName: "业务管理",
+            url: "/business",
+            component: "",
+            description: "业务管理",
+            icon: "arcticons:activity-manager")
+            .SetProperty("title", "page.business.title");
+        business.AddItem(
+          new ApplicationMenu(
+              name: "Vben5BusinessBooks",
+              displayName: "书籍管理",
+              url: "/business/books",
+              component: "/business/books/index",
+              icon: "arcticons:tenantcloud-pro",
+              description: "书籍管理")
+            .SetProperty("title", "page.business.books"));
 
         return
         [
-            new NavigationDefinition(about),
+            new NavigationDefinition(business),
         ];
     }
 
@@ -83,9 +89,20 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
             .SetProperty("title", "page.dashboard.analytics")
          );
 
+        var about = new ApplicationMenu(
+            name: "VbenAbout",
+            displayName: "关于",
+            url: "/vben-admin/about",
+            component: "/_core/about/index",
+            description: "关于",
+            order: 9999,
+            icon: "lucide:copyright")
+            .SetProperty("title", "demos.vben.about");
+
         return
         [
             new NavigationDefinition(dashboard),
+            new NavigationDefinition(about),
         ];
     }
 

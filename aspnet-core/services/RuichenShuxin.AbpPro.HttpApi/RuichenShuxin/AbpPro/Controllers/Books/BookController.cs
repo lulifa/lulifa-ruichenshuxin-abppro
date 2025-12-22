@@ -3,7 +3,7 @@
 /// <summary>
 /// 书籍管理
 /// </summary>
-[Route($"api/books")]
+[Route($"api/business/books")]
 public class BookController : AbpProController<
     IBookAppService,
     BookDto,

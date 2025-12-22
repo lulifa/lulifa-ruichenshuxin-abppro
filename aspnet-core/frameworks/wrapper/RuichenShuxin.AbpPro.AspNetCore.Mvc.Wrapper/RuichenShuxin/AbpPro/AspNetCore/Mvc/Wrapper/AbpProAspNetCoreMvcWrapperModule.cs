@@ -61,7 +61,7 @@ public class AbpProAspNetCoreMvcWrapperModule : AbpModule
             options.IgnoreControllers.Add<AbpApplicationConfigurationScriptController>();
 
             // 官方模块不包装结果
-            //options.IgnoreNamespaces.Add("Volo.Abp");
+            options.IgnoreNamespaces.Add("Volo.Abp");
 
             // oidc端点不包装结果
             options.IgnorePrefixUrls.Add("/connect");
