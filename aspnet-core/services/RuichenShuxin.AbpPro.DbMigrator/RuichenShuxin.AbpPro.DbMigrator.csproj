@@ -11,10 +11,12 @@
     <PackageReference Include="Serilog.Sinks.Async" />
     <PackageReference Include="Serilog.Sinks.Console" />
     <PackageReference Include="Serilog.Sinks.File" />
-    <PackageReference Include="Volo.Abp.Autofac"  />
+    <PackageReference Include="Volo.Abp.Autofac" />
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\modules\data-protection\RuichenShuxin.AbpPro.DataProtectionManagement.Application.Contracts\RuichenShuxin.AbpPro.DataProtectionManagement.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\modules\platform\RuichenShuxin.AbpPro.Platform.Application.Contracts\RuichenShuxin.AbpPro.Platform.Application.Contracts.csproj" />
     <ProjectReference Include="..\RuichenShuxin.AbpPro.Application.Contracts\RuichenShuxin.AbpPro.Application.Contracts.csproj" />
     <ProjectReference Include="..\RuichenShuxin.AbpPro.EntityFrameworkCore\RuichenShuxin.AbpPro.EntityFrameworkCore.csproj" />
   </ItemGroup>
