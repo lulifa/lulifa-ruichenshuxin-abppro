@@ -23,7 +23,7 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
             navigations.Add(navigationDefineition.Menu);
         }
 
-        IReadOnlyCollection<ApplicationMenu> menus = navigations.ToImmutableList();
+        IReadOnlyCollection<ApplicationMenu> menus = navigations.OrderBy(item => item.Order).ToImmutableList();
 
         return Task.FromResult(menus);
     }
@@ -36,7 +36,8 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
             url: "/business",
             component: "",
             description: "业务管理",
-            icon: "arcticons:activity-manager")
+            icon: "arcticons:activity-manager",
+            order: 1)
             .SetProperty("title", "page.business.title");
         business.AddItem(
           new ApplicationMenu(
@@ -114,7 +115,8 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
             url: "/modules",
             component: "",
             description: "平台管理",
-            icon: "ep:platform")
+            icon: "ep:platform",
+            order: 2)
             .SetProperty("title", "abp.modules.title");
         modules.AddItem(
           new ApplicationMenu(
@@ -159,6 +161,7 @@ public class Vben5NavigationManager : IVben5NavigationManager, ISingletonDepende
             component: "",
             description: "系统管理",
             icon: "arcticons:activity-manager",
+            order: 3,
             multiTenancySides: MultiTenancySides.Host)
             .SetProperty("title", "abp.system.title");
         system.AddItem(
